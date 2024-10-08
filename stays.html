@@ -28,28 +28,80 @@
         <p>Put your stuff here</p>
     </aside>
     <main>
-        <h2>Content</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquam malesuada molestie. Curabitur eu mauris
-            non enim facilisis luctus. Mauris finibus nunc ac justo placerat, vel venenatis lorem maximus. Suspendisse
-            vitae sollicitudin eros, sed pharetra purus. Orci varius natoque penatibus et magnis dis parturient montes,
-            nascetur ridiculus mus. Sed pharetra porttitor lorem, in vehicula mauris lacinia eget. Nunc maximus mi
-            nulla, quis viverra mauris dignissim in. Aliquam nec tincidunt dui, et auctor lacus. Nulla vel velit vitae
-            metus eleifend varius. Sed vitae nibh eu lacus pellentesque condimentum. </p>
+        <h2>Select Booking Details</h2>
+        <form>
+            <table>
+                <tr>
+                    <td>
+                        <label for="city"> City </label>
+                    </td>
+                    <td>
+                        <input type="text" id="city" value="City">
+                    </td>
+                    <td>
+                        <p id="city_err"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="chkin_dd"> Check-in Date </label>
+                    </td>
+                    <td>
+                        <input type="text" id="chkin_dd" value="DD" size="3">
+                        <input type="text" id="chkin_mm" value="MM" size="3">
+                        <input type="text" id="chkin_yyyy" value="YYYY" size="5">
 
-        <p> Proin tempus elit et aliquam facilisis. In hac habitasse platea dictumst. Morbi nec vestibulum sapien.
-            Curabitur lectus mauris, ultrices a augue ornare, congue egestas ante. Aliquam finibus urna at urna pretium
-            commodo. Ut venenatis sem sit amet ex egestas, id rhoncus tellus tempor. Mauris commodo eros eu nibh congue
-            blandit. Mauris facilisis, orci id varius venenatis, tellus quam luctus arcu, bibendum ultrices metus eros
-            sed neque. Sed in lacus varius, auctor magna finibus, mattis risus. Mauris dignissim urna quam, et mattis
-            lacus dignissim eget. Fusce eget suscipit augue. Aliquam nisi eros, viverra ut egestas eget, scelerisque nec
-            erat. Quisque tristique faucibus maximus. Fusce vitae nunc at elit egestas maximus. </p>
-
-        <p>Sed bibendum elit dui, quis placerat felis efficitur at. Proin sollicitudin venenatis sapien. Morbi lorem
-            nulla, viverra quis molestie eget, dapibus eu nisl. Proin eu volutpat purus. Curabitur facilisis rhoncus
-            arcu, non imperdiet tortor tristique non. In hac habitasse platea dictumst. Etiam sodales leo sed maximus
-            posuere. Donec blandit lacinia mauris, eget ultrices mi. Cras sit amet aliquet massa, at placerat mi. Etiam
-            luctus ornare facilisis. Donec rhoncus pulvinar vulputate. Fusce maximus lorem urna, sit amet accumsan nisl
-            consectetur ac. </p>
+                    </td>
+                    <td>
+                        <p id="chkn_err"></p>
+                    </td>
+                    <td>
+                        <label for="chkout_dd"> Check-out Date </label>
+                    </td>
+                    <td>
+                        <input type="text" id="chkout_dd" value="DD" size="3">
+                        <input type="text" id="chkout_mm" value="MM" size="3">
+                        <input type="text" id="chkout_yyyy" value="YYYY" size="5">
+                    </td>
+                    <td>
+                        <p id="chkout_err"></p>
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td>
+                        <label for="rooms"> Number of Rooms </label>
+                    </td>
+                    <td>
+                        <input type="text" id="rooms">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> Number of Guests</label>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="adult">Adults</label>
+                        <input type="text" id="adult" size="5">
+                    </td>
+                    <td>
+                        <label for="child">Children</label>
+                        <input type="text" id="child" size="5">
+                    </td>
+                    <td>
+                        <label for="infant">Infants</label>
+                        <input type="text" id="infant" size="5">
+                    </td>
+                </tr>
+                <tr>
+                    <td><button type="submit" id="submitbtn" onclick="onSubmit()" style="font-size: 15px; padding: 5px"> Submit </button></td>
+                </tr>
+            </table>
+        </form>
 
         <p> Fusce nec aliquam leo. Proin a interdum ligula. Vivamus sodales condimentum tortor, in dignissim diam
             condimentum ut. Phasellus mollis purus id dui ullamcorper, eget mattis magna tincidunt. Sed eget erat
@@ -62,14 +114,27 @@
             ligula arcu id diam. Phasellus hendrerit placerat ex, id egestas libero ornare nec. Fusce id imperdiet
             tellus. Suspendisse suscipit lorem in tincidunt eleifend. </p>
 
-        <p>Maecenas id malesuada risus. Donec ultrices, ipsum in dictum tempus, turpis diam aliquet eros, imperdiet
-            eleifend purus elit eu urna. Fusce vitae congue nibh, id interdum dui. Sed metus nisl, dictum quis dignissim
-            quis, viverra eget nibh. Donec tempor eleifend vehicula. Fusce diam tellus, efficitur sit amet placerat nec,
-            pharetra eu lectus. Integer eget massa libero. </p>
     </main>
 </div>
 <footer>
     <p>&copy; 2024 Mega Vacation Deals</p>
 </footer>
+<script>
+    const city = ['austin','san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego']
+    function onSubmit(e){
+        e.preventDefault()
+        const num_adult = parseInt(document.getElementById("adult").value)
+        const city_name = document.getElementById("city").value
+        const num_rooms = parseInt(document.getElementById("rooms").value)
+        const num_child = parseInt(document.getElementById("child").value)
+        const num_infant = parseInt(document.getElementById("infant").value)
+        const guest_count = num_adult + num_child
+        if (num_rooms < (guest_count/2)) {
+            document.getElementById("city_err").innerText= "number of rooms selected cannot accomodate total guest count"
+        }
+        // The user must enter check in date, and check out date anytime between
+        // Sep 1 2024 to Dec 1st 2024.
+    }
+</script>
 </body>
 </html>

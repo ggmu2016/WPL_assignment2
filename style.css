@@ -79,3 +79,7 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+td {
+    padding: 5px;
+}
