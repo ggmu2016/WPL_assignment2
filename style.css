@@ -12,7 +12,7 @@ header {
     color: #fff;
     padding: 20px 0;
     text-align: center;
-    position: sticky;
+    position: relative;
     top: 0;
     width: 100%;
     background-image: url("assets/header-bg.jpg");
@@ -75,7 +75,7 @@ footer {
     color: #fff;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
