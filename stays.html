@@ -25,13 +25,14 @@
 </nav>
 <div class="container">
     <aside>
-        <h2>Sidebar</h2>
+        <h2>Checkout</h2>
         <p id="datetime"></p>
-        <p>Put your stuff here</p>
         <div>
             <input type="range" min="8" max="96" value="16" class="slideBox" id="slideRange">
         </div>
         <p>Font size: <span id="fontSize"></span>px</p>
+        <p id="confirm"></p>
+        <p class="error" id="error"></p>
     </aside>
     <main>
         <h2>Select Booking Details</h2>
@@ -45,9 +46,6 @@
                         <td>
                             <input type="text" id="city" value="City">
                         </td>
-                        <td>
-                            <p id="city_err"></p>
-                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -60,18 +58,12 @@
 
                         </td>
                         <td>
-                            <p id="chkn_err"></p>
-                        </td>
-                        <td>
                             <label for="chkout_dd"> Check-out Date </label>
                         </td>
                         <td>
                             <input type="text" id="chkout_dd" value="DD" size="3">
                             <input type="text" id="chkout_mm" value="MM" size="3">
                             <input type="text" id="chkout_yyyy" value="YYYY" size="5">
-                        </td>
-                        <td>
-                            <p id="chkout_err"></p>
                         </td>
                     </tr>
                     <tr>
@@ -134,27 +126,46 @@
                 pharetra eu lectus. Integer eget massa libero. </p>
         </div>
     </main>
-</div>
-<footer>
-    <p>&copy; 2024 Mega Vacation Deals</p>
-</footer>
-<script>
-    const city = ['austin', 'san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego']
+    </div>
+    <footer>
+        <p>&copy; 2024 Mega Vacation Deals</p>
+    </footer>
+    <script>
 
-    function onSubmit(e) {
-        e.preventDefault()
-        const num_adult = parseInt(document.getElementById("adult").value)
-        const city_name = document.getElementById("city").value
-        const num_rooms = parseInt(document.getElementById("rooms").value)
-        const num_child = parseInt(document.getElementById("child").value)
-        const num_infant = parseInt(document.getElementById("infant").value)
-        const guest_count = num_adult + num_child
-        if (num_rooms < (guest_count / 2)) {
-            document.getElementById("city_err").innerText = "number of rooms selected cannot accomodate total guest count"
+        function onSubmit(){
+            const num_adult = parseInt(document.getElementById("adult").value);
+            const city_name = document.getElementById("city").value.trim().toLowerCase();
+            const num_rooms = parseInt(document.getElementById("rooms").value);
+            const num_child = parseInt(document.getElementById("child").value);
+            const num_infant = parseInt(document.getElementById("infant").value);
+            const guest_count = num_adult + num_child;
+            const city = ['austin','san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego'];
+            document.getElementById("confirm").innerHTML=" ";
+            document.getElementById("error").innerHTML=" ";
+            let err_text = "";
+            let norm_text = "";
+
+            if (isNaN(num_rooms) || num_rooms < (guest_count/2)) {
+                err_text+= "number of rooms selected cannot accomodate total guest count <br><br>";
+            }
+            else{
+                norm_text+="Number of Rooms selected: "+ num_rooms + "<br>";
+            }
+            if (!city_name|| !city.includes(city_name)) {
+                err_text += "City field must not be empty and must be a valid city in Texas or California <br><br>";
+            }
+            else{
+                norm_text += "City: " + city_name + "<br>";
+            }
+
+            document.getElementById("confirm").innerHTML=norm_text;
+            document.getElementById("error").innerHTML=err_text;
+
+            // The user must enter check in date, and check out date anytime between
+            // Sep 1 2024 to Dec 1st 2024.
+
+
         }
-        // The user must enter check in date, and check out date anytime between
-        // Sep 1 2024 to Dec 1st 2024.
-    }
-</script>
+    </script>
 </body>
 </html>
