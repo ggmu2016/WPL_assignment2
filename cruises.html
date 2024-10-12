@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cruises</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+3">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruises - Mega Vacation Deals</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+3">
 </head>
-<script type="text/javascript" src="js/scripts.js"></script>
 <body onload="updateTime(), updateSlider()">
 <header>
-  <h1>Cruises</h1>
+    <h1>Mega Vacation Deals</h1>
 </header>
 <nav>
     <ul>
@@ -27,57 +25,70 @@
     <aside>
         <h2>Sidebar</h2>
         <p id="datetime"></p>
-        <p>Put your stuff here</p>
         <div>
             <input type="range" min="8" max="96" value="16" class="slideBox" id="slideRange">
         </div>
         <p>Font size: <span id="fontSize"></span>px</p>
     </aside>
     <main>
-        <h2>Content</h2>
-        <div id="bodyContent">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquam malesuada molestie. Curabitur eu mauris
-                non enim facilisis luctus. Mauris finibus nunc ac justo placerat, vel venenatis lorem maximus. Suspendisse
-                vitae sollicitudin eros, sed pharetra purus. Orci varius natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Sed pharetra porttitor lorem, in vehicula mauris lacinia eget. Nunc maximus mi
-                nulla, quis viverra mauris dignissim in. Aliquam nec tincidunt dui, et auctor lacus. Nulla vel velit vitae
-                metus eleifend varius. Sed vitae nibh eu lacus pellentesque condimentum. </p>
+        <h2>Cruises</h2>
+        <form id="cruiseForm">
+            <label for="destination">Destination:</label>
+            <select id="destination" required>
+                <option value="">Select</option>
+                <option value="Alaska">Alaska</option>
+                <option value="Bahamas">Bahamas</option>
+                <option value="Europe">Europe</option>
+                <option value="Mexico">Mexico</option>
+            </select><br><br>
 
-            <p> Proin tempus elit et aliquam facilisis. In hac habitasse platea dictumst. Morbi nec vestibulum sapien.
-                Curabitur lectus mauris, ultrices a augue ornare, congue egestas ante. Aliquam finibus urna at urna pretium
-                commodo. Ut venenatis sem sit amet ex egestas, id rhoncus tellus tempor. Mauris commodo eros eu nibh congue
-                blandit. Mauris facilisis, orci id varius venenatis, tellus quam luctus arcu, bibendum ultrices metus eros
-                sed neque. Sed in lacus varius, auctor magna finibus, mattis risus. Mauris dignissim urna quam, et mattis
-                lacus dignissim eget. Fusce eget suscipit augue. Aliquam nisi eros, viverra ut egestas eget, scelerisque nec
-                erat. Quisque tristique faucibus maximus. Fusce vitae nunc at elit egestas maximus. </p>
+            <label for="departing">Departing Between (Sep 1, 2024 - Dec 1, 2024):</label>
+            <input type="date" id="departing" required><br><br>
 
-            <p>Sed bibendum elit dui, quis placerat felis efficitur at. Proin sollicitudin venenatis sapien. Morbi lorem
-                nulla, viverra quis molestie eget, dapibus eu nisl. Proin eu volutpat purus. Curabitur facilisis rhoncus
-                arcu, non imperdiet tortor tristique non. In hac habitasse platea dictumst. Etiam sodales leo sed maximus
-                posuere. Donec blandit lacinia mauris, eget ultrices mi. Cras sit amet aliquet massa, at placerat mi. Etiam
-                luctus ornare facilisis. Donec rhoncus pulvinar vulputate. Fusce maximus lorem urna, sit amet accumsan nisl
-                consectetur ac. </p>
+            <label for="duration">Duration (3-10 days):</label>
+            <input type="number" id="duration" min="3" max="10" required><br><br>
 
-            <p> Fusce nec aliquam leo. Proin a interdum ligula. Vivamus sodales condimentum tortor, in dignissim diam
-                condimentum ut. Phasellus mollis purus id dui ullamcorper, eget mattis magna tincidunt. Sed eget erat
-                cursus, tincidunt metus non, cursus lorem.  Donec tempus, nulla at scelerisque ultrices, velit ex tempus
-                ligula, in ullamcorper libero massa eu lectus. In eleifend nulla lacus, vel porttitor quam ullamcorper a.
-                Vivamus mauris massa, dignissim quis erat quis, porttitor ultricies ligula. Sed sit amet diam et arcu
-                gravida luctus sed sit amet tortor. Phasellus at justo pretium, auctor sapien ut, consectetur lectus.
-                Curabitur fringilla odio elit, non ullamcorper neque lacinia sed. Maecenas blandit laoreet dui vitae
-                pretium. Maecenas blandit, tellus eu dignissim condimentum, velit felis scelerisque diam, vel hendrerit
-                ligula arcu id diam. Phasellus hendrerit placerat ex, id egestas libero ornare nec. Fusce id imperdiet
-                tellus. Suspendisse suscipit lorem in tincidunt eleifend. </p>
+            <label for="guests">Number of Guests:</label>
+            <input type="number" id="guests" min="1" max="2" required><br><br>
 
-            <p id="bodyContent">Maecenas id malesuada risus. Donec ultrices, ipsum in dictum tempus, turpis diam aliquet eros, imperdiet
-                eleifend purus elit eu urna. Fusce vitae congue nibh, id interdum dui. Sed metus nisl, dictum quis dignissim
-                quis, viverra eget nibh. Donec tempor eleifend vehicula. Fusce diam tellus, efficitur sit amet placerat nec,
-                pharetra eu lectus. Integer eget massa libero. </p>
-        </div>
+            <input type="submit" value="Submit">
+        </form>
+        <p id="cruiseOutput"></p>
     </main>
 </div>
 <footer>
     <p>&copy; 2024 Mega Vacation Deals</p>
 </footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#cruiseForm').on('submit', function(e) {
+            e.preventDefault();
+            const destination = $('#destination').val();
+            const departing = $('#departing').val();
+            const duration = $('#duration').val();
+            const guests = $('#guests').val();
+
+            // Validation
+            if (!destination) {
+                alert('Please select a destination.');
+            } else if (new Date(departing) < new Date('2024-09-01') || new Date(departing) > new Date('2024-12-01')) {
+                alert('Please select a valid departing date.');
+            } else if (duration < 3 || duration > 10) {
+                alert('Please enter a valid duration.');
+            } else if (guests > 2) {
+                alert('The maximum number of guests per room is 2.');
+            } else {
+                $('#cruiseOutput').html(`
+                    <h3>Cruise Booking Details:</h3>
+                    <p>Destination: ${destination}</p>
+                    <p>Departing: ${departing}</p>
+                    <p>Duration: ${duration} days</p>
+                    <p>Guests: ${guests}</p>
+                `);
+            }
+        });
+    });
+</script>
 </body>
 </html>
