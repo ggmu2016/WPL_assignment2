@@ -1,3 +1,25 @@
+let colorPicker;
+const defaultColor = "#ffffff";
+
+window.addEventListener("load", startup, false);
+
+function startup(){
+    colorPicker = document.querySelector("#colorPicker");
+    colorPicker.value = defaultColor;
+    colorPicker.addEventListener("change", updateBg, false); // could also be type:input for immediate change
+    colorPicker.select();
+}
+
+function updateBg (event){
+    const body = document.querySelector("body");
+    if (body){
+        body.style.backgroundColor = event.target.value;
+    }
+
+    const bgtext = document.querySelector("#bgtext");
+    bgtext.textContent = event.target.value;
+}
+
 function updateSlider(){
     var slider = document.getElementById("slideRange");
     var sliderOutput = document.getElementById("fontSize");
