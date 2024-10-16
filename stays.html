@@ -55,18 +55,13 @@
                             <label for="chkin_dd"> Check-in Date </label>
                         </td>
                         <td>
-                            <input type="text" id="chkin_dd" value="DD" size="3">
-                            <input type="text" id="chkin_mm" value="MM" size="3">
-                            <input type="text" id="chkin_yyyy" value="YYYY" size="5">
-
+                            <input type="date" id="chkin_dd" size="3">
                         </td>
                         <td>
                             <label for="chkout_dd"> Check-out Date </label>
                         </td>
                         <td>
-                            <input type="text" id="chkout_dd" value="DD" size="3">
-                            <input type="text" id="chkout_mm" value="MM" size="3">
-                            <input type="text" id="chkout_yyyy" value="YYYY" size="5">
+                            <input type="date" id="chkout_dd" size="3">
                         </td>
                     </tr>
                     <tr>
@@ -109,24 +104,6 @@
                 </table>
             </form>
 
-            <p> Fusce nec aliquam leo. Proin a interdum ligula. Vivamus sodales condimentum tortor, in dignissim diam
-                condimentum ut. Phasellus mollis purus id dui ullamcorper, eget mattis magna tincidunt. Sed eget erat
-                cursus, tincidunt metus non, cursus lorem. Donec tempus, nulla at scelerisque ultrices, velit ex tempus
-                ligula, in ullamcorper libero massa eu lectus. In eleifend nulla lacus, vel porttitor quam ullamcorper
-                a.
-                Vivamus mauris massa, dignissim quis erat quis, porttitor ultricies ligula. Sed sit amet diam et arcu
-                gravida luctus sed sit amet tortor. Phasellus at justo pretium, auctor sapien ut, consectetur lectus.
-                Curabitur fringilla odio elit, non ullamcorper neque lacinia sed. Maecenas blandit laoreet dui vitae
-                pretium. Maecenas blandit, tellus eu dignissim condimentum, velit felis scelerisque diam, vel hendrerit
-                ligula arcu id diam. Phasellus hendrerit placerat ex, id egestas libero ornare nec. Fusce id imperdiet
-                tellus. Suspendisse suscipit lorem in tincidunt eleifend. </p>
-
-            <p>Maecenas id malesuada risus. Donec ultrices, ipsum in dictum tempus, turpis diam aliquet eros, imperdiet
-                eleifend purus elit eu urna. Fusce vitae congue nibh, id interdum dui. Sed metus nisl, dictum quis
-                dignissim
-                quis, viverra eget nibh. Donec tempor eleifend vehicula. Fusce diam tellus, efficitur sit amet placerat
-                nec,
-                pharetra eu lectus. Integer eget massa libero. </p>
         </div>
     </main>
     </div>
@@ -149,7 +126,7 @@
             let norm_text = "";
 
             if (isNaN(num_rooms) || num_rooms < (guest_count/2)) {
-                err_text+= "number of rooms selected cannot accomodate total guest count <br><br>";
+                err_text+= "number of rooms selected cannot accommodate total guest count <br><br>";
             }
             else{
                 norm_text+="Number of Rooms selected: "+ num_rooms + "<br>";
