@@ -35,6 +35,8 @@
     <p>Background Color</p>
     <input id="colorPicker" type="color" value="#ff0000" style="width:70%;">
     <p id="bgtext">Background color: #FFFFFF</p>
+    <br> <br>
+    <p class="error" id="error"></p>
 
   </aside>
   <main>
@@ -99,12 +101,12 @@
         </tr>
         <tr>
           <td>
-            <button type="submit">Submit</button>
+            <button type="button" onclick="validateEntries()">Submit</button>
           </td>
         </tr>
       </table>
     </form>
-
+    <h3>Passenger Details</h3>
     <p id="display"></p>
 
 
@@ -135,6 +137,67 @@
       document.getElementById("arrive").style.display="block"
     }
     else document.getElementById("arrive").style.display="none"
+  }
+
+  function validateEntries(){
+    let err_text = "";
+    let norm_text = "";
+    const num_adult = document.getElementById("adult").value;
+    const origin = document.getElementById("origin").value.trim().toLowerCase();
+    const dest = document.getElementById("dest").value.trim().toLowerCase();
+    const num_child = document.getElementById("child").value;
+    const num_infant = document.getElementById("infant").value;
+    const city = ['austin','san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego'];
+
+    // city validation
+    const city_regex = new RegExp(`^(${city.join('|')})$`, 'i');
+    if (!city_regex.test(origin)){
+      err_text+="Origin must be a city in Texas or California. <br><br>";
+    }
+    if (!city_regex.test(dest)){
+      err_text+="Destination must be a city in Texas or California. <br><br>";
+    }
+
+    // Passenger validation
+    const regex_letter= /^([1-4])?$/;
+    if ((!num_adult) || !regex_letter.test(num_adult) || !regex_letter.test(num_child)
+            ||!regex_letter.test(num_infant)){
+      err_text+="Number of passengers in each category cannot be greater than 4! <br><br>";
+    }
+
+    // The user must enter check in date, and check out date anytime between
+    // Sep 1 2024 to Dec 1st 2024.
+    const dep_init = document.getElementById('dept_date').value
+    const arr_init = document.getElementById('arr_date').value
+    const trip_type = document.getElementById("trip-type").value;
+    const date_regex = /^(2024-(09-(0[1-9]|[1-2][0-9]|30)|10-(0[1-9]|[1-2][0-9]|3[01])|11-(0[1-9]|[1-2][0-9]|30)|12-01))$/;
+    if (!date_regex.test(dep_init) ||(trip_type === "round-trip"
+            && !date_regex.test(arr_init))){
+        err_text += "Check-in and Checkout dates must be between Sep 1 2024 to Dec 1st 2024<br><br>";
+    }
+
+
+    if (err_text===""){
+      norm_text += "Trip Type: " + trip_type.value +"<br>"
+      norm_text += "Origin: " + origin + "<br>";
+      norm_text += "Destination: " + dest + "<br>";
+      norm_text += "Departure Date: "+ dep_init + "<br>";
+      if (trip_type === "round-trip"){
+        norm_text += "Arrival Date: "+ arr_init + "<br>";
+      }
+      norm_text += "Number of Passengers: " + "Adults: " + num_adult + ", Children: " + num_child
+              + ", Infants: " + num_infant + ".<br><br>"
+
+      document.getElementById("display").innerHTML=norm_text;
+      document.getElementById("error").innerHTML = "";
+    }
+    else{
+      document.getElementById("error").innerHTML="INPUT ERROR <br><br>"+err_text;
+      document.getElementById("display").innerHTML="";
+    }
+
+
+
   }
 </script>
 

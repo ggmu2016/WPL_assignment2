@@ -37,6 +37,9 @@
     <input id="colorPicker" type="color" value="#ff0000" style="width:70%;">
     <p id="bgtext">Background color: #FFFFFF</p>
 
+    <br> <br>
+    <p class="error" id="error"></p>
+
   </aside>
   <main>
     <h2>Car Reservation Form</h2>
@@ -54,11 +57,11 @@
           <tr>
             <td>
               <label> Car Type <br>
-                <select>
-                  <option>Economy</option>
-                  <option>SUV</option>
-                  <option>Compact</option>
-                  <option>Midsize</option>
+                <select id="car-type">
+                  <option value="Economy">Economy</option>
+                  <option value="SUV">SUV</option>
+                  <option value="Compact">Compact</option>
+                  <option value="Midsize">Midsize</option>
                 </select>
 
               </label>
@@ -81,20 +84,15 @@
           </tr>
           <tr>
             <td>
-              <button type="submit" id="submitbtn" onclick="onSubmit()"
+              <button type="button" id="submitbtn" onclick="onSubmit()"
                       style="font-size: 15px; padding: 5px"> Submit
               </button>
             </td>
           </tr>
         </table>
       </form>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquam malesuada molestie. Curabitur eu mauris
-        non enim facilisis luctus. Mauris finibus nunc ac justo placerat, vel venenatis lorem maximus. Suspendisse
-        vitae sollicitudin eros, sed pharetra purus. Orci varius natoque penatibus et magnis dis parturient montes,
-        nascetur ridiculus mus. Sed pharetra porttitor lorem, in vehicula mauris lacinia eget. Nunc maximus mi
-        nulla, quis viverra mauris dignissim in. Aliquam nec tincidunt dui, et auctor lacus. Nulla vel velit vitae
-        metus eleifend varius. Sed vitae nibh eu lacus pellentesque condimentum. </p>
+      <h3> Car Rental Details</h3>
+      <p id="display"></p>
 
     </div>
   </main>
@@ -102,5 +100,38 @@
 <footer>
   <p>&copy; 2024 Mega Vacation Deals</p>
 </footer>
+<script>
+  function onSubmit(){
+    let err_text = "";
+    let norm_text = "";
+
+
+
+
+
+
+
+
+    if (err_text===""){
+      norm_text += "City: "  +"<br>"
+      norm_text += "Type of Car: "  + "<br>";
+      norm_text += "Check-In Date: " + "<br>";
+      norm_text += "Check-Out Date: " + "<br>";
+
+      document.getElementById("display").innerHTML=norm_text;
+      document.getElementById("error").innerHTML = "";
+    }
+    else{
+      document.getElementById("error").innerHTML="INPUT ERROR <br><br>"+err_text;
+      document.getElementById("display").innerHTML="";
+    }
+
+  }
+
+
+
+
+
+</script>
 </body>
 </html>

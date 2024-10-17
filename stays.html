@@ -25,7 +25,7 @@
 </nav>
 <div class="container">
     <aside>
-        <h2>Checkout</h2>
+        <h2>Sidebar</h2>
         <p id="datetime"></p>
         <div>
             <input type="range" min="8" max="96" value="16" class="slideBox" id="slideRange">
@@ -34,7 +34,7 @@
         <p>Background Color</p>
         <input id="colorPicker" type="color" value="#ff0000" style="width:70%;">
         <p id="bgtext">Background color: #FFFFFF</p>
-        <p id="confirm"></p>
+        <br> <br>
         <p class="error" id="error"></p>
     </aside>
     <main>
@@ -47,21 +47,21 @@
                             <label for="city"> City </label>
                         </td>
                         <td>
-                            <input type="text" id="city" value="City">
+                            <input type="text" id="city" placeholder="City in California or Texas">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="chkin_dd"> Check-in Date </label>
+                            <label for="check-in"> Check-in Date </label>
                         </td>
                         <td>
-                            <input type="date" id="chkin_dd" size="3">
+                            <input type="date" id="check-in" size="3">
                         </td>
                         <td>
-                            <label for="chkout_dd"> Check-out Date </label>
+                            <label for="check-out"> Check-out Date </label>
                         </td>
                         <td>
-                            <input type="date" id="chkout_dd" size="3">
+                            <input type="date" id="check-out" size="3">
                         </td>
                     </tr>
                     <tr>
@@ -70,7 +70,7 @@
                             <label for="rooms"> Number of Rooms </label>
                         </td>
                         <td>
-                            <input type="text" id="rooms">
+                            <input type="text" id="rooms" size="5">
                         </td>
                     </tr>
                     <tr>
@@ -96,13 +96,16 @@
                     </tr>
                     <tr>
                         <td>
-                            <button type="submit" id="submitbtn" onclick="onSubmit()"
+                            <button type="button" onclick="onSubmit()"
                                     style="font-size: 15px; padding: 5px"> Submit
                             </button>
                         </td>
                     </tr>
                 </table>
             </form>
+            <br><br>
+            <h3>Guest Details</h3> <br>
+            <p id="info"></p>
 
         </div>
     </main>
@@ -120,30 +123,45 @@
             const num_infant = parseInt(document.getElementById("infant").value);
             const guest_count = num_adult + num_child;
             const city = ['austin','san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego'];
-            document.getElementById("confirm").innerHTML=" ";
-            document.getElementById("error").innerHTML=" ";
             let err_text = "";
             let norm_text = "";
 
+            // Num of rooms constraint
             if (isNaN(num_rooms) || num_rooms < (guest_count/2)) {
                 err_text+= "number of rooms selected cannot accommodate total guest count <br><br>";
             }
-            else{
-                norm_text+="Number of Rooms selected: "+ num_rooms + "<br>";
-            }
+            // City should be in Texas or California
             if (!city_name|| !city.includes(city_name)) {
-                err_text += "City field must not be empty and must be a valid city in Texas or California <br><br>";
-            }
-            else{
-                norm_text += "City: " + city_name + "<br>";
+                err_text+= "City must be in Texas or California <br><br>";
             }
 
-            document.getElementById("confirm").innerHTML=norm_text;
-            document.getElementById("error").innerHTML=err_text;
 
             // The user must enter check in date, and check out date anytime between
             // Sep 1 2024 to Dec 1st 2024.
+            const checkIn = new Date(document.getElementById('check-in').value);
+            const checkOut = new Date(document.getElementById('check-out').value)
+            const minDate = new Date('2024-09-01');
+            const maxDate = new Date('2024-12-01');
 
+            if (checkOut<=checkIn || checkOut>maxDate || checkIn>maxDate || checkOut<minDate ||checkIn<minDate
+                || !document.getElementById('check-in').value || !document.getElementById('check-out').value){
+                err_text += "Check-in and Checkout dates must be between Sep 1 2024 to Dec 1st 2024<br><br>";
+            }
+
+
+            // Validating constraint
+            if (err_text===""){
+                norm_text += "Staying in: " + city_name + "<br>";
+                norm_text += "Number of Rooms selected: "+ num_rooms + "<br>";
+                norm_text += "Number of Guests: " + guest_count + "--" + "Adults: " + num_adult + ", Children: " + num_child
+                             + ", Infants: " + num_infant + ".<br><br>"
+                norm_text += "Check-in Date: "+ document.getElementById('check-in').value + "<br>";
+                norm_text += "Check-out Date: "+ document.getElementById('check-out').value + "<br>";
+                document.getElementById("info").innerHTML=norm_text;
+            }
+            else{
+                document.getElementById("error").innerHTML=err_text;
+            }
 
         }
     </script>
