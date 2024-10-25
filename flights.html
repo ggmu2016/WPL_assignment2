@@ -41,79 +41,80 @@
   </aside>
   <main>
     <h2>Create Reservation</h2>
-    <div id="bodyContent">
-      <form>
-        <table>
-          <tr>
-            <td>
-              <label>Trip Type <br>
-                <select id="trip-type" onchange="toggleDeparture()">
-                  <option value="one-way">One Way</option>
-                  <option value="round-trip">Round Trip</option>
-                </select>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label> Origin<br>
-                <input type="text" id="origin">
-              </label>
-            </td>
-            <td>
-              <label> Destination<br>
-                <input type="text" id="dest">
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td id="depart">
-              <label for="dept_date"> Departure Date </label><br>
-              <input id="dept_date" type="date">
-            </td>
-            <td style="display: none" id="arrive">
-              <label for="arr_date"> Arrival Date </label><br>
-              <input id="arr_date" type="date">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src="assets/flight-passenger-icon.jpg" height="50px" width="50px" alt="passenger-icon" onclick="showForm()">
-            </td>
-          </tr>
-          <tr id="num_pass_text" style="display: none">
-            <td>
-              <label> Number of Passengers</label>
-            </td>
-          </tr>
-          <tr id="pass_details" style="display:none">
-            <td>
-              <label for="adult">Adults</label>
-              <input type="text" id="adult" size="5">
-            </td>
-            <td>
-              <label for="child">Children</label>
-              <input type="text" id="child" size="5">
-            </td>
-            <td>
-              <label for="infant">Infants</label>
-              <input type="text" id="infant" size="5">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button type="button" onclick="validateEntries()">Submit</button>
-            </td>
-          </tr>
-        </table>
-      </form>
-      <h3>Passenger Details</h3>
-      <p id="display"></p>
-    </div>
+    <form>
+      <table>
+        <tr>
+          <td>
+            <label>Trip Type <br>
+              <select id="trip-type" onchange="toggleDeparture()">
+                <option value="one-way">One Way</option>
+                <option value="round-trip">Round Trip</option>
+              </select>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label> Origin<br>
+              <input type="text" id="origin">
+            </label>
+          </td>
+          <td>
+            <label> Destination<br>
+              <input type="text" id="dest">
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td id="depart">
+            <label for="dept_date"> Departure Date </label><br>
+            <input id="dept_date" type="date">
+          </td>
+          <td style="display: none" id="arrive">
+            <label for="arr_date"> Arrival Date </label><br>
+            <input id="arr_date" type="date">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="assets/flight-passenger-icon.jpg" height="50px" width="50px" alt="passenger-icon" onclick="showForm()">
+          </td>
+        </tr>
+        <tr id="num_pass_text" style="display: none">
+          <td>
+            <label> Number of Passengers</label>
+          </td>
+        </tr>
+        <tr id="pass_details" style="display:none">
+          <td>
+            <label for="adult">Adults</label>
+            <input type="text" id="adult" size="5">
+          </td>
+          <td>
+            <label for="child">Children</label>
+            <input type="text" id="child" size="5">
+          </td>
+          <td>
+            <label for="infant">Infants</label>
+            <input type="text" id="infant" size="5">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="button" onclick="validateEntries()">Submit</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <h3>Passenger Details</h3>
+    <p id="display"></p>
+
+
 
   </main>
-</div>
 
+
+</div>
 <footer>
   <p>&copy; 2024 Mega Vacation Deals</p>
 </footer>
