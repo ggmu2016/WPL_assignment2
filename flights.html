@@ -21,6 +21,7 @@
         <li><a class="navbar" href="stays.html">Stays</a></li>
         <li><a class="navbar" href="cars.html">Cars</a></li>
         <li><a class="navbar" href="contact.html">Contact Us</a></li>
+        <li><a class="navbar" href="cart.html">My Cart</a></li>
     </ul>
 </nav>
 <div class="container">
@@ -189,12 +190,41 @@
 
             document.getElementById("display").innerHTML = norm_text;
             document.getElementById("error").innerHTML = "";
+            bookFlight(origin, dest, dep_init);
         } else {
             document.getElementById("error").innerHTML = "INPUT ERROR <br><br>" + err_text;
             document.getElementById("display").innerHTML = "";
         }
+    }
 
+    function bookFlight(origin, destination, departure_date) {
+        console.log("nice!");
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                updateXML(this);
+            }
+        };
+        xmlhttp.open("GET", "xml/data.xml", true);
+        xmlhttp.send();
+    }
 
+    function updateXML(xml) {
+        var x, i, xmlDoc, txt;
+        console.log("Nice again!");
+        xmlDoc = xml.responseXML;
+        let record = xmlDoc.createElement("record");
+        record.appendChild(xmlDoc.createElement("origin"));
+        record.appendChild(xmlDoc.createElement("destination"));
+        record.appendChild(xmlDoc.createElement("departure_date"));
+
+        //
+        // txt = "";
+        // x = xmlDoc.getElementsByTagName("ARTIST");
+        // for (i = 0; i< x.length; i++) {
+        //     txt += x[i].childNodes[0].nodeValue + "<br>";
+        // }
+        // document.getElementById("demo").innerHTML = txt;
     }
 </script>
 
