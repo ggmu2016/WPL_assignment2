@@ -1,151 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cars</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+3">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+3">
 </head>
 <script type="text/javascript" src="js/scripts.js"></script>
 <body onload="updateTime(), updateSlider()">
 <header>
-  <h1>Cars</h1>
+    <h1>Cars</h1>
 </header>
 <nav>
-  <ul>
-    <li><a class="navbar" href="home.html">Home</a></li>
-    <li><a class="navbar" href="flights.html">Flights</a></li>
-    <li><a class="navbar" href="cruises.html">Cruises</a></li>
-    <li><a class="navbar" href="stays.html">Stays</a></li>
-    <li><a class="navbar" href="cars.html">Cars</a></li>
-    <li><a class="navbar" href="contact.html">Contact Us</a></li>
-  </ul>
+    <ul>
+        <li><a class="navbar" href="home.html">Home</a></li>
+        <li><a class="navbar" href="flights.html">Flights</a></li>
+        <li><a class="navbar" href="cruises.html">Cruises</a></li>
+        <li><a class="navbar" href="stays.html">Stays</a></li>
+        <li><a class="navbar" href="cars.html">Cars</a></li>
+        <li><a class="navbar" href="contact.html">Contact Us</a></li>
+    </ul>
 </nav>
 <div class="container">
-  <aside>
-    <h2>Sidebar</h2>
-    <p id="datetime"></p>
-    <p>Put your stuff here</p>
-    <div>
-      <input type="range" min="8" max="96" value="16" class="slideBox" id="slideRange">
-    </div>
-    <p>Font size: <span id="fontSize"></span>px</p>
+    <aside>
+        <h2>Sidebar</h2>
+        <p id="datetime"></p>
+        <p>Put your stuff here</p>
+        <div>
+            <input type="range" min="8" max="96" value="16" class="slideBox" id="slideRange">
+        </div>
+        <p>Font size: <span id="fontSize"></span>px</p>
 
-    <p>Background Color</p>
-    <input id="colorPicker" type="color" value="#ff0000" style="width:70%;">
-    <p id="bgtext">Background color: #FFFFFF</p>
+        <p>Background Color</p>
+        <input id="colorPicker" type="color" value="#ff0000" style="width:70%;">
+        <p id="bgtext">Background color: #FFFFFF</p>
 
-    <br> <br>
-    <p class="error" id="error"></p>
+        <br> <br>
+        <p class="error" id="error"></p>
 
-  </aside>
-  <main>
-    <h2>Car Reservation Form</h2>
-    <div id="bodyContent">
-      <form id="frm">
-        <table>
-          <tr>
-            <td>
-              <label for="city"> City </label>
-            </td>
-            <td>
-              <input type="text" id="city">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label> Car Type <br>
-                <select id="car-type">
-                  <option value="Economy">Economy</option>
-                  <option value="SUV">SUV</option>
-                  <option value="Compact">Compact</option>
-                  <option value="Midsize">Midsize</option>
-                </select>
+    </aside>
+    <main>
+        <h2>Car Reservation Form</h2>
+        <div id="bodyContent">
+            <form id="frm">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="city"> City </label>
+                        </td>
+                        <td>
+                            <input type="text" id="city">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Car Type <br>
+                                <select id="car-type">
+                                    <option value="Economy">Economy</option>
+                                    <option value="SUV">SUV</option>
+                                    <option value="Compact">Compact</option>
+                                    <option value="Midsize">Midsize</option>
+                                </select>
 
-              </label>
+                            </label>
 
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="check-in"> Check-in Date </label>
-            </td>
-            <td>
-              <input type="date" id="check-in" size="3">
-            </td>
-            <td>
-              <label for="checkout"> Check-out Date </label>
-            </td>
-            <td>
-              <input type="date" id="checkout" size="3">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button type="button" id="submitbtn" onclick="onSubmit()"> Submit
-              </button>
-            </td>
-          </tr>
-        </table>
-      </form>
-      <h3> Car Rental Details</h3>
-      <p id="display"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="check-in"> Check-in Date </label>
+                        </td>
+                        <td>
+                            <input type="date" id="check-in" size="3">
+                        </td>
+                        <td>
+                            <label for="checkout"> Check-out Date </label>
+                        </td>
+                        <td>
+                            <input type="date" id="checkout" size="3">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="button" id="submitbtn" onclick="onSubmit()"> Submit
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <h3> Car Rental Details</h3>
+            <p id="display"></p>
 
-    </div>
-  </main>
+        </div>
+    </main>
 </div>
 <footer>
-  <p>&copy; 2024 Mega Vacation Deals</p>
+    <p>&copy; 2024 Mega Vacation Deals</p>
 </footer>
 <script>
 
-  function onSubmit(){
-    let err_text = "";
-    let norm_text = "";
-    const city = document.getElementById("city").value;
+    function onSubmit() {
+        let err_text = "";
+        let norm_text = "";
+        const city = document.getElementById("city").value;
 
-    // The user must enter check in date, and check out date anytime between
-    // Sep 1 2024 to Dec 1st 2024.
-    const checkIn = new Date(document.getElementById('check-in').value);
-    const checkOut = new Date(document.getElementById('checkout').value)
-    const minDate = new Date('2024-09-01');
-    const maxDate = new Date('2024-12-01');
+        // The user must enter check in date, and check out date anytime between
+        // Sep 1 2024 to Dec 1st 2024.
+        const checkIn = new Date(document.getElementById('check-in').value);
+        const checkOut = new Date(document.getElementById('checkout').value)
+        const minDate = new Date('2024-09-01');
+        const maxDate = new Date('2024-12-01');
 
-    // City should be in Texas or California
-    if (!city) {
-      err_text+= "City field cannot be left empty! <br><br>";
+        // City should be in Texas or California
+        if (!city) {
+            err_text += "City field cannot be left empty! <br><br>";
+        }
+
+        if (checkOut <= checkIn || checkOut > maxDate || checkIn > maxDate || checkOut < minDate || checkIn < minDate
+            || !document.getElementById('check-in').value || !document.getElementById('checkout').value) {
+            err_text += "Check-in and Checkout dates cannot be empty cannot be empty and must be between Sep 1 2024 to Dec 1st 2024<br><br>";
+        }
+
+        console.log(err_text)
+
+        if (err_text === "") {
+            let x = document.forms["frm"];
+            let i = 0;
+            norm_text += "City: " + x.elements[i].value + "<br>"
+            i += 1
+            norm_text += "Type of Car: " + x.elements[i].value + "<br>";
+            i += 1
+            norm_text += "Check-In Date: " + x.elements[i].value + "<br>";
+            i += 1
+            norm_text += "Check-Out Date: " + x.elements[i].value + "<br>";
+
+            document.getElementById("display").innerHTML = norm_text;
+            document.getElementById("display").style.color = "blue";
+            document.getElementById("error").innerHTML = "";
+        } else {
+            document.getElementById("error").innerHTML = "INPUT ERROR <br><br>" + err_text;
+            document.getElementById("display").innerHTML = "";
+        }
+
     }
-
-    if (checkOut<=checkIn || checkOut>maxDate || checkIn>maxDate || checkOut<minDate ||checkIn<minDate
-            || !document.getElementById('check-in').value || !document.getElementById('checkout').value){
-      err_text += "Check-in and Checkout dates cannot be empty cannot be empty and must be between Sep 1 2024 to Dec 1st 2024<br><br>";
-    }
-
-    console.log(err_text)
-
-    if (err_text===""){
-      let x = document.forms["frm"];
-      let i=0;
-      norm_text += "City: " +  x.elements[i].value +"<br>"
-      i+=1
-      norm_text += "Type of Car: "  + x.elements[i].value +"<br>";
-      i+=1
-      norm_text += "Check-In Date: " + x.elements[i].value +"<br>";
-      i+=1
-      norm_text += "Check-Out Date: " + x.elements[i].value + "<br>";
-
-      document.getElementById("display").innerHTML=norm_text;
-      document.getElementById("display").style.color="blue";
-      document.getElementById("error").innerHTML = "";
-    }
-    else{
-      document.getElementById("error").innerHTML="INPUT ERROR <br><br>"+err_text;
-      document.getElementById("display").innerHTML="";
-    }
-
-  }
 
 
 </script>

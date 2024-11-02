@@ -110,60 +110,59 @@
         </div>
     </main>
 </div>
-    <footer>
-        <p>&copy; 2024 Mega Vacation Deals</p>
-    </footer>
-    <script>
+<footer>
+    <p>&copy; 2024 Mega Vacation Deals</p>
+</footer>
+<script>
 
-        function onSubmit(){
-            const num_adult = parseInt(document.getElementById("adult").value);
-            const city_name = document.getElementById("city").value.trim().toLowerCase();
-            const num_rooms = parseInt(document.getElementById("rooms").value);
-            const num_child = parseInt(document.getElementById("child").value);
-            const num_infant = parseInt(document.getElementById("infant").value);
-            const guest_count = num_adult + num_child;
-            const city = ['austin','san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego'];
-            let err_text = "";
-            let norm_text = "";
+    function onSubmit() {
+        const num_adult = parseInt(document.getElementById("adult").value);
+        const city_name = document.getElementById("city").value.trim().toLowerCase();
+        const num_rooms = parseInt(document.getElementById("rooms").value);
+        const num_child = parseInt(document.getElementById("child").value);
+        const num_infant = parseInt(document.getElementById("infant").value);
+        const guest_count = num_adult + num_child;
+        const city = ['austin', 'san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego'];
+        let err_text = "";
+        let norm_text = "";
 
-            // Num of rooms constraint
-            if (isNaN(num_rooms) || num_rooms < (guest_count/2)) {
-                err_text+= "number of rooms selected cannot accommodate total guest count <br><br>";
-            }
-            // City should be in Texas or California
-            if (!city_name|| !city.includes(city_name)) {
-                err_text+= "City must be in Texas or California <br><br>";
-            }
-
-
-            // The user must enter check in date, and check out date anytime between
-            // Sep 1 2024 to Dec 1st 2024.
-            const checkIn = new Date(document.getElementById('check-in').value);
-            const checkOut = new Date(document.getElementById('check-out').value)
-            const minDate = new Date('2024-09-01');
-            const maxDate = new Date('2024-12-01');
-
-            if (checkOut<=checkIn || checkOut>maxDate || checkIn>maxDate || checkOut<minDate ||checkIn<minDate
-                || !document.getElementById('check-in').value || !document.getElementById('check-out').value){
-                err_text += "Check-in and Checkout dates must be between Sep 1 2024 to Dec 1st 2024<br><br>";
-            }
-
-
-            // Validating constraint
-            if (err_text===""){
-                norm_text += "Staying in: " + city_name + "<br>";
-                norm_text += "Number of Rooms selected: "+ num_rooms + "<br>";
-                norm_text += "Number of Guests: " + guest_count + "--" + "Adults: " + num_adult + ", Children: " + num_child
-                             + ", Infants: " + num_infant + ".<br><br>"
-                norm_text += "Check-in Date: "+ document.getElementById('check-in').value + "<br>";
-                norm_text += "Check-out Date: "+ document.getElementById('check-out').value + "<br>";
-                document.getElementById("info").innerHTML=norm_text;
-            }
-            else{
-                document.getElementById("error").innerHTML=err_text;
-            }
-
+        // Num of rooms constraint
+        if (isNaN(num_rooms) || num_rooms < (guest_count / 2)) {
+            err_text += "number of rooms selected cannot accommodate total guest count <br><br>";
         }
-    </script>
+        // City should be in Texas or California
+        if (!city_name || !city.includes(city_name)) {
+            err_text += "City must be in Texas or California <br><br>";
+        }
+
+
+        // The user must enter check in date, and check out date anytime between
+        // Sep 1 2024 to Dec 1st 2024.
+        const checkIn = new Date(document.getElementById('check-in').value);
+        const checkOut = new Date(document.getElementById('check-out').value)
+        const minDate = new Date('2024-09-01');
+        const maxDate = new Date('2024-12-01');
+
+        if (checkOut <= checkIn || checkOut > maxDate || checkIn > maxDate || checkOut < minDate || checkIn < minDate
+            || !document.getElementById('check-in').value || !document.getElementById('check-out').value) {
+            err_text += "Check-in and Checkout dates must be between Sep 1 2024 to Dec 1st 2024<br><br>";
+        }
+
+
+        // Validating constraint
+        if (err_text === "") {
+            norm_text += "Staying in: " + city_name + "<br>";
+            norm_text += "Number of Rooms selected: " + num_rooms + "<br>";
+            norm_text += "Number of Guests: " + guest_count + "--" + "Adults: " + num_adult + ", Children: " + num_child
+                + ", Infants: " + num_infant + ".<br><br>"
+            norm_text += "Check-in Date: " + document.getElementById('check-in').value + "<br>";
+            norm_text += "Check-out Date: " + document.getElementById('check-out').value + "<br>";
+            document.getElementById("info").innerHTML = norm_text;
+        } else {
+            document.getElementById("error").innerHTML = err_text;
+        }
+
+    }
+</script>
 </body>
 </html>
