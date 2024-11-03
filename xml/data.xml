@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <record>
+        <origin>City1</origin>
+        <destination>City2</destination>
+        <departure_date>11/30/2024</departure_date>
+    </record>
+</dataset>
