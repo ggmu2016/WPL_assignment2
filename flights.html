@@ -9,6 +9,7 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+3">
 </head>
 <script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="find_flights.js"></script>
 <body onload="updateTime(), updateSlider()">
 <header>
     <h1>Flights</h1>
@@ -189,13 +190,25 @@
 
             document.getElementById("display").innerHTML = norm_text;
             document.getElementById("error").innerHTML = "";
+
+            // logic to find available XML flights (one-way)
+            let available_flights = []
+            findFlights(origin, dest, dep_init, arr_init)
+                .then(flights=>{
+                    available_flights = flights;
+                })
+                .catch(error=>{
+                    console.error("cannot fetch flights: ", error)
+                });
+
+
         } else {
-            document.getElementById("error").innerHTML = "INPUT ERROR <br><br>" + err_text;
-            document.getElementById("display").innerHTML = "";
+          document.getElementById("error").innerHTML = "INPUT ERROR <br><br>" + err_text;
+          document.getElementById("display").innerHTML = "";
         }
 
-
     }
+
 </script>
 
 
