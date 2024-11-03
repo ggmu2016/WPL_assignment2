@@ -196,49 +196,49 @@
             // logic to find available XML flights (one-way)
             let available_flights = []
             findFlights(origin, dest, dep_init, arr_init)
-                .then(flights=>{
+                .then(flights => {
                     available_flights = flights;
                 })
-                .catch(error=>{
+                .catch(error => {
                     console.error("cannot fetch flights: ", error)
                 });
 
 
         } else {
-          document.getElementById("error").innerHTML = "INPUT ERROR <br><br>" + err_text;
-          document.getElementById("display").innerHTML = "";
+            document.getElementById("error").innerHTML = "INPUT ERROR <br><br>" + err_text;
+            document.getElementById("display").innerHTML = "";
         }
 
-    function bookFlight(origin, destination, departure_date) {
-        console.log("nice!");
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                updateXML(this);
-            }
-        };
-        xmlhttp.open("GET", "xml/data.xml", true);
-        xmlhttp.send();
-    }
-
-    function updateXML(xml) {
-        var x, i, xmlDoc, txt;
-        console.log("Nice again!");
-        xmlDoc = xml.responseXML;
-        let record = xmlDoc.createElement("record");
-        record.appendChild(xmlDoc.createElement("origin"));
-        record.appendChild(xmlDoc.createElement("destination"));
-        record.appendChild(xmlDoc.createElement("departure_date"));
-
-        //
-        // txt = "";
-        // x = xmlDoc.getElementsByTagName("ARTIST");
-        // for (i = 0; i< x.length; i++) {
-        //     txt += x[i].childNodes[0].nodeValue + "<br>";
-        // }
-        // document.getElementById("demo").innerHTML = txt;
-    }
+        function bookFlight(origin, destination, departure_date) {
+            console.log("nice!");
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    updateXML(this);
+                }
+            };
+            xmlhttp.open("GET", "xml/data.xml", true);
+            xmlhttp.send();
         }
+
+        function updateXML(xml) {
+            var x, i, xmlDoc, txt;
+            console.log("Nice again!");
+            xmlDoc = xml.responseXML;
+            let record = xmlDoc.createElement("record");
+            record.appendChild(xmlDoc.createElement("origin"));
+            record.appendChild(xmlDoc.createElement("destination"));
+            record.appendChild(xmlDoc.createElement("departure_date"));
+
+            //
+            // txt = "";
+            // x = xmlDoc.getElementsByTagName("ARTIST");
+            // for (i = 0; i< x.length; i++) {
+            //     txt += x[i].childNodes[0].nodeValue + "<br>";
+            // }
+            // document.getElementById("demo").innerHTML = txt;
+        }
+    }
 </script>
 
 
