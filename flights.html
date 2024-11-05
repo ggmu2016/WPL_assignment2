@@ -112,6 +112,47 @@
             </form>
             <h3>Passenger Details</h3>
             <p id="display"></p>
+            <h3>Select Departure Flight</h3>
+            <table id="flights-table-departure" style="display: none;">
+                <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>ID</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Departure Date</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Date</th>
+                    <th>Arrival Time</th>
+                    <th>Seats</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody id="flights-table-departure-body">
+                <!-- Flight rows will be added here -->
+                </tbody>
+            </table>
+            <table id="flights-table-arrival" style="display: none;">
+                <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>ID</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Departure Date</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Date</th>
+                    <th>Arrival Time</th>
+                    <th>Seats</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody id="flights-table-arrival-body">
+                <!-- Flight rows will be added here -->
+                </tbody>
+            </table>
+
+
         </div>
 
     </main>
@@ -149,7 +190,17 @@
         const num_child = document.getElementById("child").value;
         const num_infant = document.getElementById("infant").value;
         const city = ['austin', 'san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego'];
-
+        let adults = parseInt(num_adult)
+        let children = parseInt(num_child)
+        if (!adults){
+            adults=0
+        }
+        if (!children){
+            children =0;
+        }
+        const seats = adults+children;
+        console.log(seats)
+        
         // city validation
         const city_regex = new RegExp(`^(${city.join('|')})$`, 'i');
         if (!city_regex.test(origin)) {
@@ -169,6 +220,12 @@
         // The user must enter check in date, and check out date anytime between
         // Sep 1 2024 to Dec 1st 2024.
         const dep_init = document.getElementById('dept_date').value
+        let depDate = null;
+        if (dep_init){
+            const [year,month,day] = dep_init.split("-").map(Number);
+            depDate = new Date(year,month-1,day);
+        }
+
         const arr_init = document.getElementById('arr_date').value
         const trip_type = document.getElementById("trip-type").value;
         const date_regex = /^(2024-(09-(0[1-9]|[1-2][0-9]|30)|10-(0[1-9]|[1-2][0-9]|3[01])|11-(0[1-9]|[1-2][0-9]|30)|12-01))$/;
@@ -195,9 +252,51 @@
 
             // logic to find available XML flights (one-way)
             let available_flights = []
-            findFlights(origin, dest, dep_init, arr_init)
+            findFlights(origin, dest, depDate, arr_init, seats)
                 .then(flights => {
                     available_flights = flights;
+                    const depFlightsTableBody = document.getElementById('flights-table-departure-body');
+                    depFlightsTableBody.innerHTML = ''; //clear previous results
+                    if (available_flights.length >0){
+                        available_flights.forEach(flight => {
+                            const row = document.createElement('tr');
+
+                            // Create the radio button cell
+                            const radioCell = document.createElement('td');
+                            const radioInput = document.createElement('input');
+                            radioInput.type = 'radio';
+                            radioInput.name = 'selectedDepFlight';
+                            radioInput.value = flight[0];
+                            radioInput.required = true;
+                            radioCell.appendChild(radioInput);
+                            row.appendChild(radioCell);
+
+                            // Create cells for each flight data item
+                            const dataCells = [
+                                flight[0],  // ID
+                                flight[1],  // Origin
+                                flight[2],  // Destination
+                                flight[3],  // Departure Date
+                                flight[4],  // Departure Time
+                                flight[5],  // Arrival Date
+                                flight[6],  // Arrival Time
+                                flight[7],  // Seats
+                                flight[8]   // Price
+                            ];
+
+                            dataCells.forEach(data => {
+                                const cell = document.createElement('td');
+                                cell.textContent = data;
+                                row.appendChild(cell);
+                            });
+
+                            depFlightsTableBody.appendChild(row);
+                        });
+
+                        // show the table
+                        document.getElementById('flights-table-departure').style.display = 'table';
+
+                    }
                 })
                 .catch(error => {
                     console.error("cannot fetch flights: ", error)
