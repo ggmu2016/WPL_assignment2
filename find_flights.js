@@ -1,7 +1,5 @@
-
-
 function findFlights(orig, dst, dep, seats) {
-    return fetch('flights.xml')
+    return fetch('xml/data.xml')
         .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();
@@ -14,9 +12,8 @@ function findFlights(orig, dst, dep, seats) {
             const dep_year = dep.getFullYear();
             const dep_day = dep.getDate();
 
-            const upperbound = new Date(dep_year,dep_month,dep_day+3);
-            const lowerbound = new Date(dep_year,dep_month,dep_day-3);
-
+            const upperbound = new Date(dep_year, dep_month, dep_day + 3);
+            const lowerbound = new Date(dep_year, dep_month, dep_day - 3);
 
 
             // initializing output arrays
@@ -25,19 +22,19 @@ function findFlights(orig, dst, dep, seats) {
             let curr_flight = []
 
             for (let i = 0; i < records.length; i++) {
-                const id = records[i].getElementsByTagName("id")[0].textContent;
+                const id = records[i].getElementsByTagName("flight_id")[0].textContent;
                 const origin = records[i].getElementsByTagName("origin")[0].textContent;
-                const dest = records[i].getElementsByTagName("dest")[0].textContent;
-                const dep_date = records[i].getElementsByTagName("dep_date")[0].textContent;
-                const arr_date = records[i].getElementsByTagName("arr_date")[0].textContent;
-                const dep_time = records[i].getElementsByTagName("dep_time")[0].textContent;
-                const arr_time = records[i].getElementsByTagName("arr_time")[0].textContent;
+                const dest = records[i].getElementsByTagName("destination")[0].textContent;
+                const dep_date = records[i].getElementsByTagName("departure_date")[0].textContent;
+                const arr_date = records[i].getElementsByTagName("arrival_date")[0].textContent;
+                const dep_time = records[i].getElementsByTagName("departure_time")[0].textContent;
+                const arr_time = records[i].getElementsByTagName("arrival_time")[0].textContent;
                 const num_seats = parseInt(records[i].getElementsByTagName("num_seats")[0].textContent);
                 const price = parseInt(records[i].getElementsByTagName("price")[0].textContent);
 
                 // converting text dates in xml to js date types
                 let [dep_month, dep_day, dep_year] = dep_date.split("/").map(Number);
-                let ddate = new Date(dep_year,dep_month-1, dep_day);
+                let ddate = new Date(dep_year, dep_month - 1, dep_day);
 
 
                 // console.log("orig", orig);
@@ -57,11 +54,11 @@ function findFlights(orig, dst, dep, seats) {
 
 
                 // checks if everything meets the user input and populates the arrays accordingly
-                if (seats<=num_seats && orig===origin.toLowerCase() && dest.toLowerCase()===dst && ddate>=lowerbound
-                    && ddate<=upperbound){
-                    curr_flight = [id,origin,dest,dep_date,dep_time,arr_date,arr_time,num_seats,price];
+                if (seats <= num_seats && orig === origin.toLowerCase() && dest.toLowerCase() === dst && ddate >= lowerbound
+                    && ddate <= upperbound) {
+                    curr_flight = [id, origin, dest, dep_date, dep_time, arr_date, arr_time, num_seats, price];
                     allFlights.push(curr_flight);
-                    if (dep.getMonth()===ddate.getMonth() && dep.getDate()===ddate.getDate() && dep.getFullYear()===ddate.getFullYear()){
+                    if (dep.getMonth() === ddate.getMonth() && dep.getDate() === ddate.getDate() && dep.getFullYear() === ddate.getFullYear()) {
                         flightsWithDate.push(curr_flight);
                     }
                 }
@@ -70,14 +67,12 @@ function findFlights(orig, dst, dep, seats) {
                 // console.log(allFlights);
 
             }
-            if (flightsWithDate.length>=1) {
+            if (flightsWithDate.length >= 1) {
                 return flightsWithDate;
-            }
-            else if (allFlights.length>=1) {
+            } else if (allFlights.length >= 1) {
                 return allFlights;
-            }
-            else{
-                console.log("Sorry.No flights found.")
+            } else {
+                console.log("Sorry. No flights found.")
             }
         })
 

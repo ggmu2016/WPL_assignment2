@@ -422,6 +422,52 @@
             xmlhttp.send();
         }
 
+    function bookFlight(origin, destination, departure_date) {
+
+        // Fetch the existing XML file
+        fetch('xml/data.xml')
+            .then(response => response.text())
+            .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+            .then(xmlDoc => {
+                // Create a new record element
+                let newRecord = xmlDoc.createElement('record');
+
+                // Create and append origin element
+                let newOrigin = xmlDoc.createElement('origin');
+                newOrigin.appendChild(xmlDoc.createTextNode(origin));
+                newRecord.appendChild(newOrigin);
+
+                // Create and append destination element
+                let newDestination = xmlDoc.createElement('destination');
+                newDestination.appendChild(xmlDoc.createTextNode(destination));
+                newRecord.appendChild(newDestination);
+
+                // Create and append departure_date element
+                let newDepartureDate = xmlDoc.createElement('departure_date');
+                newDepartureDate.appendChild(xmlDoc.createTextNode(departure_date));
+                newRecord.appendChild(newDepartureDate);
+
+                // Append the new record to the dataset
+                xmlDoc.documentElement.appendChild(newRecord);
+
+                // Serialize the XML back to a string
+                let serializer = new XMLSerializer();
+                let updatedXmlString = serializer.serializeToString(xmlDoc);
+
+                // Send the updated XML to the server
+                fetch('xml/data.xml', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/xml'
+                    },
+                    body: updatedXmlString
+                })
+                    .then(response => response.text())
+                    .then(data => console.log(data))
+                    .catch(error => console.error('Error:', error));
+            })
+            .catch(error => console.error('Error fetching the XML file:', error));
+    }
         function updateXML(xml) {
             var x, i, xmlDoc, txt;
             console.log("Nice again!");
