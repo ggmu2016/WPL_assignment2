@@ -132,6 +132,7 @@
                 <!-- Flight rows will be added here -->
                 </tbody>
             </table>
+            <h3>Select Arrival Flight</h3>
             <table id="flights-table-arrival" style="display: none;">
                 <thead>
                 <tr>
@@ -189,15 +190,20 @@
         const dest = document.getElementById("dest").value.trim().toLowerCase();
         const num_child = document.getElementById("child").value;
         const num_infant = document.getElementById("infant").value;
-        const city = ['austin', 'san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego'];
-        let adults = parseInt(num_adult)
-        let children = parseInt(num_child)
+        const city = ['austin', 'san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego', 'sacramento'];
+        let adults = parseInt(num_adult);
+        let children = parseInt(num_child);
+        let infants = parseInt(num_infant);
         if (!adults){
-            adults=0
+            adults=0;
         }
         if (!children){
             children =0;
         }
+        if (!infants){
+          infants =0;
+        }
+
         const seats = adults+children;
         console.log(seats)
         
@@ -227,6 +233,13 @@
         }
 
         const arr_init = document.getElementById('arr_date').value
+        let arrDate = null;
+        if (arr_init){
+          const [year,month,day] = arr_init.split("-").map(Number);
+          arrDate = new Date(year,month-1,day);
+        }
+
+        // validating dates
         const trip_type = document.getElementById("trip-type").value;
         const date_regex = /^(2024-(09-(0[1-9]|[1-2][0-9]|30)|10-(0[1-9]|[1-2][0-9]|3[01])|11-(0[1-9]|[1-2][0-9]|30)|12-01))$/;
         if (!date_regex.test(dep_init) || (trip_type === "round-trip"
@@ -234,17 +247,17 @@
             err_text += "Check-in and Checkout dates must be between Sep 1 2024 to Dec 1st 2024<br><br>";
         }
 
-
+        // if no errors are found
         if (err_text === "") {
-            norm_text += "Trip Type: " + trip_type.value + "<br>"
+            norm_text += "Trip Type: " + trip_type + "<br>"
             norm_text += "Origin: " + origin + "<br>";
             norm_text += "Destination: " + dest + "<br>";
             norm_text += "Departure Date: " + dep_init + "<br>";
             if (trip_type === "round-trip") {
                 norm_text += "Arrival Date: " + arr_init + "<br>";
             }
-            norm_text += "Number of Passengers: " + "Adults: " + num_adult + ", Children: " + num_child
-                + ", Infants: " + num_infant + ".<br><br>"
+            norm_text += "Number of Passengers: " + "Adults: " + adults + ", Children: " + children
+                + ", Infants: " + infants + ".<br><br>"
 
             document.getElementById("display").innerHTML = norm_text;
             document.getElementById("error").innerHTML = "";
@@ -252,7 +265,7 @@
 
             // logic to find available XML flights (one-way)
             let available_flights = []
-            findFlights(origin, dest, depDate, arr_init, seats)
+            findFlights(origin, dest, depDate, seats)
                 .then(flights => {
                     available_flights = flights;
                     const depFlightsTableBody = document.getElementById('flights-table-departure-body');
@@ -302,7 +315,58 @@
                     console.error("cannot fetch flights: ", error)
                 });
 
+          // Round Trip (duplicate code but whatever)
+          if (trip_type==="round-trip") {
+            findFlights(dest, origin, arrDate, seats)
+                    .then(flights => {
+                      const arrFlightsTableBody = document.getElementById('flights-table-arrival-body');
+                      arrFlightsTableBody.innerHTML = ''; //clear previous results
+                      if (flights.length > 0) {
+                        flights.forEach(flight => {
+                          const row = document.createElement('tr');
 
+                          // Create the radio button cell
+                          const radioCell = document.createElement('td');
+                          const radioInput = document.createElement('input');
+                          radioInput.type = 'radio';
+                          radioInput.name = 'selectedArrFlight';
+                          radioInput.value = flight[0];
+                          radioInput.required = true;
+                          radioCell.appendChild(radioInput);
+                          row.appendChild(radioCell);
+
+                          // Create cells for each flight data item
+                          const dataCells = [
+                            flight[0],  // ID
+                            flight[1],  // Origin
+                            flight[2],  // Destination
+                            flight[3],  // Departure Date
+                            flight[4],  // Departure Time
+                            flight[5],  // Arrival Date
+                            flight[6],  // Arrival Time
+                            flight[7],  // Seats
+                            flight[8]   // Price
+                          ];
+
+                          dataCells.forEach(data => {
+                            const cell = document.createElement('td');
+                            cell.textContent = data;
+                            row.appendChild(cell);
+                          });
+
+                          arrFlightsTableBody.appendChild(row);
+                        });
+
+                        // show the table
+                        document.getElementById('flights-table-arrival').style.display = 'table';
+
+                      }
+                    })
+                    .catch(error => {
+                      console.error("cannot fetch flights: ", error)
+                    });
+
+          }
         } else {
             document.getElementById("error").innerHTML = "INPUT ERROR <br><br>" + err_text;
             document.getElementById("display").innerHTML = "";

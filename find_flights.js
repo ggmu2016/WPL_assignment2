@@ -1,6 +1,6 @@
 
 
-function findFlights(orig, dst, dep, arr, seats) {
+function findFlights(orig, dst, dep, seats) {
     return fetch('flights.xml')
         .then(response => response.text())
         .then(data => {
@@ -10,10 +10,14 @@ function findFlights(orig, dst, dep, arr, seats) {
 
             // upper and lower bounds of input date
 
-            const upperbound = new Date();
-            upperbound.setDate(dep.getDate()+3);
-            const lowerbound = new Date();
-            lowerbound.setDate(dep.getDate()-3)
+            const dep_month = dep.getMonth();
+            const dep_year = dep.getFullYear();
+            const dep_day = dep.getDate();
+
+            const upperbound = new Date(dep_year,dep_month,dep_day+3);
+            const lowerbound = new Date(dep_year,dep_month,dep_day-3);
+
+
 
             // initializing output arrays
             let allFlights = []
@@ -34,44 +38,47 @@ function findFlights(orig, dst, dep, arr, seats) {
                 // converting text dates in xml to js date types
                 let [dep_month, dep_day, dep_year] = dep_date.split("/").map(Number);
                 let ddate = new Date(dep_year,dep_month-1, dep_day);
-                if (arr_date){
-                    let [arr_month, arr_day, arr_year] = arr_date.split("/").map(Number);
-                    let adate = new Date(arr_year,arr_month-1, arr_day);
-                }
 
-                console.log("orig", orig);
-                console.log("origin", origin.toLowerCase());
-                console.log("dest", dest.toLowerCase());
-                console.log("dst", dst);
-                console.log("num_seats",num_seats);
-                console.log("seats",seats);
-                console.log("ddate",ddate);
-                console.log("dep",dep)
-                if (ddate===dep){
-                    console.log("fuck yea mf")
-                }
-                console.log("lowerbound",lowerbound);
-                console.log("upperbound",upperbound);
+
+                // console.log("orig", orig);
+                // console.log("origin", origin.toLowerCase());
+                // console.log("dest", dest.toLowerCase());
+                // console.log("dst", dst);
+                // console.log("num_seats",num_seats);
+                // console.log("seats",seats);
+                // console.log("ddate",ddate);
+                // console.log("dep",dep)
+                // console.log("lowerbound",lowerbound);
+                // console.log("upperbound",upperbound);
+                //
+                // if (ddate>=lowerbound && ddate<=upperbound){
+                //     console.log("fuck yall bitches");
+                // }
 
 
                 // checks if everything meets the user input and populates the arrays accordingly
-                if (seats<=num_seats && orig===origin.toLowerCase() && dest.toLowerCase()===dst && ddate.getDate()>=lowerbound
-                    && ddate.getDate() <=upperbound){
-                    console.log("hello")
+                if (seats<=num_seats && orig===origin.toLowerCase() && dest.toLowerCase()===dst && ddate>=lowerbound
+                    && ddate<=upperbound){
                     curr_flight = [id,origin,dest,dep_date,dep_time,arr_date,arr_time,num_seats,price];
                     allFlights.push(curr_flight);
-                    if (dep===ddate){
+                    if (dep.getMonth()===ddate.getMonth() && dep.getDate()===ddate.getDate() && dep.getFullYear()===ddate.getFullYear()){
                         flightsWithDate.push(curr_flight);
                     }
                 }
 
+                // console.log(flightsWithDate);
+                // console.log(allFlights);
+
             }
-            if (flightsWithDate) {
+            if (flightsWithDate.length>=1) {
                 return flightsWithDate;
             }
-
-            return allFlights;
-
+            else if (allFlights.length>=1) {
+                return allFlights;
+            }
+            else{
+                console.log("Sorry.No flights found.")
+            }
         })
 
 }
