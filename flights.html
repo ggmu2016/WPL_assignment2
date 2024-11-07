@@ -110,9 +110,9 @@
                     </tr>
                 </table>
             </form>
-            <h3>Passenger Details</h3>
+            <h3 id="pass-details" style="display: none;">Passenger Details</h3>
             <p id="display"></p>
-            <h3>Select Departure Flight</h3>
+            <h3 id="dep-header" style="display: none;">Select Departure Flight</h3>
             <table id="flights-table-departure" style="display: none;">
                 <thead>
                 <tr>
@@ -132,7 +132,7 @@
                 <!-- Flight rows will be added here -->
                 </tbody>
             </table>
-            <h3>Select Arrival Flight</h3>
+            <h3 id="arrival-header" style="display: none;">Select Arrival Flight</h3>
             <table id="flights-table-arrival" style="display: none;">
                 <thead>
                 <tr>
@@ -152,6 +152,8 @@
                 <!-- Flight rows will be added here -->
                 </tbody>
             </table>
+
+            <button id="add-to-cart" style="display: none;">Add to Cart</button>
 
 
         </div>
@@ -249,6 +251,7 @@
 
         // if no errors are found
         if (err_text === "") {
+            document.getElementById("pass_details").style.display = "block";
             norm_text += "Trip Type: " + trip_type + "<br>"
             norm_text += "Origin: " + origin + "<br>";
             norm_text += "Destination: " + dest + "<br>";
@@ -259,11 +262,13 @@
             norm_text += "Number of Passengers: " + "Adults: " + adults + ", Children: " + children
                 + ", Infants: " + infants + ".<br><br>"
 
+            document.getElementById("dep-header").style.display="block";
             document.getElementById("display").innerHTML = norm_text;
             document.getElementById("error").innerHTML = "";
             bookFlight(origin, dest, dep_init);
 
             // logic to find available XML flights (one-way)
+            let dep_flight_id = null;
             let available_flights = []
             findFlights(origin, dest, depDate, seats)
                 .then(flights => {
@@ -283,6 +288,19 @@
                             radioInput.required = true;
                             radioCell.appendChild(radioInput);
                             row.appendChild(radioCell);
+
+
+                          // Adding event listener for changes in selection
+                          radioInput.addEventListener('change', ()=>{
+                            dep_flight_id = radioInput.value;
+                            if (trip_type==="one-way"){
+                              document.getElementById("add-to-cart").style.display = "block";
+                            }
+                            else{
+                              document.getElementById("arrival-header").style.display = "block";
+                            }
+                            console.log(dep_flight_id);
+                          })
 
                             // Create cells for each flight data item
                             const dataCells = [
@@ -315,8 +333,10 @@
                     console.error("cannot fetch flights: ", error)
                 });
 
+            let arrival_flight_id = null;
           // Round Trip (duplicate code but whatever)
           if (trip_type==="round-trip") {
+            document.getElementById("add-to-cart").style.display = "block";
             findFlights(dest, origin, arrDate, seats)
                     .then(flights => {
                       const arrFlightsTableBody = document.getElementById('flights-table-arrival-body');
@@ -327,13 +347,19 @@
 
                           // Create the radio button cell
                           const radioCell = document.createElement('td');
-                          const radioInput = document.createElement('input');
-                          radioInput.type = 'radio';
-                          radioInput.name = 'selectedArrFlight';
-                          radioInput.value = flight[0];
-                          radioInput.required = true;
-                          radioCell.appendChild(radioInput);
+                          const radioInputArr = document.createElement('input');
+                          radioInputArr.type = 'radio';
+                          radioInputArr.name = 'selectedArrFlight';
+                          radioInputArr.value = flight[0];
+                          radioInputArr.required = true;
+                          radioCell.appendChild(radioInputArr);
                           row.appendChild(radioCell);
+
+                          // Adding event listener for changes in selection
+                          radioInputArr.addEventListener('change', ()=>{
+                            arrival_flight_id = radioInputArr.value;
+                            document.getElementById("add-to-cart").style.display = "block";
+                          })
 
                           // Create cells for each flight data item
                           const dataCells = [
@@ -367,6 +393,18 @@
                     });
 
           }
+
+          console.log(trip_type)
+          console.log(dep_flight_id)
+        // showing the "add to cart" button
+          if (trip_type==="one-way" && dep_flight_id){
+            console.log("fuk u ")
+            document.getElementById("add-to-cart").style.display = "block";
+          }
+          else if (trip_type==="round-trip" && dep_flight_id && arrival_flight_id) {
+            document.getElementById("add-to-cart").style.display = "block";
+          }
+
         } else {
             document.getElementById("error").innerHTML = "INPUT ERROR <br><br>" + err_text;
             document.getElementById("display").innerHTML = "";
