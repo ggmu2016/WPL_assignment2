@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Mega Vacation Deals</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+3">
 </head>
 <script type="text/javascript" src="js/scripts.js"></script>
-<body onload="updateTime(), updateSlider()">
+<script src="js/loadCart.js"><</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body onload="updateTime(), updateSlider(), loadCart()">
 <header>
     <h1>Shopping Cart</h1>
 </header>
@@ -39,12 +42,9 @@
     </aside>
     <main>
         <h2>Cart</h2>
+        <div id="cart" class="cart"></div>
     </main>
 </div>
 <footer>
     <p>&copy; 2024 Mega Vacation Deals</p>
 </footer>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-
-</script>

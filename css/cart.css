@@ -1,0 +1,32 @@
+
+.cart {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.flight-container {
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flight-container h3 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.flight-container p {
+    margin: 5px 0;
+}
+
+.delete-button {
+    position: relative;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
