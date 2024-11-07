@@ -10,6 +10,18 @@ async function fetchXML(url) {
     return parser.parseFromString(text, "application/xml");
 }
 
+async function updateJsonData(ssn, updatedCart, jsonURL) {
+    const customerData = await fetchData(jsonURL);
+    console.log("Helo");
+    console.log(customerData);
+    customerData.passengers["passenger1"].cart = updatedCart;
+    await fetch(jsonURL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(customerData)
+    });
+}
+
 function displayCart(cart, flightsXML, ssn, jsonURL) {
     const cartDiv = document.getElementById('cart');
     cartDiv.innerHTML = ''; // Clear previous content
@@ -55,7 +67,8 @@ async function loadCart() {
     console.log(flightsXML);
     console.log(flightsXML.querySelector("[*|flight_id='9954454208']"));
     const cart = customerData.passengers["passenger1"].cart;
-    displayCart(cart, flightsXML);
+    const customerssn = customerData.passengers["passenger1"].ssn;
+    displayCart(cart, flightsXML, customerssn, jsonURL);
 }
 
 loadCart();
