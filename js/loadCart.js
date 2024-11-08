@@ -12,9 +12,17 @@ async function fetchXML(url) {
 
 async function updateJsonData(ssn, updatedCart, jsonURL) {
     const customerData = await fetchData(jsonURL);
-    console.log("Helo");
-    console.log(customerData);
     customerData.passengers["passenger1"].cart = updatedCart;
+    await fetch(jsonURL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(customerData)
+    });
+}
+
+async function updateJsonBooking(fname, lname, dob, ssn, reservation, jsonURL) {
+    const customerData = await fetchData(jsonURL);
+    customerData.passengers["passenger1"].booked = reservation;
     await fetch(jsonURL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -24,6 +32,7 @@ async function updateJsonData(ssn, updatedCart, jsonURL) {
 
 function displayCart(cart, flightsXML, ssn, jsonURL) {
     const cartDiv = document.getElementById('cart');
+    const bookDiv = document.getElementById('book');
     cartDiv.innerHTML = ''; // Clear previous content
     cart.forEach(flightId => {
         const record = Array.from(flightsXML.querySelectorAll('record')).find(rec => rec.querySelector('flight_id').textContent === flightId);
@@ -46,13 +55,32 @@ function displayCart(cart, flightsXML, ssn, jsonURL) {
                     <p><strong>Arrival:</strong> ${arrivalDate} at ${arrivalTime}</p> 
                     <p><strong>Number of Seats:</strong> ${numSeats}</p> 
                     <p><strong>Price:</strong> $${price}</p> 
-                    <button class="delete-button">Delete</button> `;
+                    <form>
+                        <text>First Name: </text><input type="text" id="fname_form"><br>
+                        <text>Last Name: </text><input type="text" id="lname_form"><br>
+                        <text>Date of Birth: </text><input type="text" id="dob_form"><br>
+                        <text>SSN: </text><input type="SSN" id="ssn_form">
+                    </form>
+                    <br>
+                    <button class="delete-button">Delete</button><br><br>
+                    <button id=\"bookButton\" class="book-button">Book</button> `;
             flightContainer.querySelector('.delete-button').addEventListener('click', async () => { // Remove flight from cart
                 const updatedCart = cart.filter(id => id !== flightId);
                 await updateJsonData(ssn, updatedCart, jsonURL); // Reload cart
                 displayCart(updatedCart, flightsXML, ssn, jsonURL);
             });
             cartDiv.appendChild(flightContainer);
+            bookDiv.innerHTML = "";
+            document.getElementById("bookButton").addEventListener('click', async () => { // Remove flight from cart
+                const fname = document.getElementById("fname_form").textContent;
+                const lname = document.getElementById("lname_form").textContent;
+                const dob = document.getElementById("dob_form").textContent;
+                const ssn = document.getElementById("ssn_form").textContent;
+                var obj = {name: fname, lname: lname, dob: dob, ssn: ssn};
+
+                await updateJsonBooking(fname, lname, dob, ssn, 1, jsonURL); // Reload cart
+                displayCart(updatedCart, flightsXML, ssn, jsonURL);
+            });
         }
     });
 }

@@ -6,7 +6,7 @@
       "dob": "12/12/2000",
       "ssn": "426-19-2337",
       "cart": ["9954454208"],
-      "booked": []
+      "booked": {}
     },
     "passenger2": {
       "first_name": "Rodrique",
@@ -14,7 +14,7 @@
       "dob": "1/14/1988",
       "ssn": "605-31-3253",
       "cart": [],
-      "booked": []
+      "booked": {}
     },
     "passenger3": {
       "first_name": "Lind",
@@ -22,7 +22,7 @@
       "dob": "12/24/1993",
       "ssn": "177-89-1454",
       "cart": [],
-      "booked": []
+      "booked": {}
     },
     "passenger4": {
       "first_name": "Saraann",
@@ -30,7 +30,7 @@
       "dob": "9/16/1992",
       "ssn": "159-08-9950",
       "cart": [],
-      "booked": []
+      "booked": {}
     },
     "passenger5": {
       "first_name": "Massimo",
@@ -38,7 +38,7 @@
       "dob": "8/11/1994",
       "ssn": "372-04-6387",
       "cart": [],
-      "booked": []
+      "booked": {}
     }
   }
 }

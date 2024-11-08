@@ -30,3 +30,13 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.book-button {
+    position: relative;
+    padding: 5px 10px;
+    background-color: gray;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
