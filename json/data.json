@@ -1,44 +1,124 @@
 {
   "passengers": {
+    "newpassenger": {
+      "first_name": "",
+      "last_name": "",
+      "dob": "",
+      "ssn": "",
+      "cart": {
+        "oway": ["9954454208"],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      },
+      "booked": {
+        "oway": ["9954454208"],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      }
+    },
     "passenger1": {
       "first_name": "Dot",
       "last_name": "Ure",
       "dob": "12/12/2000",
       "ssn": "426-19-2337",
-      "cart": ["9954454208"],
-      "booked": {}
+      "cart": {
+        "oway": ["9954454208"],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      },
+      "booked": {
+        "oway": ["9954454208"],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      }
     },
     "passenger2": {
       "first_name": "Rodrique",
       "last_name": "Cofax",
       "dob": "1/14/1988",
       "ssn": "605-31-3253",
-      "cart": [],
-      "booked": {}
+      "cart": {
+        "oway": [],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      },
+      "booked": {
+        "oway": [],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      }
     },
     "passenger3": {
       "first_name": "Lind",
       "last_name": "Lochhead",
       "dob": "12/24/1993",
       "ssn": "177-89-1454",
-      "cart": [],
-      "booked": {}
+      "cart": {
+        "oway": [],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      },
+      "booked": {
+        "oway": [],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      }
     },
     "passenger4": {
       "first_name": "Saraann",
       "last_name": "McNee",
       "dob": "9/16/1992",
       "ssn": "159-08-9950",
-      "cart": [],
-      "booked": {}
+      "cart": {
+        "oway": [],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      },
+      "booked": {
+        "oway": [],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      }
     },
     "passenger5": {
       "first_name": "Massimo",
       "last_name": "Chatten",
       "dob": "8/11/1994",
       "ssn": "372-04-6387",
-      "cart": [],
-      "booked": {}
+      "cart": {
+        "oway": [],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      },
+      "booked": {
+        "oway": [],
+        "rtrip": {
+          "departures": [],
+          "returns": []
+        }
+      }
     }
   }
 }

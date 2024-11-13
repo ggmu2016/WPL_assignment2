@@ -13,6 +13,7 @@ async function fetchXML(url) {
 async function updateJsonData(ssn, updatedCart, jsonURL) {
     const customerData = await fetchData(jsonURL);
     customerData.passengers["passenger1"].cart = updatedCart;
+
     await fetch(jsonURL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -23,6 +24,8 @@ async function updateJsonData(ssn, updatedCart, jsonURL) {
 async function updateJsonBooking(fname, lname, dob, ssn, reservation, jsonURL) {
     const customerData = await fetchData(jsonURL);
     customerData.passengers["passenger1"].booked = reservation;
+    console.log("CustomerData");
+    console.log(customerData);
     await fetch(jsonURL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -32,9 +35,10 @@ async function updateJsonBooking(fname, lname, dob, ssn, reservation, jsonURL) {
 
 function displayCart(cart, flightsXML, ssn, jsonURL) {
     const cartDiv = document.getElementById('cart');
-    const bookDiv = document.getElementById('book');
     cartDiv.innerHTML = ''; // Clear previous content
     cart.forEach(flightId => {
+        const flight_mode = flightId[0];
+        flightId = flightId.substring(1);
         const record = Array.from(flightsXML.querySelectorAll('record')).find(rec => rec.querySelector('flight_id').textContent === flightId);
         if (record) {
             const origin = record.querySelector('origin').textContent;
@@ -45,22 +49,50 @@ function displayCart(cart, flightsXML, ssn, jsonURL) {
             const arrivalTime = record.querySelector('arrival_time').textContent;
             const numSeats = record.querySelector('num_seats').textContent;
             const price = record.querySelector('price').textContent;
+            const price_child = (price * 0.7).toFixed(2);
+            const price_infant = (price * 0.1).toFixed(2);
             const flightContainer = document.createElement('div');
             flightContainer.classList.add('flight-container');
-            flightContainer.innerHTML =
+            switch (flight_mode) {
+                case "1":
+                    flightContainer.innerHTML += (`<h3>One Way</h3>`);
+                    break;
+                case "2":
+                    flightContainer.innerHTML += (`<h3>Round Trip: Departure</h3>`);
+                    break;
+                case "3":
+                    flightContainer.innerHTML += (`<h3>Round Trip: Return</h3>`);
+            }
+            flightContainer.innerHTML +=
                 ` <h3>Flight ID: ${flightId}</h3> 
                     <p><strong>Origin:</strong> ${origin}</p> 
                     <p><strong>Destination:</strong> ${destination}</p> 
                     <p><strong>Departure:</strong> ${departureDate} at ${departureTime}</p> 
                     <p><strong>Arrival:</strong> ${arrivalDate} at ${arrivalTime}</p> 
                     <p><strong>Number of Seats:</strong> ${numSeats}</p> 
-                    <p><strong>Price:</strong> $${price}</p> 
-                    <form>
-                        <text>First Name: </text><input type="text" id="fname_form"><br>
-                        <text>Last Name: </text><input type="text" id="lname_form"><br>
-                        <text>Date of Birth: </text><input type="text" id="dob_form"><br>
-                        <text>SSN: </text><input type="SSN" id="ssn_form">
+                    <p><strong>Price:</strong> Adult: $${price} Child: $${price_child} Infant: $${price_infant}</p> 
+                    <form id="passenger-form">
+                        <div class="passenger-form" id="passenger-1">
+                            <h2>Passenger 1</h2>
+                            <div class="form-field">
+                                <label for="first-name-1">First Name</label>
+                                <input type="text" id="first-name-1" name="first-name-1" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="last-name-1">Last Name</label>
+                                <input type="text" id="last-name-1" name="last-name-1" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="dob-1">Date of Birth</label>
+                                <input type="date" id="dob-1" name="dob-1" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="ssn-1">SSN</label>
+                                <input type="text" id="ssn-1" name="ssn-1" required>
+                            </div>
+                        </div>
                     </form>
+                    <button class="add-passenger" onclick="addPassenger()">+ Add Passenger</button><br>
                     <br>
                     <button class="delete-button">Delete</button><br><br>
                     <button id=\"bookButton\" class="book-button">Book</button> `;
@@ -70,33 +102,90 @@ function displayCart(cart, flightsXML, ssn, jsonURL) {
                 displayCart(updatedCart, flightsXML, ssn, jsonURL);
             });
             cartDiv.appendChild(flightContainer);
-            bookDiv.innerHTML = "";
             document.getElementById("bookButton").addEventListener('click', async () => { // Remove flight from cart
-                const fname = document.getElementById("fname_form").textContent;
-                const lname = document.getElementById("lname_form").textContent;
-                const dob = document.getElementById("dob_form").textContent;
-                const ssn = document.getElementById("ssn_form").textContent;
+                const firstNames = [];
+                const lastNames = [];
+                const dobs = [];
+                const ssns = [];
+                for (let i = 1; i <= passengerCount; i++) {
+                    firstNames.push(document.getElementById(`first-name-${i}`).value);
+                    lastNames.push(document.getElementById(`last-name-${i}`).value);
+                    dobs.push(document.getElementById(`dob-${i}`).value);
+                    ssns.push(document.getElementById(`ssn-${i}`).value);
+                }
+                console.log('First Names:', firstNames);
+                console.log('Last Names:', lastNames);
+                console.log('Date of Births:', dobs);
+                console.log('SSNs:', ssns);
+
                 var obj = {name: fname, lname: lname, dob: dob, ssn: ssn};
 
-                await updateJsonBooking(fname, lname, dob, ssn, 1, jsonURL); // Reload cart
+                await updateJsonBooking(firstNames, lastNames, dobs, ssns, 1, jsonURL); // Reload cart
+                const updatedCart = cart.filter(id => id !== flightId);
                 displayCart(updatedCart, flightsXML, ssn, jsonURL);
             });
         }
     });
 }
 
+let passengerCount = 1;
+
+function addPassenger() {
+    passengerCount++;
+    const form = document.getElementById('passenger-form');
+    const newPassengerDiv = document.createElement('div');
+    newPassengerDiv.className = 'passenger-form';
+    newPassengerDiv.id = 'passenger-' + passengerCount;
+
+    newPassengerDiv.innerHTML = `
+                <h2>Passenger ${passengerCount}</h2>
+                <div class="form-field">
+                    <label for="first-name-${passengerCount}">First Name</label>
+                    <input type="text" id="first-name-${passengerCount}" name="first-name-${passengerCount}" required>
+                </div>
+                <div class="form-field">
+                    <label for="last-name-${passengerCount}">Last Name</label>
+                    <input type="text" id="last-name-${passengerCount}" name="last-name-${passengerCount}" required>
+                </div>
+                <div class="form-field">
+                    <label for="dob-${passengerCount}">Date of Birth</label>
+                    <input type="date" id="dob-${passengerCount}" name="dob-${passengerCount}" required>
+                </div>
+                <div class="form-field">
+                    <label for="ssn-${passengerCount}">SSN</label>
+                    <input type="text" id="ssn-${passengerCount}" name="ssn-${passengerCount}" required>
+                </div>
+            `;
+
+    form.appendChild(newPassengerDiv);
+}
+
+
 async function loadCart() {
-    const ssn = "###-##-####"; // Replace with actual SSN
     const jsonURL = '../json/data.json';
     const xmlURL = '../xml/data.xml';
     const customerData = await fetchData(jsonURL);
+    const currentCustomer = "" // TODO: Needs to be updated
     console.log(customerData.passengers);
     const flightsXML = await fetchXML(xmlURL);
     console.log(flightsXML);
     console.log(flightsXML.querySelector("[*|flight_id='9954454208']"));
-    const cart = customerData.passengers["passenger1"].cart;
+    const cart_oneway = customerData.passengers["passenger1"].cart.oway;
+    cart_oneway.forEach(((cart, index) => {
+        cart_oneway[index] = "1" + cart;
+    }));
+    const cart_rtrip_d = customerData.passengers["passenger1"].cart.rtrip.departures;
+    cart_rtrip_d.forEach(((cart, index) => {
+        cart_rtrip_d[index] = "2" + cart;
+    }));
+    const cart_rtrip_r = customerData.passengers["passenger1"].cart.rtrip.returns;
+    cart_rtrip_r.forEach(((cart, index) => {
+        cart_rtrip_r[index] = "3" + cart;
+    }));
+    const concat_cart = [...cart_oneway, ...cart_rtrip_d, ...cart_rtrip_r];
+    console.log(concat_cart);
     const customerssn = customerData.passengers["passenger1"].ssn;
-    displayCart(cart, flightsXML, customerssn, jsonURL);
+    displayCart(concat_cart, flightsXML, customerssn, jsonURL);
 }
 
 loadCart();
