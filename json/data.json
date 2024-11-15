@@ -6,19 +6,29 @@
       "dob": "",
       "ssn": "",
       "cart": {
-        "oway": ["9954454208"],
+        "oway": [
+          "9954454208"
+        ],
         "rtrip": {
           "departures": [],
           "returns": []
         }
       },
-      "booked": {
-        "oway": ["9954454208"],
-        "rtrip": {
-          "departures": [],
-          "returns": []
+      "booked": [
+        {
+          "res_id": "1",
+          "departure": "9954454208",
+          "return": "",
+          "passengers": [
+            {
+              "fname": "",
+              "lname": "",
+              "dob": "",
+              "ssn": ""
+            }
+          ]
         }
-      }
+      ]
     },
     "passenger1": {
       "first_name": "Dot",
@@ -26,19 +36,29 @@
       "dob": "12/12/2000",
       "ssn": "426-19-2337",
       "cart": {
-        "oway": ["9954454208"],
+        "oway": [
+          "9954454208"
+        ],
         "rtrip": {
           "departures": [],
           "returns": []
         }
       },
-      "booked": {
-        "oway": ["9954454208"],
-        "rtrip": {
-          "departures": [],
-          "returns": []
+      "booked": [
+        {
+          "res_id": 1,
+          "departure": "9954454208",
+          "return": "",
+          "passengers": [
+            {
+              "fname": "",
+              "lname": "",
+              "dob": "",
+              "ssn": ""
+            }
+          ]
         }
-      }
+      ]
     },
     "passenger2": {
       "first_name": "Rodrique",
@@ -52,13 +72,21 @@
           "returns": []
         }
       },
-      "booked": {
-        "oway": [],
-        "rtrip": {
-          "departures": [],
-          "returns": []
+      "booked": [
+        {
+          "res_id": "1",
+          "departure": "9954454208",
+          "return": "",
+          "passengers": [
+            {
+              "fname": "",
+              "lname": "",
+              "dob": "",
+              "ssn": ""
+            }
+          ]
         }
-      }
+      ]
     },
     "passenger3": {
       "first_name": "Lind",
@@ -72,13 +100,21 @@
           "returns": []
         }
       },
-      "booked": {
-        "oway": [],
-        "rtrip": {
-          "departures": [],
-          "returns": []
+      "booked": [
+        {
+          "res_id": "1",
+          "departure": "9954454208",
+          "return": "",
+          "passengers": [
+            {
+              "fname": "",
+              "lname": "",
+              "dob": "",
+              "ssn": ""
+            }
+          ]
         }
-      }
+      ]
     },
     "passenger4": {
       "first_name": "Saraann",
@@ -92,13 +128,21 @@
           "returns": []
         }
       },
-      "booked": {
-        "oway": [],
-        "rtrip": {
-          "departures": [],
-          "returns": []
+      "booked": [
+        {
+          "res_id": "1",
+          "departure": "9954454208",
+          "return": "",
+          "passengers": [
+            {
+              "fname": "",
+              "lname": "",
+              "dob": "",
+              "ssn": ""
+            }
+          ]
         }
-      }
+      ]
     },
     "passenger5": {
       "first_name": "Massimo",
@@ -112,13 +156,21 @@
           "returns": []
         }
       },
-      "booked": {
-        "oway": [],
-        "rtrip": {
-          "departures": [],
-          "returns": []
+      "booked": [
+        {
+          "res_id": "1",
+          "departure": "9954454208",
+          "return": "",
+          "passengers": [
+            {
+              "fname": "",
+              "lname": "",
+              "dob": "",
+              "ssn": ""
+            }
+          ]
         }
-      }
+      ]
     }
   }
 }

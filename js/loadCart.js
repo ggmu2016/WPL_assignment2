@@ -21,12 +21,14 @@ async function updateJsonData(ssn, updatedCart, jsonURL) {
     });
 }
 
-async function updateJsonBooking(fname, lname, dob, ssn, reservation, jsonURL) {
-    const customerData = await fetchData(jsonURL);
-    customerData.passengers["passenger1"].booked = reservation;
+async function updateJsonBooking(passenger_id, booking_object, res_id, jsonURL) {
+    const customerData = await fetchData(jsonURL); // Fetch customer data from local JSON
+    let booked_length = booking_object.res_id = customerData.passengers["passenger1"].booked.length // Get the length of the booked array to increment the last reservation ID
+    booking_object.res_id = customerData.passengers["passenger1"].booked[booked_length-1].res_id+1; // Current reservation ID is last reservation ID plus one
+    customerData.passengers["passenger1"].booked.push(booking_object); // Add the new booking
     console.log("CustomerData");
     console.log(customerData);
-    await fetch(jsonURL, {
+    await fetch(jsonURL, { // Update the JSON file
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(customerData)
@@ -36,8 +38,13 @@ async function updateJsonBooking(fname, lname, dob, ssn, reservation, jsonURL) {
 function displayCart(cart, flightsXML, ssn, jsonURL) {
     const cartDiv = document.getElementById('cart');
     cartDiv.innerHTML = ''; // Clear previous content
+    const bookedDiv = document.getElementById('booked');
+    bookedDiv.innerHTML = ''; // Clear previous content
     cart.forEach(flightId => {
         const flight_mode = flightId[0];
+        var depart_flight_id = "";
+        var return_flight_id = "";
+        const orig_flightId= flightId;
         flightId = flightId.substring(1);
         const record = Array.from(flightsXML.querySelectorAll('record')).find(rec => rec.querySelector('flight_id').textContent === flightId);
         if (record) {
@@ -47,21 +54,25 @@ function displayCart(cart, flightsXML, ssn, jsonURL) {
             const departureTime = record.querySelector('departure_time').textContent;
             const arrivalDate = record.querySelector('arrival_date').textContent;
             const arrivalTime = record.querySelector('arrival_time').textContent;
-            const numSeats = record.querySelector('num_seats').textContent;
+            let numSeats = record.querySelector('num_seats').textContent;
             const price = record.querySelector('price').textContent;
             const price_child = (price * 0.7).toFixed(2);
             const price_infant = (price * 0.1).toFixed(2);
             const flightContainer = document.createElement('div');
+            const bookedFlights = document.createElement("div") // TODO: Continue Here
             flightContainer.classList.add('flight-container');
             switch (flight_mode) {
                 case "1":
                     flightContainer.innerHTML += (`<h3>One Way</h3>`);
+                    depart_flight_id = flightId;
                     break;
                 case "2":
                     flightContainer.innerHTML += (`<h3>Round Trip: Departure</h3>`);
+                    depart_flight_id = flightId;
                     break;
                 case "3":
                     flightContainer.innerHTML += (`<h3>Round Trip: Return</h3>`);
+                    return_flight_id = flightId;
             }
             flightContainer.innerHTML +=
                 ` <h3>Flight ID: ${flightId}</h3> 
@@ -97,31 +108,34 @@ function displayCart(cart, flightsXML, ssn, jsonURL) {
                     <button class="delete-button">Delete</button><br><br>
                     <button id=\"bookButton\" class="book-button">Book</button> `;
             flightContainer.querySelector('.delete-button').addEventListener('click', async () => { // Remove flight from cart
-                const updatedCart = cart.filter(id => id !== flightId);
+                const updatedCart = cart.filter(id => id !== orig_flightId);
                 await updateJsonData(ssn, updatedCart, jsonURL); // Reload cart
                 displayCart(updatedCart, flightsXML, ssn, jsonURL);
             });
             cartDiv.appendChild(flightContainer);
             document.getElementById("bookButton").addEventListener('click', async () => { // Remove flight from cart
-                const firstNames = [];
-                const lastNames = [];
-                const dobs = [];
-                const ssns = [];
-                for (let i = 1; i <= passengerCount; i++) {
-                    firstNames.push(document.getElementById(`first-name-${i}`).value);
-                    lastNames.push(document.getElementById(`last-name-${i}`).value);
-                    dobs.push(document.getElementById(`dob-${i}`).value);
-                    ssns.push(document.getElementById(`ssn-${i}`).value);
+                var newBooking =         {
+                    "res_id": "",
+                    "departure": depart_flight_id,
+                    "return": return_flight_id,
+                    "passengers": []
                 }
-                console.log('First Names:', firstNames);
-                console.log('Last Names:', lastNames);
-                console.log('Date of Births:', dobs);
-                console.log('SSNs:', ssns);
 
-                var obj = {name: fname, lname: lname, dob: dob, ssn: ssn};
-
-                await updateJsonBooking(firstNames, lastNames, dobs, ssns, 1, jsonURL); // Reload cart
-                const updatedCart = cart.filter(id => id !== flightId);
+                var passengers = [];
+                for (let i = 1; i <= passengerCount; i++) {
+                    passengers.push( {
+                        "fname": document.getElementById(`first-name-${i}`).value,
+                        "lname": document.getElementById(`last-name-${i}`).value,
+                        "dob": document.getElementById(`dob-${i}`).value,
+                        "ssn": document.getElementById(`ssn-${i}`).value
+                    });
+                    --numSeats;
+                    record.querySelector('num_seats').textContent = numSeats; // update num seats in the XML file
+                }
+                newBooking.passengers=passengers;
+                console.log(passengers);
+                await updateJsonBooking("passenger1", newBooking, 1, jsonURL); // Reload cart
+                const updatedCart = cart.filter(id => id !== orig_flightId);
                 displayCart(updatedCart, flightsXML, ssn, jsonURL);
             });
         }
@@ -159,7 +173,6 @@ function addPassenger() {
 
     form.appendChild(newPassengerDiv);
 }
-
 
 async function loadCart() {
     const jsonURL = '../json/data.json';
