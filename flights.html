@@ -192,7 +192,7 @@
         const dest = document.getElementById("dest").value.trim().toLowerCase();
         const num_child = document.getElementById("child").value;
         const num_infant = document.getElementById("infant").value;
-        const city = ['austin', 'san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego', 'sacramento'];
+        const city = ['austin', 'san francisco', 'houston', 'dallas', 'san antonio', 'los angeles', 'san diego', 'sacramento', 'san jose'];
         let adults = parseInt(num_adult);
         let children = parseInt(num_child);
         let infants = parseInt(num_infant);
@@ -394,11 +394,8 @@
 
           }
 
-          console.log(trip_type)
-          console.log(dep_flight_id)
-        // showing the "add to cart" button
+            // showing the "add to cart" button
           if (trip_type==="one-way" && dep_flight_id){
-            console.log("fuk u ")
             document.getElementById("add-to-cart").style.display = "block";
           }
           else if (trip_type==="round-trip" && dep_flight_id && arrival_flight_id) {

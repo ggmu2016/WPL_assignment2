@@ -7,11 +7,9 @@ function findFlights(orig, dst, dep, seats) {
             const records = xmlDoc.getElementsByTagName('record');
 
             // upper and lower bounds of input date
-
             const dep_month = dep.getMonth();
             const dep_year = dep.getFullYear();
             const dep_day = dep.getDate();
-
             const upperbound = new Date(dep_year, dep_month, dep_day + 3);
             const lowerbound = new Date(dep_year, dep_month, dep_day - 3);
 
@@ -36,23 +34,6 @@ function findFlights(orig, dst, dep, seats) {
                 let [dep_month, dep_day, dep_year] = dep_date.split("/").map(Number);
                 let ddate = new Date(dep_year, dep_month - 1, dep_day);
 
-
-                // console.log("orig", orig);
-                // console.log("origin", origin.toLowerCase());
-                // console.log("dest", dest.toLowerCase());
-                // console.log("dst", dst);
-                // console.log("num_seats",num_seats);
-                // console.log("seats",seats);
-                // console.log("ddate",ddate);
-                // console.log("dep",dep)
-                // console.log("lowerbound",lowerbound);
-                // console.log("upperbound",upperbound);
-                //
-                // if (ddate>=lowerbound && ddate<=upperbound){
-                //     console.log("fuck yall bitches");
-                // }
-
-
                 // checks if everything meets the user input and populates the arrays accordingly
                 if (seats <= num_seats && orig === origin.toLowerCase() && dest.toLowerCase() === dst && ddate >= lowerbound
                     && ddate <= upperbound) {
@@ -62,9 +43,6 @@ function findFlights(orig, dst, dep, seats) {
                         flightsWithDate.push(curr_flight);
                     }
                 }
-
-                // console.log(flightsWithDate);
-                // console.log(allFlights);
 
             }
             if (flightsWithDate.length >= 1) {
