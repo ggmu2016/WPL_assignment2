@@ -18,7 +18,7 @@
         {
           "res_id": "1",
           "departure": "9954454208",
-          "return": "",
+          "return_f": "",
           "passengers": [
             {
               "fname": "",
@@ -48,13 +48,19 @@
         {
           "res_id": 1,
           "departure": "9954454208",
-          "return": "",
+          "return_f": "5230144295",
           "passengers": [
             {
-              "fname": "",
-              "lname": "",
-              "dob": "",
-              "ssn": ""
+              "fname": "Dot",
+              "lname": "Ure",
+              "dob": "12/12/2000",
+              "ssn": "426-19-2337"
+            },
+            {
+              "fname": "Johnny",
+              "lname": "Bravo",
+              "dob": "12/12/2000",
+              "ssn": "555-555-5555"
             }
           ]
         }
@@ -76,7 +82,7 @@
         {
           "res_id": "1",
           "departure": "9954454208",
-          "return": "",
+          "return_f": "",
           "passengers": [
             {
               "fname": "",
@@ -104,7 +110,7 @@
         {
           "res_id": "1",
           "departure": "9954454208",
-          "return": "",
+          "return_f": "",
           "passengers": [
             {
               "fname": "",
@@ -132,7 +138,7 @@
         {
           "res_id": "1",
           "departure": "9954454208",
-          "return": "",
+          "return_f": "",
           "passengers": [
             {
               "fname": "",
@@ -160,7 +166,7 @@
         {
           "res_id": "1",
           "departure": "9954454208",
-          "return": "",
+          "return_f": "",
           "passengers": [
             {
               "fname": "",
