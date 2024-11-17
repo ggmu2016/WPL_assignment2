@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs").promises;
 const app = express();
-const port = 4000;
+const port = 3000;
 // parse XML
 const xml2js =require("xml2js")
 const cors = require("cors")
@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 const xmlFilePath = "xml/data.xml";
+const jsonFilePath = "json/data.json";
 
 // function to read and parse XML
 async function readXMLFile(){
@@ -24,6 +25,22 @@ async function writeXMLFile(data){
         const builder = new xml2js.Builder();
         const xml = builder.buildObject(data);
         fs.writeFile(xmlFilePath, xml, (err) => {
+            if (err) {reject(err)}
+            resolve();
+        });
+    });
+}
+
+// function to read and parse JSON
+async function readJSONFile(){
+    const data = await fs.readFile(jsonFilePath);
+    return JSON.stringify(data);
+}
+
+// write updated JSON back to file
+async function writeJSONFile(data){
+    return new Promise((resolve, reject) => {
+        fs.writeFile(jsonFilePath, data, (err) => {
             if (err) {reject(err)}
             resolve();
         });
@@ -98,7 +115,15 @@ app.post("/book-flight", async (req, res) => {
     }
 });
 
+app.post("/update-json", async (req, res) => {
+    try{
+        const customer_data = req.body;
 
+        await writeJSONFile(JSON.stringify(customer_data));
+    } catch (err){
+        console.log(err);
+    }
+});
 
 // Start the server
 app.listen(port, () => {

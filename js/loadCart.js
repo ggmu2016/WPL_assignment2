@@ -21,15 +21,48 @@ async function updateJsonData(ssn, updatedCart, jsonURL) {
     });
 }
 
+
 async function updateJsonBooking(passenger_id, booking_object, res_id, jsonURL, flightsXML) {
     const customerData = await fetchData(jsonURL); // Fetch customer data from local JSON
     let booked_length = booking_object.res_id = customerData.passengers["passenger1"].booked.length // Get the length of the booked array to increment the last reservation ID
     booking_object.res_id = customerData.passengers["passenger1"].booked[booked_length - 1].res_id + 1; // Current reservation ID is last reservation ID plus one
     customerData.passengers["passenger1"].booked.push(booking_object); // Add the new booking
-    await fetch(jsonURL, { // Update the JSON file
+
+    if(!booking_object.return_f){
+        let oneways = customerData.passengers["passenger1"].cart.oway;
+        console.log(oneways);
+        console.log(booking_object.departure);
+        let index = oneways.findIndex(item => item.toString() === booking_object.departure.toString());
+        // Check if the element was found
+        if (index !== -1) { // Remove the element using splice
+            customerData.passengers["passenger1"].cart.oway = oneways.splice(index, 1);
+        }
+        console.log("1");
+    } else{
+        let rtrips_d = customerData.passengers["passenger1"].cart.rtrip.departures;
+        let rtrips_r = customerData.passengers["passenger1"].cart.rtrip.returns;
+
+        let index = rtrips_d.findIndex(item => item.name === booking_object.departure);
+        // Check if the element was found
+        if (index !== -1) { // Remove the element using splice
+            customerData.passengers["passenger1"].cart.rtrip.departures = rtrips_d.splice(index, 1);
+        }
+
+        index = rtrips_r.findIndex(item => item.name === booking_object.return_f);
+        // Check if the element was found
+        if (index !== -1) { // Remove the element using splice
+            customerData.passengers["passenger1"].cart.rtrip.returns = rtrips_r.splice(index, 1);
+        }
+        console.log("2");
+    }
+
+    let cdata_string = JSON.stringify(customerData);
+    console.log(typeof cdata_string);
+
+    await fetch("http://localhost:3000/update-json", { // Update the JSON file
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(customerData)
+        body: cdata_string
     });
     displayBooked(customerData.passengers["passenger1"].booked, flightsXML);
 }
