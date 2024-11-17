@@ -9,7 +9,7 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+3">
 </head>
 <script type="text/javascript" src="js/scripts.js"></script>
-<script type="text/javascript" src="find_flights.js"></script>
+<script type="text/javascript" src="js/find_flights.js"></script>
 <body onload="updateTime(), updateSlider()">
 <header>
     <h1>Flights</h1>
@@ -153,7 +153,7 @@
                 </tbody>
             </table>
 
-            <button id="add-to-cart" style="display: none;">Add to Cart</button>
+            <button id="add-to-cart" style="display: none;" onclick=modifyXMLFlight()>Add to Cart</button>
 
 
         </div>
@@ -184,6 +184,8 @@
         } else document.getElementById("arrive").style.display = "none"
     }
 
+    let selected_departure_flight = null;
+    let selected_arrival_flight = null;
     function validateEntries() {
         let err_text = "";
         let norm_text = "";
@@ -196,19 +198,19 @@
         let adults = parseInt(num_adult);
         let children = parseInt(num_child);
         let infants = parseInt(num_infant);
-        if (!adults){
-            adults=0;
+        if (!adults) {
+            adults = 0;
         }
-        if (!children){
-            children =0;
+        if (!children) {
+            children = 0;
         }
-        if (!infants){
-          infants =0;
+        if (!infants) {
+            infants = 0;
         }
 
-        const seats = adults+children;
+        const seats = adults + children;
         console.log(seats)
-        
+
         // city validation
         const city_regex = new RegExp(`^(${city.join('|')})$`, 'i');
         if (!city_regex.test(origin)) {
@@ -229,16 +231,16 @@
         // Sep 1 2024 to Dec 1st 2024.
         const dep_init = document.getElementById('dept_date').value
         let depDate = null;
-        if (dep_init){
-            const [year,month,day] = dep_init.split("-").map(Number);
-            depDate = new Date(year,month-1,day);
+        if (dep_init) {
+            const [year, month, day] = dep_init.split("-").map(Number);
+            depDate = new Date(year, month - 1, day);
         }
 
         const arr_init = document.getElementById('arr_date').value
         let arrDate = null;
-        if (arr_init){
-          const [year,month,day] = arr_init.split("-").map(Number);
-          arrDate = new Date(year,month-1,day);
+        if (arr_init) {
+            const [year, month, day] = arr_init.split("-").map(Number);
+            arrDate = new Date(year, month - 1, day);
         }
 
         // validating dates
@@ -262,21 +264,19 @@
             norm_text += "Number of Passengers: " + "Adults: " + adults + ", Children: " + children
                 + ", Infants: " + infants + ".<br><br>"
 
-            document.getElementById("dep-header").style.display="block";
+            document.getElementById("dep-header").style.display = "block";
             document.getElementById("display").innerHTML = norm_text;
             document.getElementById("error").innerHTML = "";
             bookFlight(origin, dest, dep_init);
 
             // logic to find available XML flights (one-way)
             let dep_flight_id = null;
-            let available_flights = []
             findFlights(origin, dest, depDate, seats)
                 .then(flights => {
-                    available_flights = flights;
                     const depFlightsTableBody = document.getElementById('flights-table-departure-body');
                     depFlightsTableBody.innerHTML = ''; //clear previous results
-                    if (available_flights.length >0){
-                        available_flights.forEach(flight => {
+                    if (flights.length > 0) {
+                        flights.forEach(flight => {
                             const row = document.createElement('tr');
 
                             // Create the radio button cell
@@ -284,35 +284,35 @@
                             const radioInput = document.createElement('input');
                             radioInput.type = 'radio';
                             radioInput.name = 'selectedDepFlight';
-                            radioInput.value = flight[0];
+                            radioInput.value = flight["flight_id"];
                             radioInput.required = true;
                             radioCell.appendChild(radioInput);
                             row.appendChild(radioCell);
 
 
-                          // Adding event listener for changes in selection
-                          radioInput.addEventListener('change', ()=>{
-                            dep_flight_id = radioInput.value;
-                            if (trip_type==="one-way"){
-                              document.getElementById("add-to-cart").style.display = "block";
-                            }
-                            else{
-                              document.getElementById("arrival-header").style.display = "block";
-                            }
-                            console.log(dep_flight_id);
-                          })
+                            // Adding event listener for changes in selection
+                            radioInput.addEventListener('change', () => {
+                                dep_flight_id = radioInput.value;
+                                selected_departure_flight = flight;
+                                console.log('selected dep flight:', flight);
+                                if (trip_type === "one-way") {
+                                    document.getElementById("add-to-cart").style.display = "block";
+                                } else {
+                                    document.getElementById("arrival-header").style.display = "block";
+                                }
+                            });
 
                             // Create cells for each flight data item
                             const dataCells = [
-                                flight[0],  // ID
-                                flight[1],  // Origin
-                                flight[2],  // Destination
-                                flight[3],  // Departure Date
-                                flight[4],  // Departure Time
-                                flight[5],  // Arrival Date
-                                flight[6],  // Arrival Time
-                                flight[7],  // Seats
-                                flight[8]   // Price
+                                flight["flight_id"],  // ID
+                                flight["origin"],  // Origin
+                                flight["destination"],  // Destination
+                                flight["departure_date"],  // Departure Date
+                                flight["departure_time"],  // Departure Time
+                                flight["arrival_date"],  // Arrival Date
+                                flight["arrival_time"],  // Arrival Time
+                                flight["num_seats"],  // Seats
+                                flight["price"]   // Price
                             ];
 
                             dataCells.forEach(data => {
@@ -334,90 +334,105 @@
                 });
 
             let arrival_flight_id = null;
-          // Round Trip (duplicate code but whatever)
-          if (trip_type==="round-trip") {
-            document.getElementById("add-to-cart").style.display = "block";
-            findFlights(dest, origin, arrDate, seats)
+            // Round Trip (duplicate code but whatever)
+            if (trip_type === "round-trip") {
+                document.getElementById("add-to-cart").style.display = "block";
+                findFlights(dest, origin, arrDate, seats)
                     .then(flights => {
-                      const arrFlightsTableBody = document.getElementById('flights-table-arrival-body');
-                      arrFlightsTableBody.innerHTML = ''; //clear previous results
-                      if (flights.length > 0) {
-                        flights.forEach(flight => {
-                          const row = document.createElement('tr');
+                        const arrFlightsTableBody = document.getElementById('flights-table-arrival-body');
+                        arrFlightsTableBody.innerHTML = ''; //clear previous results
+                        if (flights.length > 0) {
+                            flights.forEach(flight => {
+                                const row = document.createElement('tr');
 
-                          // Create the radio button cell
-                          const radioCell = document.createElement('td');
-                          const radioInputArr = document.createElement('input');
-                          radioInputArr.type = 'radio';
-                          radioInputArr.name = 'selectedArrFlight';
-                          radioInputArr.value = flight[0];
-                          radioInputArr.required = true;
-                          radioCell.appendChild(radioInputArr);
-                          row.appendChild(radioCell);
+                                // Create the radio button cell
+                                const radioCell = document.createElement('td');
+                                const radioInputArr = document.createElement('input');
+                                radioInputArr.type = 'radio';
+                                radioInputArr.name = 'selectedArrFlight';
+                                radioInputArr.value = flight["flight_id"];
+                                radioInputArr.required = true;
+                                radioCell.appendChild(radioInputArr);
+                                row.appendChild(radioCell);
 
-                          // Adding event listener for changes in selection
-                          radioInputArr.addEventListener('change', ()=>{
-                            arrival_flight_id = radioInputArr.value;
-                            document.getElementById("add-to-cart").style.display = "block";
-                          })
+                                // Adding event listener for changes in selection
+                                radioInputArr.addEventListener('change', () => {
+                                    arrival_flight_id = radioInputArr.value;
+                                    selected_arrival_flight = flight;
+                                    document.getElementById("add-to-cart").style.display = "block";
+                                })
 
-                          // Create cells for each flight data item
-                          const dataCells = [
-                            flight[0],  // ID
-                            flight[1],  // Origin
-                            flight[2],  // Destination
-                            flight[3],  // Departure Date
-                            flight[4],  // Departure Time
-                            flight[5],  // Arrival Date
-                            flight[6],  // Arrival Time
-                            flight[7],  // Seats
-                            flight[8]   // Price
-                          ];
+                                // Create cells for each flight data item
+                                const dataCells = [
+                                    flight["flight_id"],  // ID
+                                    flight["origin"],  // Origin
+                                    flight["destination"],  // Destination
+                                    flight["departure_date"],  // Departure Date
+                                    flight["departure_time"],  // Departure Time
+                                    flight["arrival_date"],  // Arrival Date
+                                    flight["arrival_time"],  // Arrival Time
+                                    flight["num_seats"],  // Seats
+                                    flight["price"]   // Price
+                                ];
 
-                          dataCells.forEach(data => {
-                            const cell = document.createElement('td');
-                            cell.textContent = data;
-                            row.appendChild(cell);
-                          });
+                                dataCells.forEach(data => {
+                                    const cell = document.createElement('td');
+                                    cell.textContent = data;
+                                    row.appendChild(cell);
+                                });
 
-                          arrFlightsTableBody.appendChild(row);
-                        });
+                                arrFlightsTableBody.appendChild(row);
+                            });
 
-                        // show the table
-                        document.getElementById('flights-table-arrival').style.display = 'table';
+                            // show the table
+                            document.getElementById('flights-table-arrival').style.display = 'table';
 
-                      }
+                        }
                     })
                     .catch(error => {
-                      console.error("cannot fetch flights: ", error)
+                        console.error("cannot fetch flights: ", error)
                     });
 
-          }
+            }
 
             // showing the "add to cart" button
-          if (trip_type==="one-way" && dep_flight_id){
-            document.getElementById("add-to-cart").style.display = "block";
-          }
-          else if (trip_type==="round-trip" && dep_flight_id && arrival_flight_id) {
-            document.getElementById("add-to-cart").style.display = "block";
-          }
+            // if ((trip_type === "one-way" && dep_flight_id) ||
+            //     (trip_type === "round-trip" && dep_flight_id && arrival_flight_id)) {
+            //     document.getElementById("add-to-cart").style.display = "block";
+            // }
 
         } else {
             document.getElementById("error").innerHTML = "INPUT ERROR <br><br>" + err_text;
             document.getElementById("display").innerHTML = "";
         }
+    }
 
-        function bookFlight(origin, destination, departure_date) {
-            console.log("nice!");
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    updateXML(this);
-                }
-            };
-            xmlhttp.open("GET", "xml/data.xml", true);
-            xmlhttp.send();
+    function addToCart(selectedFlight1, selectedFlight2) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(selectedFlight1);
+        if (selectedFlight2){
+            cart.push(selectedFlight2);
         }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("Flight added to cart!");
+        window.location.reload();
+    }
+
+    async function modifyXMLFlight(){
+        addToCart(selected_departure_flight, selected_arrival_flight);
+    }
+
+    function bookFlight(origin, destination, departure_date) {
+        console.log("nice!");
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                updateXML(this);
+            }
+        };
+        xmlhttp.open("GET", "xml/data.xml", true);
+        xmlhttp.send();
+    }
 
     function bookFlight(origin, destination, departure_date) {
 
@@ -465,23 +480,22 @@
             })
             .catch(error => console.error('Error fetching the XML file:', error));
     }
-        function updateXML(xml) {
-            var x, i, xmlDoc, txt;
-            console.log("Nice again!");
-            xmlDoc = xml.responseXML;
-            let record = xmlDoc.createElement("record");
-            record.appendChild(xmlDoc.createElement("origin"));
-            record.appendChild(xmlDoc.createElement("destination"));
-            record.appendChild(xmlDoc.createElement("departure_date"));
+    function updateXML(xml) {
+        var x, i, xmlDoc, txt;
+        console.log("Nice again!");
+        xmlDoc = xml.responseXML;
+        let record = xmlDoc.createElement("record");
+        record.appendChild(xmlDoc.createElement("origin"));
+        record.appendChild(xmlDoc.createElement("destination"));
+        record.appendChild(xmlDoc.createElement("departure_date"));
 
-            //
-            // txt = "";
-            // x = xmlDoc.getElementsByTagName("ARTIST");
-            // for (i = 0; i< x.length; i++) {
-            //     txt += x[i].childNodes[0].nodeValue + "<br>";
-            // }
-            // document.getElementById("demo").innerHTML = txt;
-        }
+        //
+        // txt = "";
+        // x = xmlDoc.getElementsByTagName("ARTIST");
+        // for (i = 0; i< x.length; i++) {
+        //     txt += x[i].childNodes[0].nodeValue + "<br>";
+        // }
+        // document.getElementById("demo").innerHTML = txt;
     }
 </script>
 
