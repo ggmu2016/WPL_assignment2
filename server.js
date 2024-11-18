@@ -110,8 +110,8 @@ app.post("/book-flight", async (req, res) => {
         if (!flight) {
             return res.status(400).send("No flight found.");
         }
-        const availableSeats = parseInt(flight.num_seats[0],10);
-        if (availableSeats<seatsToBook) {
+        const availableSeats = parseInt(flight.num_seats[0]);
+        if (availableSeats<parseInt(seatsToBook)) {
             return res.status(400).send("Not enough seats found.");
         }
 

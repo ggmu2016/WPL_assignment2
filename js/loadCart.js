@@ -192,12 +192,12 @@ function displayCart(cart, flightsXML) {
                     record.querySelector('num_seats').textContent = numSeats; // update num seats in the XML file
                 }
                 console.log("depart_flight_id: ", depart_flight_id);
-                console.log("numSeats: ", numSeats);
-                if (depart_flight_id){await bookFlight(depart_flight_id,numSeats)}
-                if (return_flight_id){await bookFlight(return_flight_id,numSeats)}
+                console.log("numSeats: ", passengerCount);
 
                 newBooking.passengers = passengers;
                 await updateJsonBooking("passenger1", newBooking, 1, flightsXML); // Reload cart
+                if (depart_flight_id){await bookFlight(depart_flight_id,passengerCount)}
+                if (return_flight_id){await bookFlight(return_flight_id,passengerCount)}
             });
             cartDiv.appendChild(flightContainer);
             i+=1;
