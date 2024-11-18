@@ -186,6 +186,8 @@
 
     let selected_departure_flight = null;
     let selected_arrival_flight = null;
+    let arrival_flight_id = null;
+    let dep_flight_id=null;
     function validateEntries() {
         let err_text = "";
         let norm_text = "";
@@ -270,7 +272,6 @@
             bookFlight(origin, dest, dep_init);
 
             // logic to find available XML flights (one-way)
-            let dep_flight_id = null;
             findFlights(origin, dest, depDate, seats)
                 .then(flights => {
                     const depFlightsTableBody = document.getElementById('flights-table-departure-body');
@@ -333,7 +334,7 @@
                     console.error("cannot fetch flights: ", error)
                 });
 
-            let arrival_flight_id = null;
+
             // Round Trip (duplicate code but whatever)
             if (trip_type === "round-trip") {
                 document.getElementById("add-to-cart").style.display = "block";
@@ -407,87 +408,80 @@
         }
     }
 
-    function addToCart(selectedFlight1, selectedFlight2) {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.push(selectedFlight1);
-        if (selectedFlight2){
-            cart.push(selectedFlight2);
-        }
-        localStorage.setItem("cart", JSON.stringify(cart));
+
+    async function modifyXMLFlight() {
+        await addFlightNumToJSON(dep_flight_id, arrival_flight_id);
         alert("Flight added to cart!");
         window.location.reload();
+
     }
 
-    async function modifyXMLFlight(){
-        addToCart(selected_departure_flight, selected_arrival_flight);
-    }
+    // function bookFlight(origin, destination, departure_date) {
+    //     console.log("nice!");
+    //     var xmlhttp = new XMLHttpRequest();
+    //     xmlhttp.onreadystatechange = function () {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             updateXML(this);
+    //         }
+    //     };
+    //     xmlhttp.open("GET", "xml/data.xml", true);
+    //     xmlhttp.send();
+    // }
 
-    function bookFlight(origin, destination, departure_date) {
-        console.log("nice!");
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                updateXML(this);
-            }
-        };
-        xmlhttp.open("GET", "xml/data.xml", true);
-        xmlhttp.send();
-    }
-
-    function bookFlight(origin, destination, departure_date) {
-
-        // Fetch the existing XML file
-        fetch('xml/data.xml')
-            .then(response => response.text())
-            .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-            .then(xmlDoc => {
-                // Create a new record element
-                let newRecord = xmlDoc.createElement('record');
-
-                // Create and append origin element
-                let newOrigin = xmlDoc.createElement('origin');
-                newOrigin.appendChild(xmlDoc.createTextNode(origin));
-                newRecord.appendChild(newOrigin);
-
-                // Create and append destination element
-                let newDestination = xmlDoc.createElement('destination');
-                newDestination.appendChild(xmlDoc.createTextNode(destination));
-                newRecord.appendChild(newDestination);
-
-                // Create and append departure_date element
-                let newDepartureDate = xmlDoc.createElement('departure_date');
-                newDepartureDate.appendChild(xmlDoc.createTextNode(departure_date));
-                newRecord.appendChild(newDepartureDate);
-
-                // Append the new record to the dataset
-                xmlDoc.documentElement.appendChild(newRecord);
-
-                // Serialize the XML back to a string
-                let serializer = new XMLSerializer();
-                let updatedXmlString = serializer.serializeToString(xmlDoc);
-
-                // Send the updated XML to the server
-                fetch('xml/data.xml', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/xml'
-                    },
-                    body: updatedXmlString
-                })
-                    .then(response => response.text())
-                    .then(data => console.log(data))
-                    .catch(error => console.error('Error:', error));
-            })
-            .catch(error => console.error('Error fetching the XML file:', error));
-    }
-    function updateXML(xml) {
-        var x, i, xmlDoc, txt;
-        console.log("Nice again!");
-        xmlDoc = xml.responseXML;
-        let record = xmlDoc.createElement("record");
-        record.appendChild(xmlDoc.createElement("origin"));
-        record.appendChild(xmlDoc.createElement("destination"));
-        record.appendChild(xmlDoc.createElement("departure_date"));
+    // function bookFlight(origin, destination, departure_date) {
+    //
+    //     // Fetch the existing XML file
+    //     fetch('xml/data.xml')
+    //         .then(response => response.text())
+    //         .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+    //         .then(xmlDoc => {
+    //             // Create a new record element
+    //             let newRecord = xmlDoc.createElement('record');
+    //
+    //             // Create and append origin element
+    //             let newOrigin = xmlDoc.createElement('origin');
+    //             newOrigin.appendChild(xmlDoc.createTextNode(origin));
+    //             newRecord.appendChild(newOrigin);
+    //
+    //             // Create and append destination element
+    //             let newDestination = xmlDoc.createElement('destination');
+    //             newDestination.appendChild(xmlDoc.createTextNode(destination));
+    //             newRecord.appendChild(newDestination);
+    //
+    //             // Create and append departure_date element
+    //             let newDepartureDate = xmlDoc.createElement('departure_date');
+    //             newDepartureDate.appendChild(xmlDoc.createTextNode(departure_date));
+    //             newRecord.appendChild(newDepartureDate);
+    //
+    //             // Append the new record to the dataset
+    //             xmlDoc.documentElement.appendChild(newRecord);
+    //
+    //             // Serialize the XML back to a string
+    //             let serializer = new XMLSerializer();
+    //             let updatedXmlString = serializer.serializeToString(xmlDoc);
+    //
+    //             // Send the updated XML to the server
+    //             fetch('xml/data.xml', {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/xml'
+    //                 },
+    //                 body: updatedXmlString
+    //             })
+    //                 .then(response => response.text())
+    //                 .then(data => console.log(data))
+    //                 .catch(error => console.error('Error:', error));
+    //         })
+    //         .catch(error => console.error('Error fetching the XML file:', error));
+    // }
+    // function updateXML(xml) {
+    //     var x, i, xmlDoc, txt;
+    //     console.log("Nice again!");
+    //     xmlDoc = xml.responseXML;
+    //     let record = xmlDoc.createElement("record");
+    //     record.appendChild(xmlDoc.createElement("origin"));
+    //     record.appendChild(xmlDoc.createElement("destination"));
+    //     record.appendChild(xmlDoc.createElement("departure_date"));
 
         //
         // txt = "";
@@ -496,7 +490,7 @@
         //     txt += x[i].childNodes[0].nodeValue + "<br>";
         // }
         // document.getElementById("demo").innerHTML = txt;
-    }
+
 </script>
 
 

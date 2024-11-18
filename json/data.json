@@ -6,11 +6,10 @@
       "dob": "12/12/2000",
       "ssn": "426-19-2337",
       "cart": {
-        "oway": ["6458680252"
-        ],
+        "oway": [],
         "rtrip": {
-          "departures": ["5230144295"],
-          "returns": ["9303598390"]
+          "departures": [],
+          "returns": []
         }
       },
       "booked": [
@@ -30,6 +29,77 @@
               "lname": "Bravo",
               "dob": "12/12/2000",
               "ssn": "555-555-5555"
+            }
+          ]
+        },
+        {
+          "res_id": 2,
+          "departure": "6458680252",
+          "return_f": "",
+          "passengers": [
+            {
+              "fname": "Rohit",
+              "lname": "H",
+              "dob": "2024-11-06",
+              "ssn": "748390082"
+            },
+            {
+              "fname": "",
+              "lname": "",
+              "dob": "",
+              "ssn": ""
+            }
+          ]
+        },
+        {
+          "res_id": 3,
+          "departure": "5097132562",
+          "return_f": "",
+          "passengers": [
+            {
+              "fname": "",
+              "lname": "",
+              "dob": "",
+              "ssn": ""
+            }
+          ]
+        },
+        {
+          "res_id": 4,
+          "departure": "5230144295",
+          "return_f": "9303598390",
+          "passengers": [
+            {
+              "fname": "",
+              "lname": "",
+              "dob": "",
+              "ssn": ""
+            }
+          ]
+        },
+        {
+          "res_id": 5,
+          "departure": "4929781127",
+          "return_f": "",
+          "passengers": [
+            {
+              "fname": "Trial1",
+              "lname": "hey",
+              "dob": "2024-11-20",
+              "ssn": "123455"
+            }
+          ]
+        },
+        {
+          "res_id": 6,
+          "departure": "5097132562",
+          "return_f": "",
+          "passengers": [
+            {
+              "fname": "",
+              "lname": "",
+              "dob": "",
+              "ssn": ""
             }
           ]
         }

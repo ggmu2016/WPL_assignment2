@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs").promises;
 const app = express();
-const port = 3000;
+const port = 4000;
 // parse XML
 const xml2js =require("xml2js")
 const cors = require("cors")
@@ -34,7 +34,7 @@ async function writeXMLFile(data){
 // function to read and parse JSON
 async function readJSONFile(){
     const data = await fs.readFile(jsonFilePath);
-    return JSON.stringify(data);
+    return JSON.parse(data);
 }
 
 // write updated JSON back to file
@@ -46,6 +46,14 @@ async function writeJSONFile(data){
         });
     });
 }
+
+// API route to get JSON file
+app.get("/passenger-info", async (req, res) => {
+    const jsonData = await readJSONFile();
+    res.json(jsonData);
+})
+
+
 
 // API route to search for flights
 app.get("/search-flights", async (req, res) => {
@@ -90,6 +98,9 @@ app.get("/search-flights", async (req, res) => {
 app.post("/book-flight", async (req, res) => {
     try{
         const {flightId, seatsToBook} = req.body;
+        if (!flightId || seatsToBook === undefined) {
+            return res.status(400).send({ error: "Invalid request body" });
+        }
         const xmlData = await readXMLFile();
 
         //find flight by id
@@ -99,7 +110,7 @@ app.post("/book-flight", async (req, res) => {
         if (!flight) {
             return res.status(400).send("No flight found.");
         }
-        const availableSeats = parseInt(flight.num_seats[0]);
+        const availableSeats = parseInt(flight.num_seats[0],10);
         if (availableSeats<seatsToBook) {
             return res.status(400).send("Not enough seats found.");
         }
@@ -119,7 +130,7 @@ app.post("/update-json", async (req, res) => {
     try{
         const customer_data = req.body;
 
-        await writeJSONFile(JSON.stringify(customer_data));
+        await writeJSONFile(JSON.stringify(customer_data,null,2));
     } catch (err){
         console.log(err);
     }

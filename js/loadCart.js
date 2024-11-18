@@ -13,7 +13,7 @@ async function fetchXML(url) {
 }
 
 async function updateJsonData(updatedData) {
-    await fetch("http://localhost:3000/update-json", { // Update the JSON file
+    await fetch("http://localhost:4000/update-json", { // Update the JSON file
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(updatedData)
@@ -191,8 +191,13 @@ function displayCart(cart, flightsXML) {
                     --numSeats;
                     record.querySelector('num_seats').textContent = numSeats; // update num seats in the XML file
                 }
+                console.log("depart_flight_id: ", depart_flight_id);
+                console.log("numSeats: ", numSeats);
+                if (depart_flight_id){await bookFlight(depart_flight_id,numSeats)}
+                if (return_flight_id){await bookFlight(return_flight_id,numSeats)}
+
                 newBooking.passengers = passengers;
-                updateJsonBooking("passenger1", newBooking, 1, flightsXML); // Reload cart
+                await updateJsonBooking("passenger1", newBooking, 1, flightsXML); // Reload cart
             });
             cartDiv.appendChild(flightContainer);
             i+=1;
