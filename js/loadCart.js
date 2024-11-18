@@ -56,7 +56,6 @@ async function updateJsonBooking(passenger_id, booking_object, res_id, flightsXM
     updateJsonData(customerdata);
     displayCart(getCart(customerdata), flightsXML);
     displayBooked(customerdata.passengers["passenger1"].booked, flightsXML);
-    location.reload(true);
 }
 
 function displayCart(cart, flightsXML) {
@@ -194,7 +193,6 @@ function displayCart(cart, flightsXML) {
                 }
                 newBooking.passengers = passengers;
                 updateJsonBooking("passenger1", newBooking, 1, flightsXML); // Reload cart
-                displayCart(getCart(await fetchData(jsonFetchURL)), flightsXML);
             });
             cartDiv.appendChild(flightContainer);
             i+=1;
