@@ -1,4 +1,3 @@
-const jsonUpdateURL = "http://localhost:3000/update-json";
 const jsonFetchURL = "../json/data.json";
 
 async function fetchData(url) {
@@ -63,60 +62,90 @@ async function updateJsonBooking(passenger_id, booking_object, res_id, flightsXM
 function displayCart(cart, flightsXML) {
     const cartDiv = document.getElementById('cart');
     cartDiv.innerHTML = ''; // Clear previous content
+    var i = 0;
 
     cart.forEach(flightId => {
-        console.log(flightId);
         const flight_mode = flightId[0];
         var depart_flight_id = "";
         var return_flight_id = "";
         const orig_flightId = flightId;
         flightId = flightId.substring(1);
-        const record = Array.from(flightsXML.querySelectorAll('record')).find(rec => rec.querySelector('flight_id').textContent === flightId);
+        var record = Array.from(flightsXML.querySelectorAll('record')).find(rec => rec.querySelector('flight_id').textContent === flightId);
+        const flightContainer = document.createElement('div');
+        switch (flight_mode) {
+            case "1":
+                flightContainer.innerHTML += (`<h3>One Way</h3>`);
+                depart_flight_id = flightId;
+                break;
+            case "2":
+                flightContainer.innerHTML += (`<h3>Round Trip</h3>`);
+                depart_flight_id = flightId;
+                return_flight_id = cart[i+1].substring(1);
+                break;
+            case "3":
+                record = false;
+                break;
+        }
         if (record) {
-            const origin = record.querySelector('origin').textContent;
-            const destination = record.querySelector('destination').textContent;
-            const departureDate = record.querySelector('departure_date').textContent;
-            const departureTime = record.querySelector('departure_time').textContent;
-            const arrivalDate = record.querySelector('arrival_date').textContent;
-            const arrivalTime = record.querySelector('arrival_time').textContent;
+            let origin = record.querySelector('origin').textContent;
+            let destination = record.querySelector('destination').textContent;
+            let departureDate = record.querySelector('departure_date').textContent;
+            let departureTime = record.querySelector('departure_time').textContent;
+            let arrivalDate = record.querySelector('arrival_date').textContent;
+            let arrivalTime = record.querySelector('arrival_time').textContent;
             let numSeats = record.querySelector('num_seats').textContent;
-            const price = record.querySelector('price').textContent;
-            const price_child = (price * 0.7).toFixed(2);
-            const price_infant = (price * 0.1).toFixed(2);
-            const flightContainer = document.createElement('div');
+            let price = record.querySelector('price').textContent;
+            let price_child = (price * 0.7).toFixed(2);
+            let price_infant = (price * 0.1).toFixed(2);
             flightContainer.classList.add('flight-container');
-            switch (flight_mode) {
-                case "1":
-                    flightContainer.innerHTML += (`<h3>One Way</h3>`);
-                    depart_flight_id = flightId;
-                    break;
-                case "2":
-                    flightContainer.innerHTML += (`<h3>Round Trip: Departure</h3>`);
-                    depart_flight_id = flightId;
-                    break;
-                case "3":
-                    flightContainer.innerHTML += (`<h3>Round Trip: Return</h3>`);
-                    return_flight_id = flightId;
-            }
             flightContainer.innerHTML +=
-                ` <h3>Flight ID: ${flightId}</h3> 
+                ` <h3>Departure Flight ID: ${flightId}</h3> 
                     <p hidden="true" id="passCount-${flightId}">1</p>
                     <p><strong>Origin:</strong> ${origin}</p> 
                     <p><strong>Destination:</strong> ${destination}</p> 
                     <p><strong>Departure:</strong> ${departureDate} at ${departureTime}</p> 
                     <p><strong>Arrival:</strong> ${arrivalDate} at ${arrivalTime}</p> 
                     <p><strong>Number of Seats:</strong> ${numSeats}</p> 
-                    <p><strong>Price:</strong> Adult: $${price} Child: $${price_child} Infant: $${price_infant}</p> 
+                    <p><strong>Price:</strong> Adult: $${price} Child: $${price_child} Infant: $${price_infant}</p>
+                    <br>
+                `
+
+            if(flight_mode === "2"){
+                record = Array.from(flightsXML.querySelectorAll('record')).find(rec => rec.querySelector('flight_id').textContent === return_flight_id);
+                let origin = record.querySelector('origin').textContent;
+                let destination = record.querySelector('destination').textContent;
+                let departureDate = record.querySelector('departure_date').textContent;
+                let departureTime = record.querySelector('departure_time').textContent;
+                let arrivalDate = record.querySelector('arrival_date').textContent;
+                let arrivalTime = record.querySelector('arrival_time').textContent;
+                let numSeats = record.querySelector('num_seats').textContent;
+                let price = record.querySelector('price').textContent;
+                let price_child = (price * 0.7).toFixed(2);
+                let price_infant = (price * 0.1).toFixed(2);
+                flightContainer.innerHTML +=
+                    ` <h3>Return Flight ID: ${return_flight_id}</h3> 
+                    <p hidden="true" id="passCount-${flightId}">1</p>
+                    <p><strong>Origin:</strong> ${origin}</p> 
+                    <p><strong>Destination:</strong> ${destination}</p> 
+                    <p><strong>Departure:</strong> ${departureDate} at ${departureTime}</p> 
+                    <p><strong>Arrival:</strong> ${arrivalDate} at ${arrivalTime}</p> 
+                    <p><strong>Number of Seats:</strong> ${numSeats}</p> 
+                    <p><strong>Price:</strong> Adult: $${price} Child: $${price_child} Infant: $${price_infant}</p>
+                    <br>
+                `
+            }
+
+            flightContainer.innerHTML += `
                     <form id="passenger-form-${flightId}">
                         <div class="passenger-form" id="passenger-1">
                             <h2>Passenger 1</h2>
                             <div class="form-field">
                                 <label for="first-name-${flightId}-1">First Name</label>
-                                <input type="text" id="first-name-1" name="first-name-1" required>
+                                <input type="text" id="first-name-${flightId}-1" name="first-name-1" required>
                             </div>
                             <div class="form-field">
                                 <label for="last-name-${flightId}-1">Last Name</label>
-                                <input type="text" id="last-name-1" name="last-name-1" required>
+                                <input type="text" id="last-name-${flightId}-1" name="last-name-1" required>
                             </div>
                             <div class="form-field">
                                 <label for="dob-${flightId}-1">Date of Birth</label>
@@ -131,7 +160,7 @@ function displayCart(cart, flightsXML) {
                     <button class="add-passenger" onclick="addPassenger(${flightId})">+ Add Passenger</button><br>
                     <br>
                     <button class="delete-button">Delete</button><br><br>
-                    <button id=\"bookButton\" class="book-button">Book</button> `;
+                    <button class="book-button">Book</button> `;
             flightContainer.querySelector('.delete-button').addEventListener('click', async () => { // Remove flight from cart
                 var newBooking = {
                     "res_id": "",
@@ -140,27 +169,25 @@ function displayCart(cart, flightsXML) {
                     "passengers": []
                 }
                 let customerdata = await fetchData(jsonFetchURL);
-                deleteFromCart(customerdata, newBooking)
+                deleteFromCart(customerdata, newBooking);
                 updateJsonData(customerdata); // Reload cart
                 displayCart(getCart(customerdata), flightsXML);
             });
-            cartDiv.appendChild(flightContainer);
-            document.getElementById("bookButton").addEventListener('click', async () => { // Remove flight from cart
+            flightContainer.querySelector('.book-button').addEventListener('click', async () => {
                 var newBooking = {
                     "res_id": "",
                     "departure": depart_flight_id,
                     "return_f": return_flight_id,
                     "passengers": []
                 }
-
-                let passengerCount = document.getElementById("passCount"+flightId).textContent.valueOf();
+                let passengerCount = document.getElementById("passCount-" + flightId).textContent.valueOf();
                 var passengers = [];
-                for (let i = 1; i <= passengerCount; i++) {
+                for (let j = 1; j <= passengerCount; j++) {
                     passengers.push({
-                        "fname": document.getElementById(`first-name-${i}`).value,
-                        "lname": document.getElementById(`last-name-${i}`).value,
-                        "dob": document.getElementById(`dob-${i}`).value,
-                        "ssn": document.getElementById(`ssn-${i}`).value
+                        "fname": document.getElementById(`first-name-${flightId}-${j}`).value,
+                        "lname": document.getElementById(`last-name-${flightId}-${j}`).value,
+                        "dob": document.getElementById(`dob-${flightId}-${j}`).value,
+                        "ssn": document.getElementById(`ssn-${flightId}-${j}`).value
                     });
                     --numSeats;
                     record.querySelector('num_seats').textContent = numSeats; // update num seats in the XML file
@@ -169,6 +196,8 @@ function displayCart(cart, flightsXML) {
                 updateJsonBooking("passenger1", newBooking, 1, flightsXML); // Reload cart
                 displayCart(getCart(await fetchData(jsonFetchURL)), flightsXML);
             });
+            cartDiv.appendChild(flightContainer);
+            i+=1;
         }
     });
 }
@@ -232,9 +261,9 @@ function displayBooked(bookedFlights, flightsXML) {
 }
 
 function addPassenger(flightId) {
-    let passengerCount = document.getElementById("passCount-"+flightId).textContent.valueOf();
+    let passengerCount = document.getElementById("passCount-" + flightId).textContent.valueOf();
     passengerCount++;
-    document.getElementById("passCount-"+flightId).textContent = passengerCount;
+    document.getElementById("passCount-" + flightId).textContent = passengerCount;
     const form = document.getElementById(`passenger-form-${flightId}`);
     const newPassengerDiv = document.createElement('div');
     newPassengerDiv.className = 'passenger-form';
@@ -247,7 +276,7 @@ function addPassenger(flightId) {
                 </div>
                 <div class="form-field">
                     <label for="last-name-${flightId}-${passengerCount}">Last Name</label>
-                    <input type="text" id="last-name-${passengerCount}" name="last-name-${passengerCount}" required>
+                    <input type="text" id="last-name-${flightId}-${passengerCount}" name="last-name-${passengerCount}" required>
                 </div>
                 <div class="form-field">
                     <label for="dob-${flightId}-${passengerCount}">Date of Birth</label>
