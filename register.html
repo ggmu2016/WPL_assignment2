@@ -47,11 +47,11 @@
         <div id="bodyContent">
             <div class="container-form" id="loginForm" style="display:block;">
                 <form name="loginForm" onsubmit="return validateLoginForm()">
-                    <div class="form-group"><label for="phone">Phone Number (ddd-ddd-dddd):</label> <input
-                            type="text" id="phone" name="phone" required></div>
-                    <div class="form-group"><label for="password">Password:</label> <input type="password"
-                                                                                           id="password"
-                                                                                           name="password" required>
+                    <div class="form-group"><label for="login-phone">Phone Number (ddd-ddd-dddd):</label> <input
+                            type="text" id="login-phone" name="login-phone" required></div>
+                    <div class="form-group"><label for="login-password">Password:</label> <input type="password"
+                                                                                           id="login-password"
+                                                                                           name="login-password" required>
                     </div>
                     <div class="form-group"><input type="submit" value="Login"></div>
                     <div class="form-group"><a href="#" class="register-link"
@@ -59,7 +59,7 @@
                 </form>
             </div>
             <div class="container-form" id="registerForm" style="display:none;">
-                <form name="registrationForm" onsubmit="return validateForm()">
+                <form name="registrationForm" onsubmit="return validateRegForm()">
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
                         <input type="text" id="firstName" name="firstName" required>

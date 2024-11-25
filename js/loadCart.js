@@ -13,7 +13,7 @@ async function fetchXML(url) {
 }
 
 async function updateJsonData(updatedData) {
-    await fetch("http://localhost:4000/update-json", { // Update the JSON file
+    await fetch("http://localhost:3000/update-json", { // Update the JSON file
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(updatedData)
