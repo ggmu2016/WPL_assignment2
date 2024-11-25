@@ -2,8 +2,7 @@ const express = require("express");
 const fs = require("fs").promises;
 const app = express();
 const port = 4000;
-// parse XML
-const xml2js =require("xml2js")
+const xml2js =require("xml2js") // parse XML
 const cors = require("cors")
 
 // Middleware to parse JSON requests
@@ -12,6 +11,19 @@ app.use(cors());
 
 const xmlFilePath = "xml/data.xml";
 const jsonFilePath = "json/data.json";
+
+
+// set up connection with database (postgres)
+const Pool = require("pg").Pool;
+
+const pool = new Pool({
+    user: "postgres",
+    password: null,
+    host: "localhost",
+    port: 5432,
+    database: "webprogram"
+});
+
 
 // function to read and parse XML
 async function readXMLFile(){
@@ -132,6 +144,58 @@ app.post("/update-json", async (req, res) => {
 
         await writeJSONFile(JSON.stringify(customer_data,null,2));
     } catch (err){
+        console.log(err);
+    }
+});
+
+
+
+//The user should be able to retrieve all the information about
+// booked flights and booked hotels using hotel-booking id and Flight-booking-id
+app.get("booking-info/:id1/:id2", async (req, res) => {
+    try{
+        const {id1, id2} = req.params;
+        const qry1 = `select * from flight_booking where flight_booking_id=${id1}`;
+        const qry2 = `select * from hotel_booking where hotel_booking_id=${id2}`;
+        const flight_info = await pool.query(qry1);
+        const hotel_info = await pool.query(qry2);
+        res.json({
+            flights: flight_info,
+            hotels: hotel_info
+        });
+    }catch(err){
+        console.log(err);
+    }
+});
+
+//The user should be able to retrieve information of all passengers
+// in a booked flights using Flight-booking-id
+app.get("passenger-info/:id", async (req, res) => {
+    try{
+        const {id} = req.params;
+        const qry = `select SSN,FirstName,LastName,Date_of_birth,Category from passenger join tickets on passenger.SSN=tickets.SSN where flight_booking_id=${id}`;
+        const passenger_info = await pool.query(qry);
+        res.json(passenger_info);
+    }catch(err){
+        console.log(err);
+    }
+});
+
+
+// the user should be able to retrieve all the information of
+// all booked flights and booked hotels for SEP 2024
+
+
+
+// the user should be able to retrieve all the information about booked flights
+// for specific person using SSN.
+app.get("booking-info/:ssn", async (req, res) => {
+    try{
+        const {ssn} = req.params;
+        const qry = `select * from tickets where ssn=${ssn}`;
+        const booking_info = await pool.query(qry);
+        res.json(booking_info);
+    }catch(err){
         console.log(err);
     }
 });

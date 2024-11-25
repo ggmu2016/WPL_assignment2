@@ -8,7 +8,7 @@
     <departure_time>14:37</departure_time>
     <arrival_date>9/1/2024</arrival_date>
     <arrival_time>21:37</arrival_time>
-    <num_seats>72</num_seats>
+    <num_seats>71</num_seats>
     <price>242.33</price>
   </record>
   <record>
@@ -173,7 +173,7 @@
     <departure_time>15:43</departure_time>
     <arrival_date>9/14/2024</arrival_date>
     <arrival_time>18:43</arrival_time>
-    <num_seats>26</num_seats>
+    <num_seats>25</num_seats>
     <price>176.83</price>
   </record>
   <record>
