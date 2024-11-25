@@ -12,7 +12,7 @@ function validateRegForm() {
     let phone = document.forms["registrationForm"]["phone"].value;
     let password = document.forms["registrationForm"]["password"].value;
     let confirmPassword = document.forms["registrationForm"]["confirmPassword"].value;
-    let dob = document.forms["registrationForm"]["dob"].value.toLocaleDateString("hi-IN");
+    let dob = document.forms["registrationForm"]["dob"].value;
     let email = document.forms["registrationForm"]["email"].value;
     let phonePattern = /^\d{3}-\d{3}-\d{4}$/;
     let dobPattern = /^\d{2}\/\d{2}\/\d{4}$/;
@@ -42,16 +42,8 @@ function validateRegForm() {
 
     let fname = document.forms["registrationForm"]["firstName"].value;
     let lname = document.forms["registrationForm"]["lastName"].value;
-    let male = document.forms["registrationForm"]["male"].value;
-    let female = document.forms["registrationForm"]["female"].value;
-    let gender = 0;
-    if (male == true) {
-        gender = 1;
-    } else if (female == true) {
-        gender = 2;
-    }
-
-    alert("Cool");
+    // let gender = document.querySelector('input[name="genders"]:checked').value;
+    let gender = 1;
 
     sendRegistrationData(fname, lname, gender, dob, phone, email, password);
     return true;

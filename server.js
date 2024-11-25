@@ -70,7 +70,7 @@ async function queryDB(queryString) {
     const {Client} = require('pg');
     let output = "empty";
     const client = new Client({
-        user: 'admin',
+        user: 'postgres',
         password: 'admin',
         host: 'localhost',
         port: '5432',
@@ -222,22 +222,6 @@ app.get("booking-info/:id1/:id2", async (req, res) => {
     }
 });
 
-app.post("/register", async (req, res) => {
-    try {
-        const reg_data = req.body;
-        console.log(reg_data);
-
-        // let queryString = "INSERT INTO users (user_id, FirstName, LastName, Date_of_birth, Gender, Phone_number, Email, Password) \
-        //     VALUES(DEFAULT, $(reg_data.fname), reg_data.lname, reg_data.dob, reg_data.gender, reg_data.phone, reg_data.email, reg_data.password)";
-        //     console.log(queryString);
-
-
-    } catch (err) {
-        console.log(err);
-    }
-});
-
-
 //The user should be able to retrieve information of all passengers
 // in a booked flights using Flight-booking-id
 app.get("passenger-info/:id", async (req, res) => {
@@ -269,6 +253,19 @@ app.get("booking-info/:ssn", async (req, res) => {
                      where ssn = ${ssn}`;
         const booking_info = await pool.query(qry);
         res.json(booking_info);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+app.post("/register", async (req, res) => {
+    try {
+        const reg_data = req.body;
+
+        let queryString = "INSERT INTO users (user_id, FirstName, LastName, Date_of_birth, Gender, Phone_number, Email, Password) VALUES (DEFAULT,'" + reg_data.fname + "','" + reg_data.lname + "','" + reg_data.dob + "','" + reg_data.gender + "','" + reg_data.phone + "','" + reg_data.email + "','" + reg_data.password + "');";
+            console.log(queryString);
+
+            console.log(queryDB(queryString));
     } catch (err) {
         console.log(err);
     }

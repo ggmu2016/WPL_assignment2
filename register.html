@@ -70,13 +70,13 @@
                     </div>
                     <div class="form-group">
                         <label for="dob">Date of Birth (MM/DD/YYYY):</label>
-                        <input type="date" id="dob" name="dob" required>
+                        <input type="text" id="dob" name="dob" required>
                     </div>
                     <div class="form-group gender-group">
                         <label for="gender">Gender:</label>
-                        <input type="radio" id="male" name="gender" value="male">
+                        <input type="radio" id="male" name="genders" value="1">
                         <label for="male">Male</label>
-                        <input type="radio" id="female" name="gender" value="female">
+                        <input type="radio" id="female" name="genders" value="2">
                         <label for="female">Female</label>
                     </div>
                     <div class="form-group">
@@ -95,11 +95,10 @@
                         <label for="confirmPassword">Confirm Password:</label>
                         <input type="password" id="confirmPassword" name="confirmPassword" required>
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="Register">
-                    </div>
+                    <div class="form-group"><input type="submit" value="Register"></div>
                     <div class="form-group"><a href="#" class="register-link"
                                                onclick="switchToLogin()">Log In</a></div>
+                    <button onclick="validateRegForm()">Subbbb</button>
                 </form>
             </div>
             <p id="contactOutput"></p>
