@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account - Mega Vacation Deals</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+3">
+</head>
+<script type="text/javascript" src="js/scripts.js"></script>
+<body onload="updateTime(), updateSlider(), checkCookie()">
+<header>
+  <h1>Account</h1>
+</header>
+<nav>
+  <ul>
+    <li><a class="navbar" href="home.html">Home</a></li>
+    <li><a class="navbar" href="flights.html">Flights</a></li>
+    <li><a class="navbar" href="cruises.html">Cruises</a></li>
+    <li><a class="navbar" href="stays.html">Stays</a></li>
+    <li><a class="navbar" href="cars.html">Cars</a></li>
+    <li><a class="navbar" href="contact.html">Contact Us</a></li>
+    <li><a class="navbar" href="cart.html">My Cart</a></li>
+    <li><a class="navbar" href="account.html">Account</a></li>
+    <li><a id="loginButton" class="navbar" href="register.html">Log In</a></li>
+  </ul>
+</nav>
+<div class="container">
+  <aside>
+    <h2>Sidebar</h2>
+    <p id="datetime"></p>
+    <p>Put your stuff here</p>
+    <div>
+      <input type="range" min="8" max="96" value="16" class="slideBox" id="slideRange">
+    </div>
+    <p>Font size: <span id="fontSize"></span>px</p>
+
+    <p>Background Color</p>
+    <input id="colorPicker" type="color" value="#ff0000" style="width:70%;">
+    <p id="bgtext">Background color: #FFFFFF</p>
+
+  </aside>
+  <main>
+    <h2>Content</h2>
+    <div id="bodyContent">
+
+
+
+    </div>
+  </main>
+</div>
+<footer>
+  <p>&copy; 2024 Mega Vacation Deals</p>
+</footer>
+</body>
+</html>

@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs").promises;
 const app = express();
-const port = 3000;
+const port = 4000;
 // parse XML
 const xml2js = require("xml2js")
 
@@ -21,10 +21,10 @@ const Pool = require("pg").Pool;
 
 const pool = new Pool({
     user: "postgres",
-    password: "admin",
+    password: null,
     host: "localhost",
     port: 5432,
-    database: "wpl_db"
+    database: "webprogram"
 });
 
 

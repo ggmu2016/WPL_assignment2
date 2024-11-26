@@ -1,3 +1,5 @@
+const port = 4000
+
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -91,7 +93,7 @@ async function sendRegistrationData(fname, lname, gender, dob, phone, email, pas
         "password": password
     };
 
-    await fetch("http://localhost:3000/register", {
+    await fetch(`http://localhost:${port}/register`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(reg_data)
@@ -104,7 +106,7 @@ async function sendLoginData(phone, password) {
         "password": password
     };
 
-    return await fetch("http://localhost:3000/login", {
+    return await fetch(`http://localhost:${port}/login`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(loginData)
