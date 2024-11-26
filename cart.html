@@ -12,7 +12,7 @@
 <script type="text/javascript" src="js/scripts.js"></script>
 <script src="js/loadCart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<body onload="updateTime(), updateSlider(), loadCart()">
+<body onload="updateTime(), updateSlider(), loadCart(), checkCookie()">
 <header>
     <h1>Shopping Cart</h1>
 </header>
@@ -25,7 +25,7 @@
         <li><a class="navbar" href="cars.html">Cars</a></li>
         <li><a class="navbar" href="contact.html">Contact Us</a></li>
         <li><a class="navbar" href="cart.html">My Cart</a></li>
-        <li><a class="navbar" href="register.html">Log In</a></li>
+        <li><a id="loginButton" class="navbar" href="register.html">Log In</a></li>
 
     </ul>
 </nav>

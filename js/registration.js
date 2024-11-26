@@ -1,3 +1,10 @@
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
 function switchToRegister() {
     document.getElementById("loginForm").style.display = "none";
     document.getElementById("registerForm").style.display = "block";
@@ -46,10 +53,11 @@ function validateRegForm() {
     let gender = 1;
 
     sendRegistrationData(fname, lname, gender, dob, phone, email, password);
+    alert("Your registration was submitted");
     return true;
 }
 
-function validateLoginForm() {
+async function validateLoginForm(form) {
     let phone = document.forms["loginForm"]["login-phone"].value;
     let phonePattern = /^\d{3}-\d{3}-\d{4}$/;
     if (!phonePattern.test(phone)) {
@@ -57,9 +65,21 @@ function validateLoginForm() {
         return false;
     }
     let password = document.forms["loginForm"]["login-password"].value;
-    sendLoginData(phone, password);
-    return true;
+    let log_result = await sendLoginData(phone, password);
+
+    if(log_result === "success"){
+        alert("Login success");
+        setCookie("loginid", phone, 365);
+        form.submit();
+        location.reload();
+        return true;
+    } else{
+        setCookie("loginid", "-1", 365);
+        alert("Login failed");
+        return false;
+    }
 }
+
 async function sendRegistrationData(fname, lname, gender, dob, phone, email, password) {
     var reg_data = {
         "fname": fname,
@@ -84,10 +104,31 @@ async function sendLoginData(phone, password) {
         "password": password
     };
 
-    await fetch("http://localhost:3000/login", {
+    return await fetch("http://localhost:3000/login", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(loginData)
-    });
+    }).then(response => response.text()).then(data => {
+        if (data === "yes") {
+            return "success";
+        } else {
+            return "fail";
+        }
+    }).catch(error => console.error('Error fetching data:', error));
+}
+
+function checkRegistrationCookie() {
+    let user = getCookie("loginid");
+    if (user != "" && user != "-1") {
+        let loginButton = document.getElementById("loginButton");
+        loginButton.href = "";
+        loginButton.innerText = "Logout";
+        loginButton.onclick = function () {
+            setCookieHome("loginid", "-1", -1);
+        }
+        document.getElementById("bodyContent").innerHTML = "<h2>Welcome " + user + "</h2>";
+    }
+    else {
+    }
 }
 

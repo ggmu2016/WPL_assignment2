@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+3">
 </head>
 <script type="text/javascript" src="js/scripts.js"></script>
-<body onload="updateTime(), updateSlider()">
+<body onload="updateTime(), updateSlider(), checkCookie()">
 <header>
     <h1>Contact Us</h1>
 </header>
@@ -21,7 +21,7 @@
         <li><a class="navbar" href="cars.html">Cars</a></li>
         <li><a class="navbar" href="contact.html">Contact Us</a></li>
         <li><a class="navbar" href="cart.html">My Cart</a></li>
-        <li><a class="navbar" href="register.html">Log In</a></li>
+        <li><a id="loginButton" class="navbar" href="register.html">Log In</a></li>
     </ul>
 </nav>
 <div class="container">

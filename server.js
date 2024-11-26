@@ -21,10 +21,10 @@ const Pool = require("pg").Pool;
 
 const pool = new Pool({
     user: "postgres",
-    password: null,
+    password: "admin",
     host: "localhost",
     port: 5432,
-    database: "webprogram"
+    database: "wpl_db"
 });
 
 
@@ -64,50 +64,6 @@ async function writeJSONFile(data) {
             resolve();
         });
     });
-}
-
-async function queryDB(queryString) {
-    const {Client} = require('pg');
-    let output = "empty";
-    const client = new Client({
-        user: 'postgres',
-        password: 'admin',
-        host: 'localhost',
-        port: '5432',
-        database: 'wpl_db',
-    });
-
-// Connect to the database
-    client
-        .connect()
-        .then(() => {
-            console.log('Connected to PostgreSQL database');
-
-            // Execute SQL queries here
-
-            client.query(queryString, (err, result) => {
-                if (err) {
-                    console.error('Error executing query', err);
-                } else {
-                    console.log('Query result:', result.rows);
-                }
-
-                // Close the connection when done
-                client
-                    .end()
-                    .then(() => {
-                        console.log('Connection to PostgreSQL closed');
-                    })
-                    .catch((err) => {
-                        console.error('Error closing connection', err);
-                    });
-            });
-        })
-        .catch((err) => {
-            console.error('Error connecting to PostgreSQL database', err);
-        });
-
-    return output;
 }
 
 
@@ -264,8 +220,7 @@ app.post("/register", async (req, res) => {
 
         let queryString = "INSERT INTO users (user_id, FirstName, LastName, Date_of_birth, Gender, Phone_number, Email, Password) VALUES (DEFAULT,'" + reg_data.fname + "','" + reg_data.lname + "','" + reg_data.dob + "','" + reg_data.gender + "','" + reg_data.phone + "','" + reg_data.email + "','" + reg_data.password + "');";
             console.log(queryString);
-
-            console.log(queryDB(queryString));
+            console.log(pool.query(queryString));
     } catch (err) {
         console.log(err);
     }
@@ -274,15 +229,21 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
     try {
         const login_data = req.body;
-        console.log(login_data.phone);
-        console.log(login_data.password);
         let queryString = "SELECT user_id FROM users WHERE Phone_number = '" + login_data.phone + "' AND Password = '" + login_data.password + "';";
         console.log(queryString);
-        console.log(queryDB(queryString));
+        let response = await pool.query(queryString);
+        console.log(response.rows[0].user_id);
+
+        res.header('Content-Type', 'text/json');
+        if(response.rows[0].user_id){
+            res.send("yes");
+            console.log("success");
+        }
     } catch (err) {
         console.log(err);
+        res.send("no");
+        console.log("fail");
     }
-
 });
 
 

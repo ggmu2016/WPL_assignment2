@@ -12,7 +12,7 @@
 <script type="text/javascript" src="js/scripts.js"></script>
 <script type="text/javascript" src="js/registration.js"></script>
 
-<body onload="updateTime(), updateSlider()">
+<body onload="updateTime(), updateSlider(), checkRegistrationCookie()">
 <header>
     <h1>Mega Vacation Deals</h1>
 </header>
@@ -25,7 +25,7 @@
         <li><a class="navbar" href="cars.html">Cars</a></li>
         <li><a class="navbar" href="contact.html">Contact Us</a></li>
         <li><a class="navbar" href="cart.html">My Cart</a></li>
-        <li><a class="navbar" href="register.html">Log In</a></li>
+        <li><a id="loginButton" class="navbar" href="register.html">Log In</a></li>
     </ul>
 </nav>
 <div class="container">
@@ -46,7 +46,7 @@
         <h2>Log In/Register</h2>
         <div id="bodyContent">
             <div class="container-form" id="loginForm" style="display:block;">
-                <form name="loginForm" onsubmit="return validateLoginForm()">
+                <form name="loginForm" onsubmit="validateLoginForm(this); return false;">
                     <div class="form-group"><label for="login-phone">Phone Number (ddd-ddd-dddd):</label> <input
                             type="text" id="login-phone" name="login-phone" required></div>
                     <div class="form-group"><label for="login-password">Password:</label> <input type="password"
@@ -73,7 +73,7 @@
                         <input type="text" id="dob" name="dob" required>
                     </div>
                     <div class="form-group gender-group">
-                        <label for="gender">Gender:</label>
+                        <label>Gender:</label>
                         <input type="radio" id="male" name="genders" value="1">
                         <label for="male">Male</label>
                         <input type="radio" id="female" name="genders" value="2">
