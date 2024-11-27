@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs").promises;
 const app = express();
-const port = 3000;
+const port = 4000;
 // parse XML
 const xml2js = require("xml2js")
 
@@ -158,7 +158,7 @@ app.post("/update-json", async (req, res) => {
 
 //The user should be able to retrieve all the information about
 // booked flights and booked hotels using hotel-booking id and Flight-booking-id
-app.get("booking-info/:id1/:id2", async (req, res) => {
+app.get("/booking-info/:id1/:id2", async (req, res) => {
     try {
         const {id1, id2} = req.params;
         const qry1 = `select *
@@ -170,9 +170,10 @@ app.get("booking-info/:id1/:id2", async (req, res) => {
         const flight_info = await pool.query(qry1);
         const hotel_info = await pool.query(qry2);
         res.json({
-            flights: flight_info,
-            hotels: hotel_info
+            flights: flight_info.rows,
+            hotels: hotel_info.rows
         });
+        console.log(res)
     } catch (err) {
         console.log(err);
     }
@@ -180,7 +181,7 @@ app.get("booking-info/:id1/:id2", async (req, res) => {
 
 //The user should be able to retrieve information of all passengers
 // in a booked flights using Flight-booking-id
-app.get("passenger-info/:id", async (req, res) => {
+app.get("/passenger-info/:id", async (req, res) => {
     try {
         const {id} = req.params;
         const qry = `select SSN, FirstName, LastName, Date_of_birth, Category
@@ -188,7 +189,7 @@ app.get("passenger-info/:id", async (req, res) => {
                               join tickets on passenger.SSN = tickets.SSN
                      where flight_booking_id = ${id}`;
         const passenger_info = await pool.query(qry);
-        res.json(passenger_info);
+        res.json(passenger_info.rows);
     } catch (err) {
         console.log(err);
     }
@@ -201,11 +202,13 @@ app.get("passenger-info/:id", async (req, res) => {
 
 // the user should be able to retrieve all the information about booked flights
 // for specific person using SSN.
-app.get("booking-info/:ssn", async (req, res) => {
+app.get("/booking-info/:ssn", async (req, res) => {
     try {
         const {ssn} = req.params;
         const qry = `select *
-                     from tickets
+                     from tickets 
+                     join flight_booking on tickets.flight_booking_id = flight_booking.flight_booking_id
+                     join flights on flights.flight_id = flight_booking.flight_id
                      where ssn = ${ssn}`;
         const booking_info = await pool.query(qry);
         res.json(booking_info);
