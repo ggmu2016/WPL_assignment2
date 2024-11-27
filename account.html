@@ -9,6 +9,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+3">
 </head>
 <script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
 <body onload="updateTime(), updateSlider(), checkCookie()">
 <header>
   <h1>Account</h1>
@@ -44,9 +45,10 @@
   <main>
     <h2>Content</h2>
     <div id="bodyContent">
-
-
-
+      <button type="button" id="hotelDbBtn" onclick="fetchHotelData()">Load Hotels to DB</button>
+      <div id="hotelOutDiv">
+        <!-- Hotel content from server goes here -->
+      </div>
     </div>
   </main>
 </div>

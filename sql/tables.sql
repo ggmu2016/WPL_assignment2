@@ -46,7 +46,7 @@ CREATE TABLE tickets (
 );
 
 CREATE TABLE hotel (
-    hotel_id SERIAL PRIMARY KEY,
+    hotel_id INTEGER PRIMARY KEY,
     hotel_name VARCHAR(100) NOT NULL,
     city VARCHAR(100) NOT NULL,
     price_per_night DECIMAL(10, 2) NOT NULL

@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs").promises;
 const app = express();
-const port = 4000;
+const port = 3000;
 // parse XML
 const xml2js = require("xml2js")
 
@@ -21,10 +21,10 @@ const Pool = require("pg").Pool;
 
 const pool = new Pool({
     user: "postgres",
-    password: null,
+    password: "admin",
     host: "localhost",
     port: 5432,
-    database: "webprogram"
+    database: "wpl_db"
 });
 
 
@@ -219,8 +219,8 @@ app.post("/register", async (req, res) => {
         const reg_data = req.body;
 
         let queryString = "INSERT INTO users (user_id, FirstName, LastName, Date_of_birth, Gender, Phone_number, Email, Password) VALUES (DEFAULT,'" + reg_data.fname + "','" + reg_data.lname + "','" + reg_data.dob + "','" + reg_data.gender + "','" + reg_data.phone + "','" + reg_data.email + "','" + reg_data.password + "');";
-            console.log(queryString);
-            console.log(pool.query(queryString));
+        console.log(queryString);
+        console.log(pool.query(queryString));
     } catch (err) {
         console.log(err);
     }
@@ -235,7 +235,7 @@ app.post("/login", async (req, res) => {
         console.log(response.rows[0].user_id);
 
         res.header('Content-Type', 'text/json');
-        if(response.rows[0].user_id){
+        if (response.rows[0].user_id) {
             res.send("yes");
             console.log("success");
         }
@@ -246,6 +246,36 @@ app.post("/login", async (req, res) => {
     }
 });
 
+app.get("/loadHotelDB", async (req, res) => {
+
+    const hoteljson = await fs.readFile('hotel_data.json');
+    const hotels = JSON.parse(hoteljson);
+
+    // Insert each hotel into the database
+    for (const hotel of hotels) {
+        const query = `
+            INSERT INTO hotel (hotel_id, hotel_name, city, price_per_night)
+            VALUES ($1, $2, $3, $4)
+        `;
+        const values = [hotel.id, hotel.name, hotel.city, hotel.price];
+
+        try {
+            await pool.query(query, values);
+            console.log(`Inserted: ${hotel.name} with ID ${hotel.id}`);
+        } catch (err) {
+            console.error(`Error inserting ${hotel.name} with ID ${hotel.id}:`, err);
+        }
+    }
+
+    try {
+        const result = await pool.query('SELECT * FROM hotel');
+        res.json(result.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+    
+});
 
 // Start the server
 app.listen(port, () => {
