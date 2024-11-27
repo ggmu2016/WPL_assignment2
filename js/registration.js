@@ -128,6 +128,15 @@ function checkRegistrationCookie() {
         loginButton.onclick = function () {
             setCookieHome("loginid", "-1", -1);
         }
+        const newListItem = document.createElement('li');
+        const newLink = document.createElement('a');
+        newLink.className = 'navbar';
+        newLink.href = 'account.html';
+        newLink.textContent = 'Account';
+        newListItem.appendChild(newLink);
+        const navigation = document.getElementById('navigation');
+        navigation.appendChild(newListItem);
+
         document.getElementById("bodyContent").innerHTML = "<h2>Welcome " + user + "</h2>";
     }
     else {

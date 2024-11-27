@@ -3,16 +3,16 @@ const defaultColor = "#ffffff";
 
 window.addEventListener("load", startup, false);
 
-function startup(){
+function startup() {
     colorPicker = document.querySelector("#colorPicker");
     colorPicker.value = defaultColor;
     colorPicker.addEventListener("change", updateBg, false); // could also be type:input for immediate change
     colorPicker.select();
 }
 
-function updateBg (event){
+function updateBg(event) {
     const body = document.querySelector("body");
-    if (body){
+    if (body) {
         body.style.backgroundColor = event.target.value;
     }
 
@@ -20,21 +20,21 @@ function updateBg (event){
     bgtext.textContent = event.target.value;
 }
 
-function updateSlider(){
+function updateSlider() {
     var slider = document.getElementById("slideRange");
     var sliderOutput = document.getElementById("fontSize");
     var bodyContent = document.getElementById("bodyContent");
 
     sliderOutput.textContent = slider.value;
 
-    slider.oninput = function() {
+    slider.oninput = function () {
         sliderOutput.innerHTML = slider.value;
         bodyContent.style.fontSize = slider.value + "px";
     }
 }
 
 
-function updateTime(){
+function updateTime() {
     const now = new Date();
     const currentDateTime = now.toLocaleString();
     document.querySelector('#datetime').textContent = currentDateTime;
@@ -43,7 +43,7 @@ function updateTime(){
 function getCookie(cname) {
     let name = cname + "=";
     let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
+    for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
@@ -64,15 +64,23 @@ function checkCookie() {
         loginButton.onclick = function () {
             setCookieHome("loginid", "-1", -1);
         }
-    }
-    else {
+        const newListItem = document.createElement('li');
+        const newLink = document.createElement('a');
+        newLink.className = 'navbar';
+        newLink.href = 'account.html';
+        newLink.textContent = 'Account';
+        newListItem.appendChild(newLink);
+        const navigation = document.getElementById('navigation');
+        navigation.appendChild(newListItem);
+    } else {
     }
 }
 
 function setCookieHome(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    let expires = "expires="+d.toUTCString();
+    let expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
 setInterval(updateTime, 1000);
