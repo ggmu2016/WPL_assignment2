@@ -1,1103 +1,1103 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <dataset>
   <record>
-    <flight_id>9954454208</flight_id>
-    <origin>Dallas</origin>
-    <destination>San Jose</destination>
-    <departure_date>9/1/2024</departure_date>
-    <departure_time>14:37</departure_time>
-    <arrival_date>9/1/2024</arrival_date>
-    <arrival_time>21:37</arrival_time>
-    <num_seats>71</num_seats>
-    <price>242.33</price>
-  </record>
-  <record>
-    <flight_id>5230144295</flight_id>
-    <origin>Los Angeles</origin>
-    <destination>Houston</destination>
-    <departure_date>9/2/2024</departure_date>
-    <departure_time>13:56</departure_time>
-    <arrival_date>9/2/2024</arrival_date>
-    <arrival_time>18:56</arrival_time>
-    <num_seats>95</num_seats>
-    <price>202.63</price>
-  </record>
-  <record>
-    <flight_id>9303598390</flight_id>
-    <origin>Fort Worth</origin>
-    <destination>San Diego</destination>
-    <departure_date>9/2/2024</departure_date>
-    <departure_time>19:07</departure_time>
-    <arrival_date>9/3/2024</arrival_date>
-    <arrival_time>00:07</arrival_time>
-    <num_seats>21</num_seats>
-    <price>179.82</price>
-  </record>
-  <record>
-    <flight_id>6458680252</flight_id>
-    <origin>Sacramento</origin>
-    <destination>Dallas</destination>
-    <departure_date>9/2/2024</departure_date>
-    <departure_time>08:40</departure_time>
-    <arrival_date>9/2/2024</arrival_date>
-    <arrival_time>16:40</arrival_time>
-    <num_seats>86</num_seats>
-    <price>349.56</price>
-  </record>
-  <record>
-    <flight_id>8330478256</flight_id>
-    <origin>San Diego</origin>
-    <destination>Fort Worth</destination>
-    <departure_date>9/3/2024</departure_date>
-    <departure_time>15:59</departure_time>
-    <arrival_date>9/3/2024</arrival_date>
-    <arrival_time>21:59</arrival_time>
-    <num_seats>20</num_seats>
-    <price>361.51</price>
-  </record>
-  <record>
-    <flight_id>2889204113</flight_id>
-    <origin>San Antonio</origin>
-    <destination>San Francisco</destination>
-    <departure_date>9/5/2024</departure_date>
-    <departure_time>20:18</departure_time>
-    <arrival_date>9/5/2024</arrival_date>
-    <arrival_time>21:18</arrival_time>
-    <num_seats>100</num_seats>
-    <price>489.29</price>
-  </record>
-  <record>
-    <flight_id>6273821906</flight_id>
+    <flight_id>4227014</flight_id>
     <origin>San Antonio</origin>
     <destination>Los Angeles</destination>
-    <departure_date>9/5/2024</departure_date>
-    <departure_time>20:54</departure_time>
-    <arrival_date>9/5/2024</arrival_date>
-    <arrival_time>22:54</arrival_time>
-    <num_seats>51</num_seats>
-    <price>483.93</price>
-  </record>
-  <record>
-    <flight_id>9833754550</flight_id>
-    <origin>Los Angeles</origin>
-    <destination>Dallas</destination>
-    <departure_date>9/6/2024</departure_date>
-    <departure_time>10:17</departure_time>
-    <arrival_date>9/6/2024</arrival_date>
-    <arrival_time>20:17</arrival_time>
-    <num_seats>79</num_seats>
-    <price>129.73</price>
-  </record>
-  <record>
-    <flight_id>1166390449</flight_id>
-    <origin>Fort Worth</origin>
-    <destination>Sacramento</destination>
-    <departure_date>9/6/2024</departure_date>
-    <departure_time>10:18</departure_time>
-    <arrival_date>9/6/2024</arrival_date>
-    <arrival_time>19:18</arrival_time>
-    <num_seats>22</num_seats>
-    <price>479.00</price>
-  </record>
-  <record>
-    <flight_id>1218265871</flight_id>
-    <origin>San Francisco</origin>
-    <destination>San Antonio</destination>
-    <departure_date>9/8/2024</departure_date>
-    <departure_time>08:23</departure_time>
-    <arrival_date>9/8/2024</arrival_date>
-    <arrival_time>13:23</arrival_time>
-    <num_seats>74</num_seats>
-    <price>453.84</price>
-  </record>
-  <record>
-    <flight_id>8345132150</flight_id>
-    <origin>San Francisco</origin>
-    <destination>Fort Worth</destination>
-    <departure_date>9/10/2024</departure_date>
-    <departure_time>19:52</departure_time>
-    <arrival_date>9/10/2024</arrival_date>
-    <arrival_time>23:52</arrival_time>
-    <num_seats>33</num_seats>
-    <price>433.97</price>
-  </record>
-  <record>
-    <flight_id>3503022486</flight_id>
-    <origin>San Antonio</origin>
-    <destination>San Diego</destination>
-    <departure_date>9/10/2024</departure_date>
-    <departure_time>21:13</departure_time>
-    <arrival_date>9/10/2024</arrival_date>
-    <arrival_time>23:13</arrival_time>
-    <num_seats>48</num_seats>
-    <price>266.75</price>
-  </record>
-  <record>
-    <flight_id>7039929497</flight_id>
-    <origin>San Francisco</origin>
-    <destination>Fort Worth</destination>
-    <departure_date>9/10/2024</departure_date>
-    <departure_time>14:59</departure_time>
-    <arrival_date>9/10/2024</arrival_date>
-    <arrival_time>15:59</arrival_time>
-    <num_seats>71</num_seats>
-    <price>487.58</price>
-  </record>
-  <record>
-    <flight_id>6054176352</flight_id>
-    <origin>Los Angeles</origin>
-    <destination>Fort Worth</destination>
-    <departure_date>9/12/2024</departure_date>
-    <departure_time>14:33</departure_time>
-    <arrival_date>9/12/2024</arrival_date>
-    <arrival_time>21:33</arrival_time>
-    <num_seats>31</num_seats>
-    <price>461.01</price>
-  </record>
-  <record>
-    <flight_id>3185557455</flight_id>
-    <origin>San Diego</origin>
-    <destination>Austin</destination>
-    <departure_date>9/14/2024</departure_date>
-    <departure_time>19:12</departure_time>
-    <arrival_date>9/14/2024</arrival_date>
-    <arrival_time>20:12</arrival_time>
-    <num_seats>89</num_seats>
-    <price>100.16</price>
-  </record>
-  <record>
-    <flight_id>8941912419</flight_id>
-    <origin>Austin</origin>
-    <destination>San Jose</destination>
-    <departure_date>9/14/2024</departure_date>
-    <departure_time>15:43</departure_time>
-    <arrival_date>9/14/2024</arrival_date>
-    <arrival_time>18:43</arrival_time>
-    <num_seats>25</num_seats>
-    <price>176.83</price>
-  </record>
-  <record>
-    <flight_id>6125693222</flight_id>
-    <origin>San Jose</origin>
-    <destination>Austin</destination>
-    <departure_date>9/16/2024</departure_date>
-    <departure_time>07:05</departure_time>
-    <arrival_date>9/16/2024</arrival_date>
-    <arrival_time>11:05</arrival_time>
-    <num_seats>34</num_seats>
-    <price>342.98</price>
-  </record>
-  <record>
-    <flight_id>7344327946</flight_id>
-    <origin>Fort Worth</origin>
-    <destination>San Jose</destination>
-    <departure_date>9/17/2024</departure_date>
-    <departure_time>16:26</departure_time>
-    <arrival_date>9/17/2024</arrival_date>
-    <arrival_time>22:26</arrival_time>
-    <num_seats>37</num_seats>
-    <price>149.87</price>
-  </record>
-  <record>
-    <flight_id>6961842042</flight_id>
-    <origin>San Antonio</origin>
-    <destination>San Diego</destination>
-    <departure_date>9/17/2024</departure_date>
-    <departure_time>17:10</departure_time>
-    <arrival_date>9/17/2024</arrival_date>
-    <arrival_time>21:10</arrival_time>
-    <num_seats>63</num_seats>
-    <price>282.52</price>
-  </record>
-  <record>
-    <flight_id>3878243132</flight_id>
-    <origin>Sacramento</origin>
-    <destination>Austin</destination>
-    <departure_date>9/18/2024</departure_date>
-    <departure_time>18:23</departure_time>
-    <arrival_date>9/18/2024</arrival_date>
-    <arrival_time>22:23</arrival_time>
-    <num_seats>55</num_seats>
-    <price>196.24</price>
-  </record>
-  <record>
-    <flight_id>3394400602</flight_id>
-    <origin>San Francisco</origin>
-    <destination>San Antonio</destination>
-    <departure_date>9/19/2024</departure_date>
-    <departure_time>09:39</departure_time>
-    <arrival_date>9/19/2024</arrival_date>
-    <arrival_time>19:39</arrival_time>
-    <num_seats>43</num_seats>
-    <price>364.12</price>
-  </record>
-  <record>
-    <flight_id>3030575488</flight_id>
-    <origin>Fort Worth</origin>
-    <destination>Sacramento</destination>
-    <departure_date>9/20/2024</departure_date>
-    <departure_time>20:23</departure_time>
-    <arrival_date>9/21/2024</arrival_date>
-    <arrival_time>05:23</arrival_time>
-    <num_seats>78</num_seats>
-    <price>299.06</price>
-  </record>
-  <record>
-    <flight_id>5097132562</flight_id>
-    <origin>Sacramento</origin>
-    <destination>Austin</destination>
-    <departure_date>9/22/2024</departure_date>
-    <departure_time>07:56</departure_time>
-    <arrival_date>9/22/2024</arrival_date>
-    <arrival_time>17:56</arrival_time>
-    <num_seats>1</num_seats>
-    <price>430.63</price>
-  </record>
-  <record>
-    <flight_id>4306667527</flight_id>
-    <origin>San Francisco</origin>
-    <destination>Houston</destination>
-    <departure_date>9/22/2024</departure_date>
-    <departure_time>12:23</departure_time>
-    <arrival_date>9/22/2024</arrival_date>
-    <arrival_time>13:23</arrival_time>
-    <num_seats>92</num_seats>
-    <price>428.16</price>
-  </record>
-  <record>
-    <flight_id>8163363183</flight_id>
-    <origin>San Diego</origin>
-    <destination>Austin</destination>
-    <departure_date>9/23/2024</departure_date>
-    <departure_time>16:25</departure_time>
-    <arrival_date>9/24/2024</arrival_date>
-    <arrival_time>01:25</arrival_time>
-    <num_seats>36</num_seats>
-    <price>286.91</price>
-  </record>
-  <record>
-    <flight_id>3947445907</flight_id>
-    <origin>Houston</origin>
-    <destination>San Jose</destination>
-    <departure_date>9/24/2024</departure_date>
-    <departure_time>19:29</departure_time>
-    <arrival_date>9/24/2024</arrival_date>
-    <arrival_time>22:29</arrival_time>
-    <num_seats>93</num_seats>
-    <price>355.84</price>
-  </record>
-  <record>
-    <flight_id>4929781127</flight_id>
-    <origin>San Francisco</origin>
-    <destination>Dallas</destination>
-    <departure_date>9/24/2024</departure_date>
-    <departure_time>19:15</departure_time>
-    <arrival_date>9/24/2024</arrival_date>
-    <arrival_time>20:15</arrival_time>
-    <num_seats>27</num_seats>
-    <price>130.60</price>
-  </record>
-  <record>
-    <flight_id>5548745111</flight_id>
-    <origin>Dallas</origin>
-    <destination>San Diego</destination>
-    <departure_date>9/24/2024</departure_date>
-    <departure_time>09:17</departure_time>
-    <arrival_date>9/24/2024</arrival_date>
-    <arrival_time>15:17</arrival_time>
-    <num_seats>76</num_seats>
-    <price>383.67</price>
-  </record>
-  <record>
-    <flight_id>8459274019</flight_id>
-    <origin>Dallas</origin>
-    <destination>Sacramento</destination>
-    <departure_date>9/24/2024</departure_date>
-    <departure_time>21:59</departure_time>
-    <arrival_date>9/25/2024</arrival_date>
-    <arrival_time>04:59</arrival_time>
-    <num_seats>90</num_seats>
-    <price>109.39</price>
-  </record>
-  <record>
-    <flight_id>4427508461</flight_id>
-    <origin>Austin</origin>
-    <destination>Sacramento</destination>
-    <departure_date>9/24/2024</departure_date>
-    <departure_time>11:13</departure_time>
-    <arrival_date>9/24/2024</arrival_date>
-    <arrival_time>19:13</arrival_time>
-    <num_seats>71</num_seats>
-    <price>467.68</price>
-  </record>
-  <record>
-    <flight_id>3734920231</flight_id>
-    <origin>Fort Worth</origin>
-    <destination>San Jose</destination>
-    <departure_date>9/25/2024</departure_date>
-    <departure_time>15:16</departure_time>
-    <arrival_date>9/25/2024</arrival_date>
-    <arrival_time>22:16</arrival_time>
-    <num_seats>75</num_seats>
-    <price>389.67</price>
-  </record>
-  <record>
-    <flight_id>3692058231</flight_id>
-    <origin>Fort Worth</origin>
-    <destination>Sacramento</destination>
-    <departure_date>9/26/2024</departure_date>
-    <departure_time>17:02</departure_time>
-    <arrival_date>9/26/2024</arrival_date>
-    <arrival_time>23:02</arrival_time>
-    <num_seats>82</num_seats>
-    <price>454.22</price>
-  </record>
-  <record>
-    <flight_id>5194198132</flight_id>
-    <origin>San Jose</origin>
-    <destination>Dallas</destination>
-    <departure_date>9/28/2024</departure_date>
-    <departure_time>16:25</departure_time>
-    <arrival_date>9/28/2024</arrival_date>
-    <arrival_time>22:25</arrival_time>
-    <num_seats>90</num_seats>
-    <price>455.39</price>
-  </record>
-  <record>
-    <flight_id>1862914921</flight_id>
-    <origin>San Jose</origin>
-    <destination>Austin</destination>
-    <departure_date>9/29/2024</departure_date>
-    <departure_time>11:38</departure_time>
-    <arrival_date>9/29/2024</arrival_date>
-    <arrival_time>15:38</arrival_time>
-    <num_seats>34</num_seats>
-    <price>200.97</price>
-  </record>
-  <record>
-    <flight_id>8858214368</flight_id>
-    <origin>Fort Worth</origin>
-    <destination>San Francisco</destination>
-    <departure_date>9/30/2024</departure_date>
-    <departure_time>19:41</departure_time>
-    <arrival_date>10/1/2024</arrival_date>
-    <arrival_time>05:41</arrival_time>
-    <num_seats>100</num_seats>
-    <price>347.72</price>
-  </record>
-  <record>
-    <flight_id>5097872247</flight_id>
-    <origin>Austin</origin>
-    <destination>San Jose</destination>
-    <departure_date>10/1/2024</departure_date>
-    <departure_time>10:35</departure_time>
-    <arrival_date>10/1/2024</arrival_date>
-    <arrival_time>16:35</arrival_time>
-    <num_seats>90</num_seats>
-    <price>160.53</price>
-  </record>
-  <record>
-    <flight_id>8207883668</flight_id>
-    <origin>Los Angeles</origin>
-    <destination>Dallas</destination>
-    <departure_date>10/1/2024</departure_date>
-    <departure_time>15:21</departure_time>
-    <arrival_date>10/1/2024</arrival_date>
-    <arrival_time>19:21</arrival_time>
-    <num_seats>35</num_seats>
-    <price>136.44</price>
-  </record>
-  <record>
-    <flight_id>1732985428</flight_id>
-    <origin>Los Angeles</origin>
-    <destination>San Antonio</destination>
-    <departure_date>10/1/2024</departure_date>
-    <departure_time>14:01</departure_time>
-    <arrival_date>10/2/2024</arrival_date>
-    <arrival_time>00:01</arrival_time>
-    <num_seats>54</num_seats>
-    <price>110.99</price>
-  </record>
-  <record>
-    <flight_id>9646906932</flight_id>
-    <origin>Dallas</origin>
-    <destination>San Diego</destination>
-    <departure_date>10/4/2024</departure_date>
-    <departure_time>21:36</departure_time>
-    <arrival_date>10/5/2024</arrival_date>
-    <arrival_time>05:36</arrival_time>
-    <num_seats>74</num_seats>
-    <price>266.40</price>
-  </record>
-  <record>
-    <flight_id>8426215157</flight_id>
-    <origin>Houston</origin>
-    <destination>San Jose</destination>
-    <departure_date>10/4/2024</departure_date>
-    <departure_time>08:10</departure_time>
-    <arrival_date>10/4/2024</arrival_date>
-    <arrival_time>09:10</arrival_time>
-    <num_seats>54</num_seats>
-    <price>487.14</price>
-  </record>
-  <record>
-    <flight_id>5398963535</flight_id>
-    <origin>San Jose</origin>
-    <destination>Houston</destination>
-    <departure_date>10/8/2024</departure_date>
-    <departure_time>08:59</departure_time>
-    <arrival_date>10/8/2024</arrival_date>
-    <arrival_time>12:59</arrival_time>
-    <num_seats>60</num_seats>
-    <price>129.84</price>
-  </record>
-  <record>
-    <flight_id>7100129216</flight_id>
-    <origin>San Antonio</origin>
-    <destination>San Francisco</destination>
-    <departure_date>10/10/2024</departure_date>
-    <departure_time>18:31</departure_time>
-    <arrival_date>10/11/2024</arrival_date>
-    <arrival_time>02:31</arrival_time>
-    <num_seats>74</num_seats>
-    <price>466.28</price>
-  </record>
-  <record>
-    <flight_id>9652270077</flight_id>
-    <origin>San Antonio</origin>
-    <destination>San Diego</destination>
-    <departure_date>10/10/2024</departure_date>
-    <departure_time>20:13</departure_time>
-    <arrival_date>10/11/2024</arrival_date>
-    <arrival_time>04:13</arrival_time>
-    <num_seats>47</num_seats>
-    <price>287.90</price>
-  </record>
-  <record>
-    <flight_id>9629663562</flight_id>
-    <origin>Dallas</origin>
-    <destination>Los Angeles</destination>
-    <departure_date>10/11/2024</departure_date>
-    <departure_time>09:55</departure_time>
-    <arrival_date>10/11/2024</arrival_date>
-    <arrival_time>19:55</arrival_time>
-    <num_seats>38</num_seats>
-    <price>257.62</price>
-  </record>
-  <record>
-    <flight_id>9392729862</flight_id>
-    <origin>Houston</origin>
-    <destination>San Diego</destination>
-    <departure_date>10/12/2024</departure_date>
-    <departure_time>09:14</departure_time>
-    <arrival_date>10/12/2024</arrival_date>
-    <arrival_time>11:14</arrival_time>
-    <num_seats>100</num_seats>
-    <price>465.41</price>
-  </record>
-  <record>
-    <flight_id>6818622023</flight_id>
-    <origin>Sacramento</origin>
-    <destination>Dallas</destination>
-    <departure_date>10/12/2024</departure_date>
-    <departure_time>15:01</departure_time>
-    <arrival_date>10/12/2024</arrival_date>
-    <arrival_time>20:01</arrival_time>
-    <num_seats>99</num_seats>
-    <price>110.59</price>
-  </record>
-  <record>
-    <flight_id>7641466007</flight_id>
-    <origin>San Antonio</origin>
-    <destination>Sacramento</destination>
-    <departure_date>10/13/2024</departure_date>
-    <departure_time>21:19</departure_time>
-    <arrival_date>10/14/2024</arrival_date>
-    <arrival_time>06:19</arrival_time>
-    <num_seats>41</num_seats>
-    <price>323.63</price>
-  </record>
-  <record>
-    <flight_id>9967132535</flight_id>
-    <origin>Austin</origin>
-    <destination>San Francisco</destination>
-    <departure_date>10/13/2024</departure_date>
-    <departure_time>19:34</departure_time>
-    <arrival_date>10/13/2024</arrival_date>
-    <arrival_time>20:34</arrival_time>
-    <num_seats>69</num_seats>
-    <price>379.65</price>
-  </record>
-  <record>
-    <flight_id>7083453505</flight_id>
-    <origin>Fort Worth</origin>
-    <destination>Sacramento</destination>
-    <departure_date>10/16/2024</departure_date>
-    <departure_time>19:42</departure_time>
-    <arrival_date>10/17/2024</arrival_date>
-    <arrival_time>00:42</arrival_time>
-    <num_seats>49</num_seats>
-    <price>276.49</price>
-  </record>
-  <record>
-    <flight_id>8644100995</flight_id>
-    <origin>Los Angeles</origin>
-    <destination>Fort Worth</destination>
-    <departure_date>10/16/2024</departure_date>
-    <departure_time>18:05</departure_time>
-    <arrival_date>10/17/2024</arrival_date>
-    <arrival_time>01:05</arrival_time>
-    <num_seats>31</num_seats>
-    <price>480.03</price>
-  </record>
-  <record>
-    <flight_id>2425920183</flight_id>
-    <origin>Houston</origin>
-    <destination>San Diego</destination>
-    <departure_date>10/17/2024</departure_date>
-    <departure_time>21:22</departure_time>
-    <arrival_date>10/18/2024</arrival_date>
-    <arrival_time>05:22</arrival_time>
-    <num_seats>92</num_seats>
-    <price>260.98</price>
-  </record>
-  <record>
-    <flight_id>5452663857</flight_id>
-    <origin>San Jose</origin>
-    <destination>Dallas</destination>
-    <departure_date>10/18/2024</departure_date>
-    <departure_time>09:08</departure_time>
-    <arrival_date>10/18/2024</arrival_date>
-    <arrival_time>12:08</arrival_time>
-    <num_seats>65</num_seats>
-    <price>409.28</price>
-  </record>
-  <record>
-    <flight_id>9824231960</flight_id>
-    <origin>Dallas</origin>
-    <destination>San Jose</destination>
-    <departure_date>10/19/2024</departure_date>
-    <departure_time>12:27</departure_time>
-    <arrival_date>10/19/2024</arrival_date>
-    <arrival_time>14:27</arrival_time>
-    <num_seats>77</num_seats>
-    <price>312.58</price>
-  </record>
-  <record>
-    <flight_id>7363866697</flight_id>
-    <origin>Los Angeles</origin>
-    <destination>Fort Worth</destination>
-    <departure_date>10/20/2024</departure_date>
-    <departure_time>14:39</departure_time>
-    <arrival_date>10/20/2024</arrival_date>
-    <arrival_time>23:39</arrival_time>
-    <num_seats>20</num_seats>
-    <price>491.76</price>
-  </record>
-  <record>
-    <flight_id>1946111363</flight_id>
-    <origin>Austin</origin>
-    <destination>Sacramento</destination>
-    <departure_date>10/23/2024</departure_date>
-    <departure_time>19:00</departure_time>
-    <arrival_date>10/23/2024</arrival_date>
-    <arrival_time>20:00</arrival_time>
-    <num_seats>42</num_seats>
-    <price>398.50</price>
-  </record>
-  <record>
-    <flight_id>5148262828</flight_id>
-    <origin>San Jose</origin>
-    <destination>Austin</destination>
-    <departure_date>10/23/2024</departure_date>
-    <departure_time>10:04</departure_time>
-    <arrival_date>10/23/2024</arrival_date>
-    <arrival_time>14:04</arrival_time>
-    <num_seats>31</num_seats>
-    <price>146.31</price>
-  </record>
-  <record>
-    <flight_id>6300593113</flight_id>
-    <origin>Sacramento</origin>
-    <destination>Houston</destination>
-    <departure_date>10/23/2024</departure_date>
-    <departure_time>20:24</departure_time>
-    <arrival_date>10/24/2024</arrival_date>
-    <arrival_time>04:24</arrival_time>
-    <num_seats>40</num_seats>
-    <price>313.79</price>
-  </record>
-  <record>
-    <flight_id>4692349795</flight_id>
-    <origin>San Jose</origin>
-    <destination>Fort Worth</destination>
-    <departure_date>10/24/2024</departure_date>
-    <departure_time>20:31</departure_time>
-    <arrival_date>10/25/2024</arrival_date>
-    <arrival_time>00:31</arrival_time>
+    <departure_date>9/2/2024</departure_date>
+    <departure_time>08:14</departure_time>
+    <arrival_date>9/2/2024</arrival_date>
+    <arrival_time>15:14</arrival_time>
     <num_seats>62</num_seats>
-    <price>215.63</price>
+    <price>385.53</price>
   </record>
   <record>
-    <flight_id>1916369284</flight_id>
+    <flight_id>4419895</flight_id>
+    <origin>San Diego</origin>
+    <destination>Dallas</destination>
+    <departure_date>9/4/2024</departure_date>
+    <departure_time>06:55</departure_time>
+    <arrival_date>9/4/2024</arrival_date>
+    <arrival_time>13:55</arrival_time>
+    <num_seats>45</num_seats>
+    <price>314.77</price>
+  </record>
+  <record>
+    <flight_id>2921329</flight_id>
+    <origin>San Jose</origin>
+    <destination>Houston</destination>
+    <departure_date>9/4/2024</departure_date>
+    <departure_time>09:45</departure_time>
+    <arrival_date>9/4/2024</arrival_date>
+    <arrival_time>18:45</arrival_time>
+    <num_seats>76</num_seats>
+    <price>246.85</price>
+  </record>
+  <record>
+    <flight_id>5832816</flight_id>
+    <origin>Dallas</origin>
+    <destination>Sacramento</destination>
+    <departure_date>9/4/2024</departure_date>
+    <departure_time>15:50</departure_time>
+    <arrival_date>9/5/2024</arrival_date>
+    <arrival_time>00:50</arrival_time>
+    <num_seats>37</num_seats>
+    <price>148.25</price>
+  </record>
+  <record>
+    <flight_id>8535567</flight_id>
+    <origin>San Diego</origin>
+    <destination>Houston</destination>
+    <departure_date>9/7/2024</departure_date>
+    <departure_time>09:37</departure_time>
+    <arrival_date>9/7/2024</arrival_date>
+    <arrival_time>18:37</arrival_time>
+    <num_seats>97</num_seats>
+    <price>302.13</price>
+  </record>
+  <record>
+    <flight_id>8780184</flight_id>
+    <origin>Dallas</origin>
+    <destination>Sacramento</destination>
+    <departure_date>9/9/2024</departure_date>
+    <departure_time>21:42</departure_time>
+    <arrival_date>9/9/2024</arrival_date>
+    <arrival_time>23:42</arrival_time>
+    <num_seats>41</num_seats>
+    <price>126.51</price>
+  </record>
+  <record>
+    <flight_id>9064014</flight_id>
+    <origin>Dallas</origin>
+    <destination>Los Angeles</destination>
+    <departure_date>9/12/2024</departure_date>
+    <departure_time>08:27</departure_time>
+    <arrival_date>9/12/2024</arrival_date>
+    <arrival_time>17:27</arrival_time>
+    <num_seats>84</num_seats>
+    <price>115.83</price>
+  </record>
+  <record>
+    <flight_id>5914111</flight_id>
+    <origin>Los Angeles</origin>
+    <destination>San Antonio</destination>
+    <departure_date>9/14/2024</departure_date>
+    <departure_time>15:06</departure_time>
+    <arrival_date>9/14/2024</arrival_date>
+    <arrival_time>16:06</arrival_time>
+    <num_seats>81</num_seats>
+    <price>162.57</price>
+  </record>
+  <record>
+    <flight_id>2841744</flight_id>
+    <origin>Los Angeles</origin>
+    <destination>Dallas</destination>
+    <departure_date>9/14/2024</departure_date>
+    <departure_time>10:24</departure_time>
+    <arrival_date>9/14/2024</arrival_date>
+    <arrival_time>17:24</arrival_time>
+    <num_seats>65</num_seats>
+    <price>193.67</price>
+  </record>
+  <record>
+    <flight_id>8530382</flight_id>
+    <origin>Houston</origin>
+    <destination>San Diego</destination>
+    <departure_date>9/15/2024</departure_date>
+    <departure_time>07:58</departure_time>
+    <arrival_date>9/15/2024</arrival_date>
+    <arrival_time>11:58</arrival_time>
+    <num_seats>25</num_seats>
+    <price>430.48</price>
+  </record>
+  <record>
+    <flight_id>3025302</flight_id>
+    <origin>Houston</origin>
+    <destination>San Jose</destination>
+    <departure_date>9/16/2024</departure_date>
+    <departure_time>09:49</departure_time>
+    <arrival_date>9/16/2024</arrival_date>
+    <arrival_time>19:49</arrival_time>
+    <num_seats>95</num_seats>
+    <price>293.22</price>
+  </record>
+  <record>
+    <flight_id>2345519</flight_id>
+    <origin>Dallas</origin>
+    <destination>San Diego</destination>
+    <departure_date>9/16/2024</departure_date>
+    <departure_time>13:38</departure_time>
+    <arrival_date>9/16/2024</arrival_date>
+    <arrival_time>18:38</arrival_time>
+    <num_seats>72</num_seats>
+    <price>468.51</price>
+  </record>
+  <record>
+    <flight_id>6614952</flight_id>
+    <origin>San Jose</origin>
+    <destination>San Antonio</destination>
+    <departure_date>9/17/2024</departure_date>
+    <departure_time>07:22</departure_time>
+    <arrival_date>9/17/2024</arrival_date>
+    <arrival_time>09:22</arrival_time>
+    <num_seats>92</num_seats>
+    <price>238.35</price>
+  </record>
+  <record>
+    <flight_id>9513523</flight_id>
+    <origin>Dallas</origin>
+    <destination>Sacramento</destination>
+    <departure_date>9/21/2024</departure_date>
+    <departure_time>17:22</departure_time>
+    <arrival_date>9/22/2024</arrival_date>
+    <arrival_time>00:22</arrival_time>
+    <num_seats>86</num_seats>
+    <price>268.60</price>
+  </record>
+  <record>
+    <flight_id>6536305</flight_id>
+    <origin>San Francisco</origin>
+    <destination>San Antonio</destination>
+    <departure_date>9/21/2024</departure_date>
+    <departure_time>06:09</departure_time>
+    <arrival_date>9/21/2024</arrival_date>
+    <arrival_time>15:09</arrival_time>
+    <num_seats>97</num_seats>
+    <price>444.12</price>
+  </record>
+  <record>
+    <flight_id>4524231</flight_id>
+    <origin>Los Angeles</origin>
+    <destination>San Antonio</destination>
+    <departure_date>9/22/2024</departure_date>
+    <departure_time>21:54</departure_time>
+    <arrival_date>9/23/2024</arrival_date>
+    <arrival_time>02:54</arrival_time>
+    <num_seats>53</num_seats>
+    <price>141.86</price>
+  </record>
+  <record>
+    <flight_id>7025709</flight_id>
+    <origin>Dallas</origin>
+    <destination>San Diego</destination>
+    <departure_date>9/23/2024</departure_date>
+    <departure_time>19:26</departure_time>
+    <arrival_date>9/23/2024</arrival_date>
+    <arrival_time>22:26</arrival_time>
+    <num_seats>93</num_seats>
+    <price>137.00</price>
+  </record>
+  <record>
+    <flight_id>9512324</flight_id>
+    <origin>San Diego</origin>
+    <destination>Fort Worth</destination>
+    <departure_date>9/23/2024</departure_date>
+    <departure_time>21:00</departure_time>
+    <arrival_date>9/23/2024</arrival_date>
+    <arrival_time>23:00</arrival_time>
+    <num_seats>37</num_seats>
+    <price>366.45</price>
+  </record>
+  <record>
+    <flight_id>8906316</flight_id>
+    <origin>San Diego</origin>
+    <destination>Houston</destination>
+    <departure_date>9/24/2024</departure_date>
+    <departure_time>19:13</departure_time>
+    <arrival_date>9/25/2024</arrival_date>
+    <arrival_time>02:13</arrival_time>
+    <num_seats>64</num_seats>
+    <price>403.29</price>
+  </record>
+  <record>
+    <flight_id>6804878</flight_id>
+    <origin>Austin</origin>
+    <destination>San Jose</destination>
+    <departure_date>9/26/2024</departure_date>
+    <departure_time>08:06</departure_time>
+    <arrival_date>9/26/2024</arrival_date>
+    <arrival_time>12:06</arrival_time>
+    <num_seats>24</num_seats>
+    <price>279.11</price>
+  </record>
+  <record>
+    <flight_id>4841557</flight_id>
     <origin>Fort Worth</origin>
     <destination>Sacramento</destination>
-    <departure_date>10/26/2024</departure_date>
-    <departure_time>20:51</departure_time>
-    <arrival_date>10/26/2024</arrival_date>
-    <arrival_time>21:51</arrival_time>
+    <departure_date>9/28/2024</departure_date>
+    <departure_time>13:24</departure_time>
+    <arrival_date>9/28/2024</arrival_date>
+    <arrival_time>16:24</arrival_time>
     <num_seats>34</num_seats>
-    <price>119.57</price>
+    <price>474.97</price>
   </record>
   <record>
-    <flight_id>9496041529</flight_id>
-    <origin>Austin</origin>
-    <destination>San Francisco</destination>
-    <departure_date>10/27/2024</departure_date>
-    <departure_time>11:13</departure_time>
-    <arrival_date>10/27/2024</arrival_date>
-    <arrival_time>14:13</arrival_time>
-    <num_seats>43</num_seats>
-    <price>250.68</price>
-  </record>
-  <record>
-    <flight_id>4296612985</flight_id>
+    <flight_id>6860715</flight_id>
     <origin>Dallas</origin>
-    <destination>San Francisco</destination>
-    <departure_date>10/27/2024</departure_date>
-    <departure_time>11:29</departure_time>
-    <arrival_date>10/27/2024</arrival_date>
-    <arrival_time>15:29</arrival_time>
-    <num_seats>64</num_seats>
-    <price>103.96</price>
+    <destination>San Jose</destination>
+    <departure_date>9/29/2024</departure_date>
+    <departure_time>18:30</departure_time>
+    <arrival_date>9/30/2024</arrival_date>
+    <arrival_time>02:30</arrival_time>
+    <num_seats>45</num_seats>
+    <price>232.44</price>
   </record>
   <record>
-    <flight_id>6764783258</flight_id>
-    <origin>San Diego</origin>
+    <flight_id>8486933</flight_id>
+    <origin>Houston</origin>
+    <destination>San Jose</destination>
+    <departure_date>9/30/2024</departure_date>
+    <departure_time>17:24</departure_time>
+    <arrival_date>9/30/2024</arrival_date>
+    <arrival_time>23:24</arrival_time>
+    <num_seats>78</num_seats>
+    <price>204.48</price>
+  </record>
+  <record>
+    <flight_id>1847546</flight_id>
+    <origin>Sacramento</origin>
     <destination>Houston</destination>
-    <departure_date>10/27/2024</departure_date>
-    <departure_time>16:02</departure_time>
-    <arrival_date>10/27/2024</arrival_date>
-    <arrival_time>22:02</arrival_time>
-    <num_seats>75</num_seats>
-    <price>237.50</price>
+    <departure_date>9/30/2024</departure_date>
+    <departure_time>12:31</departure_time>
+    <arrival_date>9/30/2024</arrival_date>
+    <arrival_time>14:31</arrival_time>
+    <num_seats>33</num_seats>
+    <price>138.38</price>
   </record>
   <record>
-    <flight_id>5853824511</flight_id>
+    <flight_id>1427051</flight_id>
     <origin>Dallas</origin>
-    <destination>Sacramento</destination>
-    <departure_date>10/27/2024</departure_date>
-    <departure_time>13:47</departure_time>
-    <arrival_date>10/27/2024</arrival_date>
-    <arrival_time>17:47</arrival_time>
-    <num_seats>98</num_seats>
-    <price>344.95</price>
+    <destination>San Jose</destination>
+    <departure_date>10/1/2024</departure_date>
+    <departure_time>19:32</departure_time>
+    <arrival_date>10/2/2024</arrival_date>
+    <arrival_time>00:32</arrival_time>
+    <num_seats>87</num_seats>
+    <price>275.02</price>
   </record>
   <record>
-    <flight_id>9352596269</flight_id>
-    <origin>San Antonio</origin>
-    <destination>San Francisco</destination>
-    <departure_date>10/27/2024</departure_date>
-    <departure_time>15:01</departure_time>
-    <arrival_date>10/28/2024</arrival_date>
-    <arrival_time>01:01</arrival_time>
-    <num_seats>74</num_seats>
-    <price>494.33</price>
+    <flight_id>3596459</flight_id>
+    <origin>Los Angeles</origin>
+    <destination>Fort Worth</destination>
+    <departure_date>10/1/2024</departure_date>
+    <departure_time>07:01</departure_time>
+    <arrival_date>10/1/2024</arrival_date>
+    <arrival_time>08:01</arrival_time>
+    <num_seats>51</num_seats>
+    <price>419.13</price>
   </record>
   <record>
-    <flight_id>2032703933</flight_id>
-    <origin>San Diego</origin>
-    <destination>Houston</destination>
-    <departure_date>10/28/2024</departure_date>
-    <departure_time>06:41</departure_time>
-    <arrival_date>10/28/2024</arrival_date>
-    <arrival_time>09:41</arrival_time>
-    <num_seats>22</num_seats>
-    <price>486.84</price>
+    <flight_id>6180380</flight_id>
+    <origin>Dallas</origin>
+    <destination>Los Angeles</destination>
+    <departure_date>10/2/2024</departure_date>
+    <departure_time>19:16</departure_time>
+    <arrival_date>10/2/2024</arrival_date>
+    <arrival_time>22:16</arrival_time>
+    <num_seats>33</num_seats>
+    <price>143.97</price>
   </record>
   <record>
-    <flight_id>7818240576</flight_id>
+    <flight_id>9717023</flight_id>
     <origin>San Francisco</origin>
-    <destination>Dallas</destination>
-    <departure_date>10/29/2024</departure_date>
-    <departure_time>10:31</departure_time>
-    <arrival_date>10/29/2024</arrival_date>
-    <arrival_time>18:31</arrival_time>
-    <num_seats>68</num_seats>
-    <price>369.29</price>
+    <destination>Houston</destination>
+    <departure_date>10/2/2024</departure_date>
+    <departure_time>16:46</departure_time>
+    <arrival_date>10/2/2024</arrival_date>
+    <arrival_time>20:46</arrival_time>
+    <num_seats>39</num_seats>
+    <price>321.60</price>
   </record>
   <record>
-    <flight_id>8726884625</flight_id>
+    <flight_id>7293991</flight_id>
     <origin>Austin</origin>
     <destination>Los Angeles</destination>
-    <departure_date>10/29/2024</departure_date>
-    <departure_time>09:03</departure_time>
-    <arrival_date>10/29/2024</arrival_date>
-    <arrival_time>14:03</arrival_time>
-    <num_seats>82</num_seats>
-    <price>449.31</price>
+    <departure_date>10/3/2024</departure_date>
+    <departure_time>11:46</departure_time>
+    <arrival_date>10/3/2024</arrival_date>
+    <arrival_time>19:46</arrival_time>
+    <num_seats>28</num_seats>
+    <price>362.94</price>
   </record>
   <record>
-    <flight_id>7149323929</flight_id>
+    <flight_id>5575394</flight_id>
+    <origin>Sacramento</origin>
+    <destination>Fort Worth</destination>
+    <departure_date>10/5/2024</departure_date>
+    <departure_time>12:06</departure_time>
+    <arrival_date>10/5/2024</arrival_date>
+    <arrival_time>13:06</arrival_time>
+    <num_seats>42</num_seats>
+    <price>467.04</price>
+  </record>
+  <record>
+    <flight_id>7408376</flight_id>
+    <origin>Los Angeles</origin>
+    <destination>San Antonio</destination>
+    <departure_date>10/5/2024</departure_date>
+    <departure_time>11:08</departure_time>
+    <arrival_date>10/5/2024</arrival_date>
+    <arrival_time>19:08</arrival_time>
+    <num_seats>84</num_seats>
+    <price>268.43</price>
+  </record>
+  <record>
+    <flight_id>9643854</flight_id>
+    <origin>Sacramento</origin>
+    <destination>Austin</destination>
+    <departure_date>10/6/2024</departure_date>
+    <departure_time>19:49</departure_time>
+    <arrival_date>10/6/2024</arrival_date>
+    <arrival_time>20:49</arrival_time>
+    <num_seats>73</num_seats>
+    <price>202.70</price>
+  </record>
+  <record>
+    <flight_id>7721169</flight_id>
+    <origin>San Francisco</origin>
+    <destination>San Antonio</destination>
+    <departure_date>10/6/2024</departure_date>
+    <departure_time>16:12</departure_time>
+    <arrival_date>10/7/2024</arrival_date>
+    <arrival_time>01:12</arrival_time>
+    <num_seats>73</num_seats>
+    <price>238.39</price>
+  </record>
+  <record>
+    <flight_id>1201903</flight_id>
+    <origin>Los Angeles</origin>
+    <destination>Dallas</destination>
+    <departure_date>10/7/2024</departure_date>
+    <departure_time>11:55</departure_time>
+    <arrival_date>10/7/2024</arrival_date>
+    <arrival_time>16:55</arrival_time>
+    <num_seats>94</num_seats>
+    <price>487.22</price>
+  </record>
+  <record>
+    <flight_id>7070447</flight_id>
+    <origin>Houston</origin>
+    <destination>Los Angeles</destination>
+    <departure_date>10/7/2024</departure_date>
+    <departure_time>17:52</departure_time>
+    <arrival_date>10/8/2024</arrival_date>
+    <arrival_time>03:52</arrival_time>
+    <num_seats>85</num_seats>
+    <price>325.47</price>
+  </record>
+  <record>
+    <flight_id>5913760</flight_id>
     <origin>Sacramento</origin>
     <destination>Dallas</destination>
-    <departure_date>11/4/2024</departure_date>
-    <departure_time>08:28</departure_time>
-    <arrival_date>11/4/2024</arrival_date>
-    <arrival_time>09:28</arrival_time>
-    <num_seats>89</num_seats>
-    <price>478.52</price>
+    <departure_date>10/8/2024</departure_date>
+    <departure_time>11:25</departure_time>
+    <arrival_date>10/8/2024</arrival_date>
+    <arrival_time>12:25</arrival_time>
+    <num_seats>33</num_seats>
+    <price>210.07</price>
   </record>
   <record>
-    <flight_id>7486643036</flight_id>
+    <flight_id>9897109</flight_id>
+    <origin>Austin</origin>
+    <destination>San Francisco</destination>
+    <departure_date>10/8/2024</departure_date>
+    <departure_time>17:03</departure_time>
+    <arrival_date>10/8/2024</arrival_date>
+    <arrival_time>21:03</arrival_time>
+    <num_seats>31</num_seats>
+    <price>428.51</price>
+  </record>
+  <record>
+    <flight_id>1460385</flight_id>
     <origin>San Francisco</origin>
-    <destination>Austin</destination>
-    <departure_date>11/5/2024</departure_date>
-    <departure_time>21:06</departure_time>
-    <arrival_date>11/6/2024</arrival_date>
-    <arrival_time>03:06</arrival_time>
-    <num_seats>94</num_seats>
-    <price>381.82</price>
+    <destination>Dallas</destination>
+    <departure_date>10/10/2024</departure_date>
+    <departure_time>13:45</departure_time>
+    <arrival_date>10/10/2024</arrival_date>
+    <arrival_time>22:45</arrival_time>
+    <num_seats>89</num_seats>
+    <price>329.60</price>
   </record>
   <record>
-    <flight_id>3966388617</flight_id>
+    <flight_id>3793406</flight_id>
     <origin>San Antonio</origin>
-    <destination>Sacramento</destination>
-    <departure_date>11/6/2024</departure_date>
-    <departure_time>13:29</departure_time>
-    <arrival_date>11/6/2024</arrival_date>
-    <arrival_time>19:29</arrival_time>
-    <num_seats>20</num_seats>
-    <price>221.19</price>
+    <destination>San Jose</destination>
+    <departure_date>10/11/2024</departure_date>
+    <departure_time>17:44</departure_time>
+    <arrival_date>10/11/2024</arrival_date>
+    <arrival_time>23:44</arrival_time>
+    <num_seats>41</num_seats>
+    <price>422.46</price>
   </record>
   <record>
-    <flight_id>1110793147</flight_id>
+    <flight_id>4655942</flight_id>
     <origin>Fort Worth</origin>
-    <destination>Sacramento</destination>
-    <departure_date>11/6/2024</departure_date>
-    <departure_time>15:32</departure_time>
-    <arrival_date>11/6/2024</arrival_date>
-    <arrival_time>22:32</arrival_time>
-    <num_seats>27</num_seats>
-    <price>135.61</price>
+    <destination>San Diego</destination>
+    <departure_date>10/13/2024</departure_date>
+    <departure_time>15:35</departure_time>
+    <arrival_date>10/14/2024</arrival_date>
+    <arrival_time>01:35</arrival_time>
+    <num_seats>54</num_seats>
+    <price>171.56</price>
   </record>
   <record>
-    <flight_id>3137594617</flight_id>
+    <flight_id>8170500</flight_id>
+    <origin>Houston</origin>
+    <destination>San Diego</destination>
+    <departure_date>10/14/2024</departure_date>
+    <departure_time>11:33</departure_time>
+    <arrival_date>10/14/2024</arrival_date>
+    <arrival_time>21:33</arrival_time>
+    <num_seats>53</num_seats>
+    <price>376.63</price>
+  </record>
+  <record>
+    <flight_id>2044997</flight_id>
     <origin>Dallas</origin>
     <destination>San Francisco</destination>
-    <departure_date>11/6/2024</departure_date>
-    <departure_time>10:53</departure_time>
-    <arrival_date>11/6/2024</arrival_date>
-    <arrival_time>16:53</arrival_time>
-    <num_seats>96</num_seats>
-    <price>156.77</price>
+    <departure_date>10/14/2024</departure_date>
+    <departure_time>09:29</departure_time>
+    <arrival_date>10/14/2024</arrival_date>
+    <arrival_time>10:29</arrival_time>
+    <num_seats>35</num_seats>
+    <price>338.78</price>
   </record>
   <record>
-    <flight_id>3876462318</flight_id>
+    <flight_id>3305458</flight_id>
+    <origin>Sacramento</origin>
+    <destination>San Antonio</destination>
+    <departure_date>10/14/2024</departure_date>
+    <departure_time>20:59</departure_time>
+    <arrival_date>10/15/2024</arrival_date>
+    <arrival_time>03:59</arrival_time>
+    <num_seats>86</num_seats>
+    <price>491.50</price>
+  </record>
+  <record>
+    <flight_id>5949052</flight_id>
+    <origin>Fort Worth</origin>
+    <destination>Los Angeles</destination>
+    <departure_date>10/16/2024</departure_date>
+    <departure_time>21:23</departure_time>
+    <arrival_date>10/17/2024</arrival_date>
+    <arrival_time>02:23</arrival_time>
+    <num_seats>25</num_seats>
+    <price>170.01</price>
+  </record>
+  <record>
+    <flight_id>3970549</flight_id>
+    <origin>Austin</origin>
+    <destination>Los Angeles</destination>
+    <departure_date>10/18/2024</departure_date>
+    <departure_time>19:23</departure_time>
+    <arrival_date>10/18/2024</arrival_date>
+    <arrival_time>22:23</arrival_time>
+    <num_seats>72</num_seats>
+    <price>117.04</price>
+  </record>
+  <record>
+    <flight_id>9918743</flight_id>
     <origin>Los Angeles</origin>
-    <destination>Houston</destination>
-    <departure_date>11/6/2024</departure_date>
-    <departure_time>08:06</departure_time>
-    <arrival_date>11/6/2024</arrival_date>
-    <arrival_time>14:06</arrival_time>
-    <num_seats>33</num_seats>
-    <price>478.98</price>
+    <destination>San Antonio</destination>
+    <departure_date>10/19/2024</departure_date>
+    <departure_time>11:56</departure_time>
+    <arrival_date>10/19/2024</arrival_date>
+    <arrival_time>18:56</arrival_time>
+    <num_seats>54</num_seats>
+    <price>293.15</price>
   </record>
   <record>
-    <flight_id>1277246462</flight_id>
+    <flight_id>1750439</flight_id>
+    <origin>Houston</origin>
+    <destination>San Diego</destination>
+    <departure_date>10/20/2024</departure_date>
+    <departure_time>09:10</departure_time>
+    <arrival_date>10/20/2024</arrival_date>
+    <arrival_time>12:10</arrival_time>
+    <num_seats>56</num_seats>
+    <price>237.24</price>
+  </record>
+  <record>
+    <flight_id>2339091</flight_id>
+    <origin>Fort Worth</origin>
+    <destination>San Diego</destination>
+    <departure_date>10/20/2024</departure_date>
+    <departure_time>18:01</departure_time>
+    <arrival_date>10/20/2024</arrival_date>
+    <arrival_time>22:01</arrival_time>
+    <num_seats>21</num_seats>
+    <price>397.05</price>
+  </record>
+  <record>
+    <flight_id>9257844</flight_id>
+    <origin>San Diego</origin>
+    <destination>Austin</destination>
+    <departure_date>10/21/2024</departure_date>
+    <departure_time>12:03</departure_time>
+    <arrival_date>10/21/2024</arrival_date>
+    <arrival_time>21:03</arrival_time>
+    <num_seats>92</num_seats>
+    <price>159.96</price>
+  </record>
+  <record>
+    <flight_id>7914864</flight_id>
+    <origin>Austin</origin>
+    <destination>San Diego</destination>
+    <departure_date>10/21/2024</departure_date>
+    <departure_time>12:31</departure_time>
+    <arrival_date>10/21/2024</arrival_date>
+    <arrival_time>16:31</arrival_time>
+    <num_seats>20</num_seats>
+    <price>435.04</price>
+  </record>
+  <record>
+    <flight_id>2841355</flight_id>
+    <origin>San Francisco</origin>
+    <destination>Dallas</destination>
+    <departure_date>10/21/2024</departure_date>
+    <departure_time>07:16</departure_time>
+    <arrival_date>10/21/2024</arrival_date>
+    <arrival_time>15:16</arrival_time>
+    <num_seats>90</num_seats>
+    <price>197.66</price>
+  </record>
+  <record>
+    <flight_id>6190602</flight_id>
+    <origin>San Jose</origin>
+    <destination>Austin</destination>
+    <departure_date>10/22/2024</departure_date>
+    <departure_time>11:49</departure_time>
+    <arrival_date>10/22/2024</arrival_date>
+    <arrival_time>18:49</arrival_time>
+    <num_seats>51</num_seats>
+    <price>115.63</price>
+  </record>
+  <record>
+    <flight_id>1968353</flight_id>
+    <origin>Houston</origin>
+    <destination>Los Angeles</destination>
+    <departure_date>10/24/2024</departure_date>
+    <departure_time>08:56</departure_time>
+    <arrival_date>10/24/2024</arrival_date>
+    <arrival_time>12:56</arrival_time>
+    <num_seats>45</num_seats>
+    <price>105.93</price>
+  </record>
+  <record>
+    <flight_id>4966594</flight_id>
+    <origin>Austin</origin>
+    <destination>San Jose</destination>
+    <departure_date>10/24/2024</departure_date>
+    <departure_time>12:39</departure_time>
+    <arrival_date>10/24/2024</arrival_date>
+    <arrival_time>22:39</arrival_time>
+    <num_seats>72</num_seats>
+    <price>270.39</price>
+  </record>
+  <record>
+    <flight_id>7252896</flight_id>
+    <origin>Dallas</origin>
+    <destination>Sacramento</destination>
+    <departure_date>10/25/2024</departure_date>
+    <departure_time>11:48</departure_time>
+    <arrival_date>10/25/2024</arrival_date>
+    <arrival_time>18:48</arrival_time>
+    <num_seats>22</num_seats>
+    <price>149.40</price>
+  </record>
+  <record>
+    <flight_id>3174815</flight_id>
+    <origin>San Jose</origin>
+    <destination>Austin</destination>
+    <departure_date>10/25/2024</departure_date>
+    <departure_time>14:14</departure_time>
+    <arrival_date>10/25/2024</arrival_date>
+    <arrival_time>19:14</arrival_time>
+    <num_seats>94</num_seats>
+    <price>212.29</price>
+  </record>
+  <record>
+    <flight_id>9788982</flight_id>
+    <origin>San Diego</origin>
+    <destination>Houston</destination>
+    <departure_date>10/27/2024</departure_date>
+    <departure_time>17:15</departure_time>
+    <arrival_date>10/27/2024</arrival_date>
+    <arrival_time>19:15</arrival_time>
+    <num_seats>77</num_seats>
+    <price>411.84</price>
+  </record>
+  <record>
+    <flight_id>3904796</flight_id>
+    <origin>Austin</origin>
+    <destination>San Diego</destination>
+    <departure_date>10/28/2024</departure_date>
+    <departure_time>15:15</departure_time>
+    <arrival_date>10/28/2024</arrival_date>
+    <arrival_time>21:15</arrival_time>
+    <num_seats>88</num_seats>
+    <price>303.90</price>
+  </record>
+  <record>
+    <flight_id>4327636</flight_id>
+    <origin>Los Angeles</origin>
+    <destination>Fort Worth</destination>
+    <departure_date>10/29/2024</departure_date>
+    <departure_time>18:27</departure_time>
+    <arrival_date>10/29/2024</arrival_date>
+    <arrival_time>20:27</arrival_time>
+    <num_seats>73</num_seats>
+    <price>293.65</price>
+  </record>
+  <record>
+    <flight_id>8873695</flight_id>
+    <origin>San Francisco</origin>
+    <destination>San Antonio</destination>
+    <departure_date>10/30/2024</departure_date>
+    <departure_time>15:29</departure_time>
+    <arrival_date>10/30/2024</arrival_date>
+    <arrival_time>16:29</arrival_time>
+    <num_seats>85</num_seats>
+    <price>431.21</price>
+  </record>
+  <record>
+    <flight_id>1577209</flight_id>
+    <origin>Dallas</origin>
+    <destination>San Diego</destination>
+    <departure_date>10/31/2024</departure_date>
+    <departure_time>14:01</departure_time>
+    <arrival_date>10/31/2024</arrival_date>
+    <arrival_time>16:01</arrival_time>
+    <num_seats>72</num_seats>
+    <price>330.71</price>
+  </record>
+  <record>
+    <flight_id>8194218</flight_id>
+    <origin>Sacramento</origin>
+    <destination>Houston</destination>
+    <departure_date>11/1/2024</departure_date>
+    <departure_time>20:51</departure_time>
+    <arrival_date>11/1/2024</arrival_date>
+    <arrival_time>21:51</arrival_time>
+    <num_seats>48</num_seats>
+    <price>257.88</price>
+  </record>
+  <record>
+    <flight_id>6690933</flight_id>
+    <origin>San Antonio</origin>
+    <destination>San Jose</destination>
+    <departure_date>11/1/2024</departure_date>
+    <departure_time>15:05</departure_time>
+    <arrival_date>11/1/2024</arrival_date>
+    <arrival_time>23:05</arrival_time>
+    <num_seats>59</num_seats>
+    <price>185.00</price>
+  </record>
+  <record>
+    <flight_id>8164859</flight_id>
     <origin>Dallas</origin>
     <destination>Los Angeles</destination>
-    <departure_date>11/8/2024</departure_date>
-    <departure_time>07:59</departure_time>
-    <arrival_date>11/8/2024</arrival_date>
-    <arrival_time>11:59</arrival_time>
-    <num_seats>53</num_seats>
-    <price>121.61</price>
+    <departure_date>11/2/2024</departure_date>
+    <departure_time>10:53</departure_time>
+    <arrival_date>11/2/2024</arrival_date>
+    <arrival_time>14:53</arrival_time>
+    <num_seats>99</num_seats>
+    <price>172.72</price>
   </record>
   <record>
-    <flight_id>1509798836</flight_id>
-    <origin>Fort Worth</origin>
-    <destination>Sacramento</destination>
-    <departure_date>11/10/2024</departure_date>
-    <departure_time>12:05</departure_time>
-    <arrival_date>11/10/2024</arrival_date>
-    <arrival_time>16:05</arrival_time>
+    <flight_id>2856797</flight_id>
+    <origin>Austin</origin>
+    <destination>San Jose</destination>
+    <departure_date>11/2/2024</departure_date>
+    <departure_time>09:04</departure_time>
+    <arrival_date>11/2/2024</arrival_date>
+    <arrival_time>15:04</arrival_time>
     <num_seats>56</num_seats>
-    <price>363.30</price>
+    <price>410.98</price>
   </record>
   <record>
-    <flight_id>2252436254</flight_id>
+    <flight_id>2789459</flight_id>
+    <origin>San Diego</origin>
+    <destination>Austin</destination>
+    <departure_date>11/2/2024</departure_date>
+    <departure_time>16:05</departure_time>
+    <arrival_date>11/2/2024</arrival_date>
+    <arrival_time>22:05</arrival_time>
+    <num_seats>45</num_seats>
+    <price>374.43</price>
+  </record>
+  <record>
+    <flight_id>8222622</flight_id>
+    <origin>San Antonio</origin>
+    <destination>Los Angeles</destination>
+    <departure_date>11/3/2024</departure_date>
+    <departure_time>13:05</departure_time>
+    <arrival_date>11/3/2024</arrival_date>
+    <arrival_time>22:05</arrival_time>
+    <num_seats>31</num_seats>
+    <price>149.34</price>
+  </record>
+  <record>
+    <flight_id>9702811</flight_id>
+    <origin>Houston</origin>
+    <destination>Los Angeles</destination>
+    <departure_date>11/4/2024</departure_date>
+    <departure_time>15:15</departure_time>
+    <arrival_date>11/5/2024</arrival_date>
+    <arrival_time>01:15</arrival_time>
+    <num_seats>94</num_seats>
+    <price>346.86</price>
+  </record>
+  <record>
+    <flight_id>3858632</flight_id>
+    <origin>San Diego</origin>
+    <destination>Houston</destination>
+    <departure_date>11/4/2024</departure_date>
+    <departure_time>08:19</departure_time>
+    <arrival_date>11/4/2024</arrival_date>
+    <arrival_time>15:19</arrival_time>
+    <num_seats>53</num_seats>
+    <price>109.05</price>
+  </record>
+  <record>
+    <flight_id>4542428</flight_id>
+    <origin>Sacramento</origin>
+    <destination>Fort Worth</destination>
+    <departure_date>11/6/2024</departure_date>
+    <departure_time>16:53</departure_time>
+    <arrival_date>11/6/2024</arrival_date>
+    <arrival_time>20:53</arrival_time>
+    <num_seats>61</num_seats>
+    <price>269.36</price>
+  </record>
+  <record>
+    <flight_id>4611042</flight_id>
+    <origin>Houston</origin>
+    <destination>San Jose</destination>
+    <departure_date>11/7/2024</departure_date>
+    <departure_time>06:18</departure_time>
+    <arrival_date>11/7/2024</arrival_date>
+    <arrival_time>15:18</arrival_time>
+    <num_seats>42</num_seats>
+    <price>270.70</price>
+  </record>
+  <record>
+    <flight_id>1894445</flight_id>
+    <origin>Dallas</origin>
+    <destination>San Jose</destination>
+    <departure_date>11/7/2024</departure_date>
+    <departure_time>16:05</departure_time>
+    <arrival_date>11/8/2024</arrival_date>
+    <arrival_time>02:05</arrival_time>
+    <num_seats>56</num_seats>
+    <price>185.80</price>
+  </record>
+  <record>
+    <flight_id>6726350</flight_id>
+    <origin>Houston</origin>
+    <destination>San Francisco</destination>
+    <departure_date>11/10/2024</departure_date>
+    <departure_time>10:11</departure_time>
+    <arrival_date>11/10/2024</arrival_date>
+    <arrival_time>19:11</arrival_time>
+    <num_seats>23</num_seats>
+    <price>253.22</price>
+  </record>
+  <record>
+    <flight_id>2811784</flight_id>
+    <origin>San Jose</origin>
+    <destination>Dallas</destination>
+    <departure_date>11/10/2024</departure_date>
+    <departure_time>17:24</departure_time>
+    <arrival_date>11/11/2024</arrival_date>
+    <arrival_time>00:24</arrival_time>
+    <num_seats>53</num_seats>
+    <price>452.69</price>
+  </record>
+  <record>
+    <flight_id>9100987</flight_id>
     <origin>Dallas</origin>
     <destination>San Jose</destination>
     <departure_date>11/11/2024</departure_date>
-    <departure_time>13:01</departure_time>
+    <departure_time>10:19</departure_time>
     <arrival_date>11/11/2024</arrival_date>
-    <arrival_time>14:01</arrival_time>
-    <num_seats>81</num_seats>
-    <price>111.40</price>
-  </record>
-  <record>
-    <flight_id>6748579962</flight_id>
-    <origin>San Jose</origin>
-    <destination>San Antonio</destination>
-    <departure_date>11/12/2024</departure_date>
-    <departure_time>19:06</departure_time>
-    <arrival_date>11/13/2024</arrival_date>
-    <arrival_time>04:06</arrival_time>
-    <num_seats>35</num_seats>
-    <price>363.92</price>
-  </record>
-  <record>
-    <flight_id>2837499299</flight_id>
-    <origin>San Diego</origin>
-    <destination>Houston</destination>
-    <departure_date>11/13/2024</departure_date>
-    <departure_time>06:04</departure_time>
-    <arrival_date>11/13/2024</arrival_date>
-    <arrival_time>11:04</arrival_time>
+    <arrival_time>17:19</arrival_time>
     <num_seats>86</num_seats>
-    <price>179.16</price>
+    <price>361.58</price>
   </record>
   <record>
-    <flight_id>8217643182</flight_id>
+    <flight_id>8020717</flight_id>
+    <origin>Fort Worth</origin>
+    <destination>San Diego</destination>
+    <departure_date>11/11/2024</departure_date>
+    <departure_time>10:18</departure_time>
+    <arrival_date>11/11/2024</arrival_date>
+    <arrival_time>13:18</arrival_time>
+    <num_seats>74</num_seats>
+    <price>196.98</price>
+  </record>
+  <record>
+    <flight_id>1514288</flight_id>
     <origin>San Diego</origin>
-    <destination>Austin</destination>
-    <departure_date>11/13/2024</departure_date>
-    <departure_time>06:14</departure_time>
-    <arrival_date>11/13/2024</arrival_date>
-    <arrival_time>15:14</arrival_time>
-    <num_seats>61</num_seats>
-    <price>161.79</price>
-  </record>
-  <record>
-    <flight_id>4150623239</flight_id>
-    <origin>San Francisco</origin>
     <destination>Dallas</destination>
-    <departure_date>11/13/2024</departure_date>
-    <departure_time>19:39</departure_time>
-    <arrival_date>11/14/2024</arrival_date>
-    <arrival_time>03:39</arrival_time>
-    <num_seats>64</num_seats>
-    <price>229.54</price>
-  </record>
-  <record>
-    <flight_id>7353748249</flight_id>
-    <origin>San Francisco</origin>
-    <destination>Houston</destination>
-    <departure_date>11/13/2024</departure_date>
-    <departure_time>07:11</departure_time>
+    <departure_date>11/12/2024</departure_date>
+    <departure_time>20:56</departure_time>
     <arrival_date>11/13/2024</arrival_date>
-    <arrival_time>10:11</arrival_time>
-    <num_seats>72</num_seats>
-    <price>126.53</price>
+    <arrival_time>00:56</arrival_time>
+    <num_seats>27</num_seats>
+    <price>151.15</price>
   </record>
   <record>
-    <flight_id>7963533796</flight_id>
-    <origin>Houston</origin>
+    <flight_id>1049458</flight_id>
+    <origin>Los Angeles</origin>
+    <destination>Dallas</destination>
+    <departure_date>11/12/2024</departure_date>
+    <departure_time>09:47</departure_time>
+    <arrival_date>11/12/2024</arrival_date>
+    <arrival_time>12:47</arrival_time>
+    <num_seats>60</num_seats>
+    <price>267.43</price>
+  </record>
+  <record>
+    <flight_id>4526516</flight_id>
+    <origin>Fort Worth</origin>
+    <destination>San Francisco</destination>
+    <departure_date>11/12/2024</departure_date>
+    <departure_time>21:27</departure_time>
+    <arrival_date>11/13/2024</arrival_date>
+    <arrival_time>04:27</arrival_time>
+    <num_seats>86</num_seats>
+    <price>159.07</price>
+  </record>
+  <record>
+    <flight_id>5333326</flight_id>
+    <origin>Dallas</origin>
+    <destination>San Diego</destination>
+    <departure_date>11/13/2024</departure_date>
+    <departure_time>20:04</departure_time>
+    <arrival_date>11/14/2024</arrival_date>
+    <arrival_time>03:04</arrival_time>
+    <num_seats>95</num_seats>
+    <price>341.10</price>
+  </record>
+  <record>
+    <flight_id>7887705</flight_id>
+    <origin>Austin</origin>
+    <destination>Sacramento</destination>
+    <departure_date>11/14/2024</departure_date>
+    <departure_time>18:48</departure_time>
+    <arrival_date>11/15/2024</arrival_date>
+    <arrival_time>02:48</arrival_time>
+    <num_seats>62</num_seats>
+    <price>164.22</price>
+  </record>
+  <record>
+    <flight_id>4910204</flight_id>
+    <origin>Dallas</origin>
     <destination>Los Angeles</destination>
     <departure_date>11/14/2024</departure_date>
-    <departure_time>08:27</departure_time>
+    <departure_time>13:59</departure_time>
     <arrival_date>11/14/2024</arrival_date>
-    <arrival_time>12:27</arrival_time>
-    <num_seats>47</num_seats>
-    <price>284.50</price>
+    <arrival_time>16:59</arrival_time>
+    <num_seats>73</num_seats>
+    <price>446.10</price>
   </record>
   <record>
-    <flight_id>1238474380</flight_id>
-    <origin>San Jose</origin>
-    <destination>San Antonio</destination>
+    <flight_id>3338662</flight_id>
+    <origin>Los Angeles</origin>
+    <destination>Houston</destination>
     <departure_date>11/15/2024</departure_date>
-    <departure_time>08:43</departure_time>
+    <departure_time>13:31</departure_time>
     <arrival_date>11/15/2024</arrival_date>
-    <arrival_time>14:43</arrival_time>
-    <num_seats>46</num_seats>
-    <price>395.49</price>
+    <arrival_time>21:31</arrival_time>
+    <num_seats>41</num_seats>
+    <price>234.16</price>
   </record>
   <record>
-    <flight_id>6449429517</flight_id>
-    <origin>San Jose</origin>
-    <destination>Austin</destination>
-    <departure_date>11/15/2024</departure_date>
-    <departure_time>06:43</departure_time>
-    <arrival_date>11/15/2024</arrival_date>
-    <arrival_time>07:43</arrival_time>
-    <num_seats>35</num_seats>
-    <price>464.57</price>
-  </record>
-  <record>
-    <flight_id>7681474689</flight_id>
-    <origin>Austin</origin>
+    <flight_id>7915694</flight_id>
+    <origin>Fort Worth</origin>
     <destination>San Francisco</destination>
-    <departure_date>11/16/2024</departure_date>
-    <departure_time>12:05</departure_time>
-    <arrival_date>11/16/2024</arrival_date>
-    <arrival_time>22:05</arrival_time>
-    <num_seats>70</num_seats>
-    <price>303.65</price>
+    <departure_date>11/15/2024</departure_date>
+    <departure_time>13:39</departure_time>
+    <arrival_date>11/15/2024</arrival_date>
+    <arrival_time>22:39</arrival_time>
+    <num_seats>39</num_seats>
+    <price>295.81</price>
   </record>
   <record>
-    <flight_id>5142875021</flight_id>
-    <origin>San Jose</origin>
-    <destination>Fort Worth</destination>
-    <departure_date>11/16/2024</departure_date>
-    <departure_time>20:35</departure_time>
-    <arrival_date>11/17/2024</arrival_date>
-    <arrival_time>00:35</arrival_time>
-    <num_seats>87</num_seats>
-    <price>278.88</price>
+    <flight_id>9879831</flight_id>
+    <origin>Los Angeles</origin>
+    <destination>Austin</destination>
+    <departure_date>11/17/2024</departure_date>
+    <departure_time>17:39</departure_time>
+    <arrival_date>11/18/2024</arrival_date>
+    <arrival_time>02:39</arrival_time>
+    <num_seats>52</num_seats>
+    <price>141.10</price>
   </record>
   <record>
-    <flight_id>1969717278</flight_id>
-    <origin>Fort Worth</origin>
+    <flight_id>2157935</flight_id>
+    <origin>Austin</origin>
     <destination>San Jose</destination>
     <departure_date>11/17/2024</departure_date>
-    <departure_time>17:44</departure_time>
+    <departure_time>13:23</departure_time>
     <arrival_date>11/17/2024</arrival_date>
-    <arrival_time>22:44</arrival_time>
-    <num_seats>86</num_seats>
-    <price>254.99</price>
+    <arrival_time>15:23</arrival_time>
+    <num_seats>44</num_seats>
+    <price>463.10</price>
   </record>
   <record>
-    <flight_id>4505046743</flight_id>
-    <origin>San Diego</origin>
-    <destination>Austin</destination>
-    <departure_date>11/17/2024</departure_date>
-    <departure_time>19:46</departure_time>
-    <arrival_date>11/18/2024</arrival_date>
-    <arrival_time>01:46</arrival_time>
-    <num_seats>89</num_seats>
-    <price>393.02</price>
-  </record>
-  <record>
-    <flight_id>8851308343</flight_id>
-    <origin>Los Angeles</origin>
-    <destination>San Antonio</destination>
-    <departure_date>11/17/2024</departure_date>
-    <departure_time>17:52</departure_time>
-    <arrival_date>11/18/2024</arrival_date>
-    <arrival_time>02:52</arrival_time>
-    <num_seats>90</num_seats>
-    <price>490.61</price>
-  </record>
-  <record>
-    <flight_id>1177178905</flight_id>
-    <origin>San Francisco</origin>
-    <destination>Austin</destination>
-    <departure_date>11/18/2024</departure_date>
-    <departure_time>08:50</departure_time>
-    <arrival_date>11/18/2024</arrival_date>
-    <arrival_time>13:50</arrival_time>
-    <num_seats>90</num_seats>
-    <price>404.79</price>
-  </record>
-  <record>
-    <flight_id>6935247455</flight_id>
-    <origin>San Diego</origin>
-    <destination>San Antonio</destination>
-    <departure_date>11/18/2024</departure_date>
-    <departure_time>14:25</departure_time>
-    <arrival_date>11/18/2024</arrival_date>
-    <arrival_time>17:25</arrival_time>
-    <num_seats>36</num_seats>
-    <price>105.75</price>
-  </record>
-  <record>
-    <flight_id>7819693869</flight_id>
+    <flight_id>5492272</flight_id>
     <origin>Houston</origin>
-    <destination>Sacramento</destination>
-    <departure_date>11/18/2024</departure_date>
-    <departure_time>06:42</departure_time>
-    <arrival_date>11/18/2024</arrival_date>
-    <arrival_time>15:42</arrival_time>
-    <num_seats>79</num_seats>
-    <price>368.74</price>
-  </record>
-  <record>
-    <flight_id>5048378408</flight_id>
-    <origin>Fort Worth</origin>
     <destination>San Jose</destination>
+    <departure_date>11/17/2024</departure_date>
+    <departure_time>07:35</departure_time>
+    <arrival_date>11/17/2024</arrival_date>
+    <arrival_time>09:35</arrival_time>
+    <num_seats>70</num_seats>
+    <price>345.13</price>
+  </record>
+  <record>
+    <flight_id>1373345</flight_id>
+    <origin>Austin</origin>
+    <destination>Los Angeles</destination>
     <departure_date>11/19/2024</departure_date>
-    <departure_time>13:04</departure_time>
+    <departure_time>11:16</departure_time>
     <arrival_date>11/19/2024</arrival_date>
-    <arrival_time>21:04</arrival_time>
-    <num_seats>79</num_seats>
-    <price>349.81</price>
+    <arrival_time>13:16</arrival_time>
+    <num_seats>61</num_seats>
+    <price>353.84</price>
   </record>
   <record>
-    <flight_id>6912212772</flight_id>
-    <origin>San Jose</origin>
-    <destination>Austin</destination>
-    <departure_date>11/20/2024</departure_date>
-    <departure_time>10:19</departure_time>
-    <arrival_date>11/20/2024</arrival_date>
-    <arrival_time>12:19</arrival_time>
-    <num_seats>20</num_seats>
-    <price>176.02</price>
+    <flight_id>7728783</flight_id>
+    <origin>Fort Worth</origin>
+    <destination>San Francisco</destination>
+    <departure_date>11/21/2024</departure_date>
+    <departure_time>07:29</departure_time>
+    <arrival_date>11/21/2024</arrival_date>
+    <arrival_time>09:29</arrival_time>
+    <num_seats>80</num_seats>
+    <price>182.82</price>
   </record>
   <record>
-    <flight_id>6458425821</flight_id>
+    <flight_id>3598709</flight_id>
+    <origin>San Diego</origin>
+    <destination>Houston</destination>
+    <departure_date>11/22/2024</departure_date>
+    <departure_time>18:54</departure_time>
+    <arrival_date>11/23/2024</arrival_date>
+    <arrival_time>04:54</arrival_time>
+    <num_seats>100</num_seats>
+    <price>491.92</price>
+  </record>
+  <record>
+    <flight_id>4517346</flight_id>
     <origin>Los Angeles</origin>
     <destination>Fort Worth</destination>
-    <departure_date>11/25/2024</departure_date>
-    <departure_time>07:44</departure_time>
-    <arrival_date>11/25/2024</arrival_date>
-    <arrival_time>16:44</arrival_time>
-    <num_seats>53</num_seats>
-    <price>437.90</price>
+    <departure_date>11/22/2024</departure_date>
+    <departure_time>09:45</departure_time>
+    <arrival_date>11/22/2024</arrival_date>
+    <arrival_time>18:45</arrival_time>
+    <num_seats>23</num_seats>
+    <price>234.87</price>
   </record>
   <record>
-    <flight_id>1276080597</flight_id>
-    <origin>Sacramento</origin>
-    <destination>San Antonio</destination>
-    <departure_date>11/25/2024</departure_date>
-    <departure_time>19:16</departure_time>
-    <arrival_date>11/25/2024</arrival_date>
-    <arrival_time>21:16</arrival_time>
-    <num_seats>47</num_seats>
-    <price>462.44</price>
+    <flight_id>1289681</flight_id>
+    <origin>Austin</origin>
+    <destination>Sacramento</destination>
+    <departure_date>11/23/2024</departure_date>
+    <departure_time>14:31</departure_time>
+    <arrival_date>11/23/2024</arrival_date>
+    <arrival_time>17:31</arrival_time>
+    <num_seats>34</num_seats>
+    <price>233.79</price>
   </record>
   <record>
-    <flight_id>4606001440</flight_id>
-    <origin>Sacramento</origin>
+    <flight_id>7701231</flight_id>
+    <origin>San Jose</origin>
+    <destination>Austin</destination>
+    <departure_date>11/24/2024</departure_date>
+    <departure_time>14:05</departure_time>
+    <arrival_date>11/24/2024</arrival_date>
+    <arrival_time>15:05</arrival_time>
+    <num_seats>70</num_seats>
+    <price>108.72</price>
+  </record>
+  <record>
+    <flight_id>2147088</flight_id>
+    <origin>Austin</origin>
+    <destination>San Jose</destination>
+    <departure_date>11/24/2024</departure_date>
+    <departure_time>06:56</departure_time>
+    <arrival_date>11/24/2024</arrival_date>
+    <arrival_time>07:56</arrival_time>
+    <num_seats>51</num_seats>
+    <price>109.10</price>
+  </record>
+  <record>
+    <flight_id>4932834</flight_id>
+    <origin>San Jose</origin>
     <destination>Dallas</destination>
     <departure_date>11/26/2024</departure_date>
-    <departure_time>18:12</departure_time>
+    <departure_time>20:38</departure_time>
     <arrival_date>11/27/2024</arrival_date>
-    <arrival_time>01:12</arrival_time>
-    <num_seats>53</num_seats>
-    <price>157.43</price>
+    <arrival_time>03:38</arrival_time>
+    <num_seats>75</num_seats>
+    <price>207.67</price>
   </record>
   <record>
-    <flight_id>7618385695</flight_id>
+    <flight_id>8142942</flight_id>
     <origin>Los Angeles</origin>
-    <destination>Houston</destination>
-    <departure_date>11/27/2024</departure_date>
-    <departure_time>21:34</departure_time>
-    <arrival_date>11/28/2024</arrival_date>
-    <arrival_time>06:34</arrival_time>
-    <num_seats>90</num_seats>
-    <price>451.62</price>
+    <destination>Fort Worth</destination>
+    <departure_date>11/26/2024</departure_date>
+    <departure_time>16:51</departure_time>
+    <arrival_date>11/27/2024</arrival_date>
+    <arrival_time>00:51</arrival_time>
+    <num_seats>25</num_seats>
+    <price>447.54</price>
   </record>
   <record>
-    <flight_id>7573533908</flight_id>
+    <flight_id>5152045</flight_id>
+    <origin>Dallas</origin>
+    <destination>San Jose</destination>
+    <departure_date>11/30/2024</departure_date>
+    <departure_time>16:49</departure_time>
+    <arrival_date>11/30/2024</arrival_date>
+    <arrival_time>23:49</arrival_time>
+    <num_seats>25</num_seats>
+    <price>202.42</price>
+  </record>
+  <record>
+    <flight_id>7813939</flight_id>
     <origin>Sacramento</origin>
-    <destination>Houston</destination>
-    <departure_date>11/28/2024</departure_date>
-    <departure_time>15:39</departure_time>
-    <arrival_date>11/28/2024</arrival_date>
-    <arrival_time>16:39</arrival_time>
-    <num_seats>91</num_seats>
-    <price>143.99</price>
+    <destination>Dallas</destination>
+    <departure_date>11/30/2024</departure_date>
+    <departure_time>17:27</departure_time>
+    <arrival_date>12/1/2024</arrival_date>
+    <arrival_time>00:27</arrival_time>
+    <num_seats>31</num_seats>
+    <price>409.71</price>
   </record>
   <record>
-    <flight_id>5364187144</flight_id>
-    <origin>Fort Worth</origin>
-    <destination>Sacramento</destination>
-    <departure_date>11/28/2024</departure_date>
-    <departure_time>20:11</departure_time>
-    <arrival_date>11/29/2024</arrival_date>
-    <arrival_time>00:11</arrival_time>
-    <num_seats>89</num_seats>
-    <price>140.88</price>
+    <flight_id>9921419</flight_id>
+    <origin>Austin</origin>
+    <destination>San Jose</destination>
+    <departure_date>11/30/2024</departure_date>
+    <departure_time>17:55</departure_time>
+    <arrival_date>11/30/2024</arrival_date>
+    <arrival_time>21:55</arrival_time>
+    <num_seats>53</num_seats>
+    <price>485.64</price>
+  </record>
+  <record>
+    <flight_id>7396204</flight_id>
+    <origin>Los Angeles</origin>
+    <destination>Austin</destination>
+    <departure_date>11/30/2024</departure_date>
+    <departure_time>14:49</departure_time>
+    <arrival_date>11/30/2024</arrival_date>
+    <arrival_time>16:49</arrival_time>
+    <num_seats>88</num_seats>
+    <price>429.26</price>
   </record>
 </dataset>

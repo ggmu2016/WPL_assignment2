@@ -6,7 +6,9 @@
       "dob": "12/12/2000",
       "ssn": "426-19-2337",
       "cart": {
-        "oway": [],
+        "oway": [
+          "4227014"
+        ],
         "rtrip": {
           "departures": [],
           "returns": []

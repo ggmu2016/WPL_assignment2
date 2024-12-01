@@ -1,5 +1,7 @@
+const port = 4000;
+
 function findFlights(org, dst, depDate, seats) {
-    const apiBaseURL = "http://localhost:3000";
+    const apiBaseURL = `http://localhost:${port}`;
     return fetch(
         `${apiBaseURL}/search-flights?origin=${org}&destination=${dst}&departureDate=${depDate.toISOString()}&seats=${seats}`
     )
@@ -13,7 +15,7 @@ function findFlights(org, dst, depDate, seats) {
 
 async function bookFlight(flightId, seatsToBook) {
     try{
-        const response = await fetch('http://localhost:3000/book-flight',{
+        const response = await fetch(`http://localhost:${port}/book-flight`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -36,7 +38,7 @@ async function bookFlight(flightId, seatsToBook) {
 }
 
 async function addFlightNumToJSON(oneWayID, returnID) {
-    const apiBaseURL = "http://localhost:3000";
+    const apiBaseURL = `http://localhost:${port}`;
     let response = await fetch(
         `${apiBaseURL}/passenger-info`
     )

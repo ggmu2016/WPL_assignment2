@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 const xmlFilePath = "xml/data.xml";
+const comments_xmlFilePath = "xml/comments.xml";
 const jsonFilePath = "json/data.json";
 
 
@@ -21,10 +22,10 @@ const Pool = require("pg").Pool;
 
 const pool = new Pool({
     user: "postgres",
-    password: "admin",
+    password: null,
     host: "localhost",
     port: 5432,
-    database: "wpl_db"
+    database: "webprogram"
 });
 
 
@@ -68,14 +69,14 @@ async function writeJSONFile(data) {
 
 
 // API route to get JSON file
-app.get("/passenger-info", async (req, res) => {
+app.get(`/passenger-info`, async (req, res) => {
     const jsonData = await readJSONFile();
     res.json(jsonData);
 })
 
 
 // API route to search for flights
-app.get("/search-flights", async (req, res) => {
+app.get(`/search-flights`, async (req, res) => {
     try {
         const {origin, destination, departureDate, seats} = req.query;
         const xmlData = await readXMLFile();
@@ -114,7 +115,7 @@ app.get("/search-flights", async (req, res) => {
 
 
 // update seats (book flight)
-app.post("/book-flight", async (req, res) => {
+app.post(`/book-flight`, async (req, res) => {
     try {
         const {flightId, seatsToBook} = req.body;
         if (!flightId || seatsToBook === undefined) {
@@ -145,7 +146,7 @@ app.post("/book-flight", async (req, res) => {
     }
 });
 
-app.post("/update-json", async (req, res) => {
+app.post(`/update-json`, async (req, res) => {
     try {
         const customer_data = req.body;
 
@@ -158,7 +159,7 @@ app.post("/update-json", async (req, res) => {
 
 //The user should be able to retrieve all the information about
 // booked flights and booked hotels using hotel-booking id and Flight-booking-id
-app.get("/booking-info/:id1/:id2", async (req, res) => {
+app.get(`/booking-info/:id1/:id2`, async (req, res) => {
     try {
         const {id1, id2} = req.params;
         const qry1 = `select *
@@ -181,7 +182,7 @@ app.get("/booking-info/:id1/:id2", async (req, res) => {
 
 //The user should be able to retrieve information of all passengers
 // in a booked flights using Flight-booking-id
-app.get("/passenger-info/:id", async (req, res) => {
+app.get(`/passenger-info/:id`, async (req, res) => {
     try {
         const {id} = req.params;
         const qry = `select SSN, FirstName, LastName, Date_of_birth, Category
@@ -217,7 +218,99 @@ app.get("/booking-info/:ssn", async (req, res) => {
     }
 });
 
-app.post("/register", async (req, res) => {
+// admin add flights from XML to the database
+app.post("/insert-flights", async (req, res) => {
+    try{
+        // read and parse xml file
+        const data = await fs.readFile(xmlFilePath, 'utf8');
+        const parsedData = await xml2js.parseStringPromise(data);
+
+        // extract flight records from xml
+        const flights = parsedData.dataset.record;
+        //console.log('parsed flights:', flights);
+
+        for (const flight of flights) {
+            const query = `insert into flights values ($1,$2,$3,$4,$5,$6,$7,$8,$9)`;
+            const values = [
+                flight.flight_id[0],
+                flight.origin[0],
+                flight.destination[0],
+                flight.departure_date[0],
+                flight.arrival_date[0],
+                flight.departure_time[0],
+                flight.arrival_time[0],
+                parseInt(flight.num_seats[0]),
+                parseInt(flight.price[0])
+            ];
+            await pool.query(query, values);
+        }
+    }catch (err){
+        console.log("Error inserting xml flights",err);
+    }
+})
+
+// generate unique contact id
+function generateContactID(){
+    return Math.floor(Math.random()*1000000);
+}
+
+// Handle comment submission
+app.post("/submit-comment", async (req, res) => {
+    try {
+        const {firstName, lastName, dob, phone, email, gender, comment} = req.body;
+
+        // read existing XML data or create new xml file
+        let xmlData;
+        try {
+            const fileContent = await fs.readFile(comments_xmlFilePath, 'utf8');
+            xmlData = await xml2js.parseStringPromise(fileContent);
+        } catch {
+            // if file does not exist initialize new file structure
+            console.log("File does not exist. Initializing new XML structure.");
+            xmlData = { comments: { comment: [] } };
+        }
+
+        // Ensure `comments` and `comment` arrays are properly initialized
+        if (!xmlData.comments) {
+            xmlData.comments = { comment: [] };
+        }
+        if (!Array.isArray(xmlData.comments.comment)) {
+            xmlData.comments.comment = [];
+        }
+
+        const contactID = generateContactID();
+        const newComment = {
+            contact_id: contactID,
+            firstName,
+            lastName,
+            dob,
+            phone,
+            email,
+            gender,
+            comment
+        };
+
+        xmlData.comments.comment.push(newComment);
+
+        // converting updated data back to xml
+        const builder = new xml2js.Builder();
+        const updatedXML = builder.buildObject(xmlData);
+        await fs.writeFile(comments_xmlFilePath, updatedXML);
+
+        console.log("Comment submitted successfully: ", contactID);
+        res.status(200).json({ message: "Comment submitted successfully.", contactID });
+
+    }catch (err){
+        console.error("Error handling comment submission: ", err);
+        res.status(500).json({ error: "Failed to submit comment." });
+    }
+
+})
+
+
+
+
+app.post(`/register`, async (req, res) => {
     try {
         const reg_data = req.body;
 
@@ -229,7 +322,7 @@ app.post("/register", async (req, res) => {
     }
 });
 
-app.post("/login", async (req, res) => {
+app.post(`/login`, async (req, res) => {
     try {
         const login_data = req.body;
         let queryString = "SELECT user_id FROM users WHERE Phone_number = '" + login_data.phone + "' AND Password = '" + login_data.password + "';";
@@ -249,7 +342,7 @@ app.post("/login", async (req, res) => {
     }
 });
 
-app.get("/loadHotelDB", async (req, res) => {
+app.get(`/loadHotelDB`, async (req, res) => {
 
     const hoteljson = await fs.readFile('hotel_data.json');
     const hotels = JSON.parse(hoteljson);

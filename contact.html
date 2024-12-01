@@ -36,6 +36,8 @@
         <p>Background Color</p>
         <input id="colorPicker" type="color" value="#ff0000" style="width:70%;">
         <p id="bgtext">Background color: #FFFFFF</p>
+        <br> <br>
+        <p class="error" id="error"></p>
 
     </aside>
     <main>
@@ -48,6 +50,9 @@
                 <label for="lastName">Last Name:</label>
                 <input type="text" id="lastName" required><br><br>
 
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" required><br><br>
+
                 <label for="phone">Phone (Format: (ddd) ddd-dddd):</label>
                 <input type="tel" id="phone" required><br><br>
 
@@ -55,7 +60,7 @@
                 <input type="email" id="email" required><br><br>
 
                 <label for="gender">Gender:</label>
-                <input type="radio" name="gender" value="Male" required> Male
+                <input type="radio" id="gender" name="gender" value="Male" required> Male
                 <input type="radio" name="gender" value="Female" required> Female<br><br>
 
                 <label for="comments">Comments (min 10 characters):</label>
@@ -72,33 +77,94 @@
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $('#contactForm').on('submit', function (e) {
-        e.preventDefault();
-        const firstName = $('#firstName').val();
-        const lastName = $('#lastName').val();
-        const phone = $('#phone').val();
-        const email = $('#email').val();
-        const comments = $('#comments').val();
+    $('#contactForm').on('submit', async function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        const firstName = $('#firstName').val().trim();
+        const lastName = $('#lastName').val().trim();
+        const phone = $('#phone').val().trim();
+        const dob   = $('#dob').val();
+        const email = $('#email').val().trim();
+        const comments = $('#comments').val().trim();
         const gender = $('input[name="gender"]:checked').val();
 
-        const namePattern = /^[A-Z][a-z]+$/;
-        const phonePattern = /^\(\d{3}\) \d{3}-\d{4}$/;
+        // Validation Patterns
+        const namePattern = /^[A-Z][a-zA-Z'\- ]+$/; // Allows names with spaces, hyphens, and apostrophes
+        const phonePattern = /^\(\d{3}\) \d{3}-\d{4}$/; // Strict phone pattern
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Standard email regex
 
+        // Validation Logic
         if (!namePattern.test(firstName) || !namePattern.test(lastName)) {
-            alert('First and Last name must start with a capital letter and contain only alphabetic characters.');
-        } else if (firstName === lastName) {
+            alert('First and Last name must start with a capital letter and contain valid characters (letters, hyphens, spaces, apostrophes).');
+            return;
+        }
+        if (firstName === lastName) {
             alert('First and last name cannot be the same.');
-        } else if (!phonePattern.test(phone)) {
+            return;
+        }
+        if (!phonePattern.test(phone)) {
             alert('Phone number must be in the format (ddd) ddd-dddd.');
-        } else if (comments.length < 10) {
+            return;
+        }
+        if (!emailPattern.test(email)) {
+            alert('Enter a valid email address.');
+            return;
+        }
+        if (comments.length < 10) {
             alert('Comments must be at least 10 characters long.');
-        } else {
-            $('#contactOutput').html(`
-                <h3>Contact Form Submitted:</h3>
-                <p>First Name: ${firstName}</p>
-                <p>Last Name: ${lastName}</p>
-                <p>Phone: ${phone}</p>
-                <p>Email: ${email}</p>
-                <p>Gender: ${gender}</p>
-                <p>Comments: ${comments}</p>
-            `
+            return;
+        }
+        if (!dob) {
+            alert('Please enter date of birth');
+            return;
+        }
+
+        // dobParsed
+        const dobParsed = new Date(dob);
+        const dobFormatted = dobParsed.toISOString().split("T")[0];
+
+        // Update Output
+        $('#contactOutput').html(`
+        <h3>Contact Form Submitted:</h3>
+        <p><strong>First Name:</strong> ${firstName}</p>
+        <p><strong>Last Name:</strong> ${lastName}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Gender:</strong> ${gender}</p>
+        <p><strong>Comments:</strong> ${comments}</p>
+    `);
+
+        // collect form data
+        const formData = {
+            firstName: firstName,
+            lastName: lastName,
+            dob: dobFormatted,
+            phone: phone,
+            email: email,
+            gender: gender,
+            comment: comments
+        };
+        try{
+            const response = await fetch("http://localhost:4000/submit-comment",{
+                method:"POST",
+                headers:{"Content-Type": "application/json"},
+                body: JSON.stringify(formData)
+            });
+            if (response.ok){
+                const result = await response.json();
+                alert('Comment successfully submitted');
+            }
+            else {
+                alert("Failed to submit comment.");
+            }
+        }catch (err){
+            console.error("Error submitting comment: ", err);
+        }
+
+        // Optionally reset the form
+        $('#contactForm')[0].reset();
+    });
+
+</script>
+</body>
+</html>

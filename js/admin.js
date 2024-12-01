@@ -1,4 +1,4 @@
-const port = 3000
+const port = 4000;
 
 function fetchHotelData() {
     fetch(`http://localhost:${port}/loadHotelDB`)

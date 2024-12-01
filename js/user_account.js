@@ -50,3 +50,20 @@ async function loadQuery2(event){
 
     document.querySelector("#passenger-info-tbl").style = "display:table";
 }
+
+async function fetchFlightData(event){
+    try {
+        const response = await fetch(`http://localhost:${port}/insert-flights`, {
+            method: 'POST',
+        });
+        if (response.ok) {
+            const result = await response.json();
+            alert(`Successfully added!`)
+        } else {
+            const err = await response.json();
+            alert("Error, could not add data!");
+        }
+    }catch (err){
+        console.error("Request failed: ", err);
+    }
+}

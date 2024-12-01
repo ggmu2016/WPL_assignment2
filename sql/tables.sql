@@ -20,7 +20,7 @@ CREATE TABLE flights (
     available_seats INTEGER NOT NULL,
     price DECIMAL(10, 2) NOT NULL
 );
-
+`
 CREATE TABLE passenger (
     SSN CHAR(9) PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,

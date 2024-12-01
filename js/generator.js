@@ -16,7 +16,7 @@ function getRandomCity(stateCities) {
 function getUniqueFlightId(existingIds) {
     let flightId;
     do {
-        flightId = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+        flightId = Math.floor(1000000 + Math.random() * 9000000).toString();
     } while (existingIds.has(flightId));
     existingIds.add(flightId);
     return flightId;
