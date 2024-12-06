@@ -80,6 +80,7 @@ function checkCookie() {
             newLink.textContent = 'Account';
             newListItem.appendChild(newLink);
             navigation.appendChild(newListItem);
+            document.getElementById("welcomefield").innerHTML = "<h2>Welcome " + user + "</h2>";
         }
     } else {
         loginButton.innerText = "Login";

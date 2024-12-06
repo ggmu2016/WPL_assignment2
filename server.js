@@ -274,7 +274,12 @@ app.post("/insert-flights", async (req, res) => {
                 parseInt(flight.num_seats[0]),
                 parseInt(flight.price[0])
             ];
-            await pool.query(query, values);
+            try {
+                await pool.query(query, values)
+                console.log(`Inserted: ${flight.name} with ID ${flight.id}`);
+            }catch(error){
+                console.log(`Error inserting ${flight.name} with ID ${flight.id}:`,error);
+            }
         }
     }catch (err){
         console.log("Error inserting xml flights",err);
