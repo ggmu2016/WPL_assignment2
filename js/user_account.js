@@ -62,11 +62,12 @@ async function loadQuery2(event){
 
 async function loadQuery3(event){
     event.preventDefault();
-    const passenger_ssn = document.getElementById("ssn").value.toString();
+    const passenger_ssn = document.getElementById("ssn").value.trim();
     const tbody = document.querySelector("#booked-flight-tbl tbody");
 
     const response = await fetch(`http://localhost:${port}/booking-info/${passenger_ssn}`, {})
     const passengers = await response.json();
+    console.log("passengers", passengers);
 
     tbody.innerHTML="";
     passengers.forEach(passenger => {

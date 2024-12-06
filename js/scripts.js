@@ -3,6 +3,13 @@ const defaultColor = "#ffffff";
 
 window.addEventListener("load", startup, false);
 
+function logout() {
+    setCookie("loginid", "-1", -1); // Reset the loginid cookie
+    alert("You have been logged out.");
+    const adminSection = document.getElementById("admin-queries-section");
+    if (adminSection) adminSection.style.display = "none"; // Hide admin section
+    location.reload(); // Refresh the page to reflect the logout state
+}
 function startup() {
     colorPicker = document.querySelector("#colorPicker");
     colorPicker.value = defaultColor;
@@ -57,22 +64,26 @@ function getCookie(cname) {
 
 function checkCookie() {
     let user = getCookie("loginid");
-    if (user != "" && user != "-1") {
-        let loginButton = document.getElementById("loginButton");
+    const loginButton = document.getElementById("loginButton");
+
+    if (user && user !== "-1") {
         loginButton.href = "";
         loginButton.innerText = "Logout";
-        loginButton.onclick = function () {
-            setCookieHome("loginid", "-1", -1);
+        loginButton.onclick = logout;
+
+        const navigation = document.getElementById("navigation");
+        if (!navigation.querySelector('a[href="account.html"]')) {
+            const newListItem = document.createElement('li');
+            const newLink = document.createElement('a');
+            newLink.className = 'navbar';
+            newLink.href = 'account.html';
+            newLink.textContent = 'Account';
+            newListItem.appendChild(newLink);
+            navigation.appendChild(newListItem);
         }
-        const newListItem = document.createElement('li');
-        const newLink = document.createElement('a');
-        newLink.className = 'navbar';
-        newLink.href = 'account.html';
-        newLink.textContent = 'Account';
-        newListItem.appendChild(newLink);
-        const navigation = document.getElementById('navigation');
-        navigation.appendChild(newListItem);
     } else {
+        loginButton.innerText = "Login";
+        loginButton.onclick = null; // Remove the logout functionality
     }
 }
 

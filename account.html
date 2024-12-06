@@ -24,7 +24,6 @@
     <li><a class="navbar" href="cars.html">Cars</a></li>
     <li><a class="navbar" href="contact.html">Contact Us</a></li>
     <li><a class="navbar" href="cart.html">My Cart</a></li>
-    <li><a class="navbar" href="account.html">Account</a></li>
     <li><a id="loginButton" class="navbar" href="register.html">Log In</a></li>
   </ul>
 </nav>
@@ -132,35 +131,20 @@
     </div>
     <h2>Admin Queries</h2>
     <br>
-    <div class="flight-container">
-      <button id="admin-query-1" onclick="adminQuery1()">Find ALL Booked Flights From Texas Sep-Oct 2024</button>
-    </div>
-    <div class="flight-container">
-      <button id="admin-query-2" onclick="adminQuery2()">Find ALL Booked Hotels In Texas Sep-Oct 2024</button>
-    </div>
-    <div class="flight-container">
-      <button id="admin-query-3" onclick="adminQuery3()">Find Most Expensive Booked Hotels</button>
-
-    </div>
-    <div class="flight-container">
-      <button id="admin-query-4" onclick="adminQuery4()">Find ALL Booked Flights With Infant</button>
-
-    </div>
-    <div class="flight-container">
-      <button id="admin-query-5" onclick="adminQuery5()">Find Most Expensive Booked Flights</button>
-
-    </div>
-    <div class="flight-container">
-      <button id="admin-query-6" onclick="adminQuery6()">Find ALL Booked Flights With Infant and Atleast 5 Children</button>
-
-    </div>
-    <div class="flight-container">
-      <button id="admin-query-7" onclick="adminQuery7()">Find ALL Booked Flights from Texas with NO Infants</button>
-
-    </div>
-    <div class="flight-container">
-      <button id="admin-query-8" onclick="adminQuery8()">Find ALL Booked Flights To California Sep-Oct 2024</button>
-
+    <div class="flight-container" id="admin-queries-section" style="display: none">
+      <button onclick="runQuery('allBookedFlightsFromTexas')">Flights from Texas (Sep-Oct 2024)</button><br><br>
+      <button onclick="runQuery('bookedFlightsWithInfants')">Booked Flights with Infants</button><br><br>
+      <button onclick="runQuery('bookedFlightsWithInfantsAndChildren')">Flights with Infants & 5+ Children</button><br><br>
+      <button onclick="runQuery('mostExpensiveBookedFlights')">Most Expensive Booked Flights</button><br><br>
+      <button onclick="runQuery('flightsFromTexasNoInfants')">Flights from Texas (No Infants)</button><br><br>
+      <button onclick="runQuery('numberOfFlightsToCalifornia')">Number of Flights to California</button><br><br>
+      <table id="dynamic-table" style="display: none;">
+        <thead>
+        </thead>
+        <tbody>
+        <!-- Rows will be dynamically inserted here -->
+        </tbody>
+      </table>
     </div>
 
   </main>

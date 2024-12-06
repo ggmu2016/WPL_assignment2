@@ -229,9 +229,9 @@ app.get("/booking-info/:ssn", async (req, res) => {
                      from tickets 
                      join flight_booking on tickets.flight_booking_id = flight_booking.flight_booking_id
                      join flights on flights.flight_id = flight_booking.flight_id
-                     where ssn = ${ssnString}`;
-        const booking_info = await pool.query(qry);
-        res.json(booking_info);
+                     where ssn = $1`;
+        const booking_info = await pool.query(qry,[ssnString]);
+        res.json(booking_info.rows);
     } catch (err) {
         console.log(err);
     }
@@ -428,6 +428,99 @@ app.get(`/loadHotelDB`, async (req, res) => {
     }
     
 });
+
+// ADMIN QUERIES
+app.post("/dynamic-query", async (req, res) => {
+    try {
+        const { queryType, params } = req.body;
+
+        let qry;
+        switch (queryType) {
+            case "allBookedFlightsFromTexas":
+                qry = `
+                    SELECT tickets.ticket_id, flight_booking.flight_booking_id, flights.flight_id, origin, destination, departure_date, departure_time
+                    FROM tickets
+                    JOIN flight_booking ON tickets.flight_booking_id = flight_booking.flight_booking_id
+                    JOIN flights ON flights.flight_id = flight_booking.flight_id
+                    WHERE LOWER(origin) IN ('austin', 'dallas','houston', 'san antonio')
+                      AND departure_date BETWEEN '2024-09-01' AND '2024-10-31';
+                `;
+                break;
+            case "bookedFlightsWithInfants":
+                qry = `
+                    SELECT tickets.ticket_id, flight_booking.flight_booking_id, flights.flight_id, origin, destination, departure_date, departure_time
+                    FROM tickets
+                    JOIN flight_booking ON tickets.flight_booking_id = flight_booking.flight_booking_id
+                    JOIN flights ON flights.flight_id = flight_booking.flight_id
+                    WHERE tickets.ssn IN (
+                        SELECT ssn FROM passenger WHERE category = 'infants'
+                    );
+                `;
+                break;
+            case "bookedFlightsWithInfantsAndChildren":
+                qry = `
+                    SELECT tickets.ticket_id, flight_booking.flight_booking_id, flights.flight_id, origin, destination, departure_date, departure_time
+                    FROM tickets
+                    JOIN flight_booking ON tickets.flight_booking_id = flight_booking.flight_booking_id
+                    JOIN flights ON flights.flight_id = flight_booking.flight_id
+                    WHERE tickets.ssn IN (
+                        SELECT ssn FROM passenger WHERE category = 'infants'
+                    ) AND (
+                        SELECT COUNT(*) 
+                        FROM passenger 
+                        WHERE category = 'children' 
+                        AND passenger.ssn = tickets.ssn
+                    ) >= 5;
+                `;
+                break;
+            case "mostExpensiveBookedFlights":
+                qry = `
+                    SELECT tickets.*, flight_booking.*, flights.*
+                    FROM tickets
+                    JOIN flight_booking ON tickets.flight_booking_id = flight_booking.flight_booking_id
+                    JOIN flights ON flights.flight_id = flight_booking.flight_id
+                    ORDER BY flight_booking.total_price DESC
+                    LIMIT 5;
+                `;
+                break;
+            case "flightsFromTexasNoInfants":
+                qry = `
+                    SELECT tickets.ticket_id, flight_booking.flight_booking_id, flights.flight_id, origin, destination, departure_date, departure_time
+                    FROM tickets
+                    JOIN flight_booking ON tickets.flight_booking_id = flight_booking.flight_booking_id
+                    JOIN flights ON flights.flight_id = flight_booking.flight_id
+                    WHERE LOWER(origin) IN ('austin', 'dallas','houston', 'san antonio')
+                      AND NOT EXISTS (
+                          SELECT * FROM passenger
+                          WHERE passenger.category = 'infants'
+                          AND passenger.ssn = tickets.ssn
+                      );
+                `;
+                break;
+            case "numberOfFlightsToCalifornia":
+                qry = `
+                    SELECT COUNT(*) AS flight_count
+                    FROM flights
+                    JOIN flight_booking ON flights.flight_id = flight_booking.flight_id
+                    WHERE LOWER(destination) IN ('san diego', 'los angeles', 'san francisco', 'sacramento', 'fresno')
+                      AND departure_date BETWEEN '2024-09-01' AND '2024-10-31';
+                `;
+                break;
+            default:
+                return res.status(400).send("Invalid query type");
+        }
+
+        const result = await pool.query(qry, params || []);
+        res.json(result.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error executing query");
+    }
+});
+
+
+
+
 
 // Start the server
 app.listen(port, () => {
