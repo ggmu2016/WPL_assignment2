@@ -44,7 +44,7 @@
 
   </aside>
   <main>
-    <h2>Content</h2>
+    <h2>User Queries</h2>
     <div id="bodyContent">
       <button type="button" id="hotelDbBtn" onclick="fetchHotelData()">Load Hotels to DB</button>
       <button type="button" id="flightDbBtn" onclick="fetchFlightData()">Load Flights XML to DB</button>
@@ -63,7 +63,6 @@
         <table id="booking-info-tbl" style="display: none">
           <thead>
           <tr>
-            <th>Flight Booking ID</th>
             <th>Flight ID</th>
             <th>Origin</th>
             <th>Destination</th>
@@ -104,7 +103,7 @@
         <h3>Find Booked Flights</h3>
         <form id="user-form3">
           <label for="ssn">Enter SSN</label>
-          <input type="text" id="ssn"><br><br>
+          <input type="text" id="ssn" pattern="\d{9}" required title="Enter a 9-digit SSN"><br><br>
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -131,6 +130,39 @@
 
       <br>
     </div>
+    <h2>Admin Queries</h2>
+    <br>
+    <div class="flight-container">
+      <button id="admin-query-1" onclick="adminQuery1()">Find ALL Booked Flights From Texas Sep-Oct 2024</button>
+    </div>
+    <div class="flight-container">
+      <button id="admin-query-2" onclick="adminQuery2()">Find ALL Booked Hotels In Texas Sep-Oct 2024</button>
+    </div>
+    <div class="flight-container">
+      <button id="admin-query-3" onclick="adminQuery3()">Find Most Expensive Booked Hotels</button>
+
+    </div>
+    <div class="flight-container">
+      <button id="admin-query-4" onclick="adminQuery4()">Find ALL Booked Flights With Infant</button>
+
+    </div>
+    <div class="flight-container">
+      <button id="admin-query-5" onclick="adminQuery5()">Find Most Expensive Booked Flights</button>
+
+    </div>
+    <div class="flight-container">
+      <button id="admin-query-6" onclick="adminQuery6()">Find ALL Booked Flights With Infant and Atleast 5 Children</button>
+
+    </div>
+    <div class="flight-container">
+      <button id="admin-query-7" onclick="adminQuery7()">Find ALL Booked Flights from Texas with NO Infants</button>
+
+    </div>
+    <div class="flight-container">
+      <button id="admin-query-8" onclick="adminQuery8()">Find ALL Booked Flights To California Sep-Oct 2024</button>
+
+    </div>
+
   </main>
 </div>
 <footer>
@@ -138,5 +170,6 @@
 </footer>
 <script type="text/javascript" src ="js/user_account.js"></script>
 <script type="text/javascript" src="js/admin.js"></script>
+<script type="text/javascript" src = "js/admin_queries.js"></script>
 </body>
 </html>

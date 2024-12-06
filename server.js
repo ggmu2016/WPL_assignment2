@@ -162,17 +162,35 @@ app.post(`/update-json`, async (req, res) => {
 app.get(`/booking-info/:id1/:id2`, async (req, res) => {
     try {
         const {id1, id2} = req.params;
-        const qry1 = `select *
-                      from flight_booking
+        let flight_info = null;
+        if (id1) {
+            const qry1 = `select flight_booking.flight_id, origin, destination, departure_date, departure_time, arrival_date, arrival_time, total_price
+                      from flight_booking 
+                      join flights on flight_booking.flight_id=flights.flight_id
                       where flight_booking_id = ${id1}`;
-        const qry2 = `select *
+            flight_info = await pool.query(qry1);
+        }
+        let hotel_info = null;
+        if (id2) {
+            const qry2 = `select *
                       from hotel_booking
                       where hotel_booking_id = ${id2}`;
-        const flight_info = await pool.query(qry1);
-        const hotel_info = await pool.query(qry2);
+
+            hotel_info = await pool.query(qry2);
+        }
+        let hotel_info_rows = null;
+        let flight_info_rows = null;
+
+        if (flight_info){
+            flight_info_rows = flight_info.rows;
+        }
+        if (hotel_info){
+            hotel_info_rows = hotel_info.rows;
+        }
+
         res.json({
-            flights: flight_info.rows,
-            hotels: hotel_info.rows
+            flights: flight_info_rows,
+            hotels: hotel_info_rows
         });
         console.log(res)
     } catch (err) {
@@ -185,7 +203,7 @@ app.get(`/booking-info/:id1/:id2`, async (req, res) => {
 app.get(`/passenger-info/:id`, async (req, res) => {
     try {
         const {id} = req.params;
-        const qry = `select SSN, FirstName, LastName, Date_of_birth, Category
+        const qry = `select passenger.SSN, FirstName, LastName, Date_of_birth, Category
                      from passenger
                               join tickets on passenger.SSN = tickets.SSN
                      where flight_booking_id = ${id}`;
@@ -206,15 +224,29 @@ app.get(`/passenger-info/:id`, async (req, res) => {
 app.get("/booking-info/:ssn", async (req, res) => {
     try {
         const {ssn} = req.params;
+        const ssnString = String(ssn);
         const qry = `select *
                      from tickets 
                      join flight_booking on tickets.flight_booking_id = flight_booking.flight_booking_id
                      join flights on flights.flight_id = flight_booking.flight_id
-                     where ssn = ${ssn}`;
+                     where ssn = ${ssnString}`;
         const booking_info = await pool.query(qry);
         res.json(booking_info);
     } catch (err) {
         console.log(err);
+    }
+});
+
+// add ticket info
+app.post(`/add-ticket`, async (req, res) => {
+    try{
+        const {flight_booking_id, ssn, price} = req.body;
+        const qry = `INSERT INTO tickets (flight_booking_id, SSN, price) VALUES ($1, $2, $3)`;
+        await pool.query(qry,[flight_booking_id,ssn,price]);
+        res.status(201).send('Ticket added successfully.');
+    } catch (error) {
+        console.log("error adding tickets:", error);
+        res.status(200).send("Failed to add tix")
     }
 });
 
@@ -307,9 +339,33 @@ app.post("/submit-comment", async (req, res) => {
 
 })
 
+// Add passenger endpoint
+app.post('/add-passenger', async (req, res) => {
+    try {
+        const { fname, lname, dob, ssn, category } = req.body;
+        const query = `INSERT INTO passenger (SSN, FirstName, LastName, Date_of_birth, Category) VALUES ($1, $2, $3, $4, $5)`;
+        await pool.query(query, [ssn, fname, lname, dob, category]);
+        res.status(200).send('Passenger added successfully');
+    } catch (error) {
+        console.error('Error adding passenger:', error);
+        res.status(500).send('Failed to add passenger');
+    }
+});
 
+// Add flight booking endpoint
+app.post('/add-flight-booking', async (req, res) => {
+    try {
+        const {flight_id, total_price } = req.body;
+        const query = `INSERT INTO flight_booking (flight_id, total_price) VALUES ($1, $2) RETURNING flight_booking_id`;
+        const result = await pool.query(query, [flight_id, total_price]);
+        res.status(200).json({flight_booking_id:result.rows[0].flight_booking_id})
+    } catch (error) {
+        console.error('Error adding flight booking:', error);
+        res.status(500).send('Failed to add flight booking');
+    }
+});
 
-
+// register user
 app.post(`/register`, async (req, res) => {
     try {
         const reg_data = req.body;

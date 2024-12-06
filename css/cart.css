@@ -74,3 +74,11 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+.invalid {
+    border: 2px solid red;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+}

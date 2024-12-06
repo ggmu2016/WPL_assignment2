@@ -1,4 +1,29 @@
 const jsonFetchURL = "../json/data.json";
+const port = 4000;
+
+async function bookFlight(flightId, seatsToBook) {
+    try{
+        const response = await fetch(`http://localhost:${port}/book-flight`,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({flightId, seatsToBook}),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Error booking flight:", errorData);
+            alert(`Error: ${errorData.error}`);
+            return;
+        }
+        const data = await response.json();
+        console.log("Booking successful:", data);
+        alert("Booking successful");
+    } catch (err){
+        console.log(err)
+    }
+}
 
 async function fetchData(url) {
     const response = await fetch(url);
@@ -13,7 +38,7 @@ async function fetchXML(url) {
 }
 
 async function updateJsonData(updatedData) {
-    await fetch("http://localhost:3000/update-json", { // Update the JSON file
+    await fetch(`http://localhost:${port}/update-json`, { // Update the JSON file
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(updatedData)
@@ -140,19 +165,30 @@ function displayCart(cart, flightsXML) {
                             <h2>Passenger 1</h2>
                             <div class="form-field">
                                 <label for="first-name-${flightId}-1">First Name</label>
-                                <input type="text" id="first-name-${flightId}-1" name="first-name-1" required>
+                                <input type="text" id="first-name-${flightId}-1" name="first-name-1" pattern="[a-zA-Z\s]+" required 
+                           title="First name must contain only letters.">
                             </div>
                             <div class="form-field">
                                 <label for="last-name-${flightId}-1">Last Name</label>
-                                <input type="text" id="last-name-${flightId}-1" name="last-name-1" required>
+                                <input type="text" id="last-name-${flightId}-1" name="last-name-1" pattern="[a-zA-Z\s]+" required 
+                           title="Last name must contain only letters.">
                             </div>
                             <div class="form-field">
                                 <label for="dob-${flightId}-1">Date of Birth</label>
-                                <input type="date" id="dob-${flightId}-1" name="dob-1" required>
+                                <input type="date" id="dob-${flightId}-1" name="dob-1" required title="Date of Birth is Required. ">
                             </div>
                             <div class="form-field">
                                 <label for="ssn-${flightId}-1">SSN</label>
-                                <input type="text" id="ssn-${flightId}-1" name="ssn-1" required>
+                                <input type="text" id="ssn-${flightId}-1" name="ssn-1" pattern="\d{9}" required 
+                           title="Enter a 9-digit SSN.">
+                            </div>
+                            <div class="form-field">
+                                <label for="category-${flightId}-1">Category</label>
+                                <select id="category-${flightId}-1" name="category-1" required>
+                                    <option value="adults">Adults</option>
+                                    <option value="children">Children</option>
+                                    <option value="infants">Infants</option>
+                                </select>
                             </div>
                         </div>
                     </form>
@@ -180,24 +216,73 @@ function displayCart(cart, flightsXML) {
                     "passengers": []
                 }
                 let passengerCount = document.getElementById("passCount-" + flightId).textContent.valueOf();
-                var passengers = [];
+                let passengers = [];
+                const passengers2 = [];
+                let totalPrice = 0;
                 for (let j = 1; j <= passengerCount; j++) {
-                    passengers.push({
-                        "fname": document.getElementById(`first-name-${flightId}-${j}`).value,
-                        "lname": document.getElementById(`last-name-${flightId}-${j}`).value,
-                        "dob": document.getElementById(`dob-${flightId}-${j}`).value,
-                        "ssn": document.getElementById(`ssn-${flightId}-${j}`).value
-                    });
+                    const fname = document.getElementById(`first-name-${flightId}-${j}`).value;
+                    const lname = document.getElementById(`last-name-${flightId}-${j}`).value;
+                    const dob = document.getElementById(`dob-${flightId}-${j}`).value;
+                    const ssn = document.getElementById(`ssn-${flightId}-${j}`).value;
+                    const category = document.getElementById(`category-${flightId}-${i}`).value;
+
+                    if (!fname || !lname || !dob || !ssn || !category) {
+                        alert(`Please fill all fields for Passenger ${i}`);
+                        return;
+                    }
                     --numSeats;
+                    passengers.push({fname,lname,dob,ssn,category});
+
+                    // Calculate total price (with discounts for children and infants)
+                    const flightRecord = Array.from(flightsXML.querySelectorAll('record')).find(rec => rec.querySelector('flight_id').textContent === flightId);
+                    let passengerPrice = parseFloat(flightRecord.querySelector('price').textContent);
+                    if (category === 'children') passengerPrice *= 0.7; // 30% discount
+                    if (category === 'infants') passengerPrice *= 0.1;// 90% discount
+
+                    passengers2.push({ssn:ssn, price:passengerPrice});
+                    totalPrice += passengerPrice;
                     record.querySelector('num_seats').textContent = numSeats; // update num seats in the XML file
+
                 }
-                console.log("depart_flight_id: ", depart_flight_id);
-                console.log("numSeats: ", passengerCount);
+
+                // Insert passengers into the database
+                for (const passenger of passengers) {
+                    await fetch(`http://localhost:${port}/add-passenger`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(passenger),
+                    });
+                }
+
+                // Insert flight booking into the database
+                const bookingData = {
+                    flight_id: flightId,
+                    total_price: totalPrice.toFixed(2),
+                };
+
+                const flightBookingResponse = await fetch(`http://localhost:${port}/add-flight-booking`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(bookingData),
+                });
+                const {flight_booking_id} = await flightBookingResponse.json();
+
+                //insert tix for each passenger
+                for (const passenger of passengers2){
+                    await fetch(`http://localhost:${port}/add-ticket`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({flight_booking_id,ssn:passenger.ssn,price:passenger.price}),
+                    });
+                }
+                alert('Booking successful!');
 
                 newBooking.passengers = passengers;
+
                 await updateJsonBooking("passenger1", newBooking, 1, flightsXML); // Reload cart
                 if (depart_flight_id){await bookFlight(depart_flight_id,passengerCount)}
                 if (return_flight_id){await bookFlight(return_flight_id,passengerCount)}
+
             });
             cartDiv.appendChild(flightContainer);
             i+=1;
@@ -275,19 +360,30 @@ function addPassenger(flightId) {
                 <h2>Passenger ${passengerCount}</h2>
                 <div class="form-field">
                     <label for="first-name-${flightId}-${passengerCount}">First Name</label>
-                    <input type="text" id="first-name-${flightId}-${passengerCount}" name="first-name-${passengerCount}" required>
+                    <input type="text" id="first-name-${flightId}-${passengerCount}" name="first-name-${passengerCount}" pattern="[a-zA-Z\s]+" required 
+                           title="First name must contain only letters.">
                 </div>
                 <div class="form-field">
                     <label for="last-name-${flightId}-${passengerCount}">Last Name</label>
-                    <input type="text" id="last-name-${flightId}-${passengerCount}" name="last-name-${passengerCount}" required>
+                    <input type="text" id="last-name-${flightId}-${passengerCount}" name="last-name-${passengerCount}" pattern="[a-zA-Z\s]+" required 
+                           title="Last name must contain only letters.">
                 </div>
                 <div class="form-field">
                     <label for="dob-${flightId}-${passengerCount}">Date of Birth</label>
-                    <input type="date" id="dob-${flightId}-${passengerCount}" name="dob-${passengerCount}" required>
+                    <input type="date" id="dob-${flightId}-${passengerCount}" name="dob-${passengerCount}" required title="Date of birth is required.">
                 </div>
                 <div class="form-field">
                     <label for="ssn-${flightId}-${passengerCount}">SSN</label>
-                    <input type="text" id="ssn-${flightId}-${passengerCount}" name="ssn-${passengerCount}" required>
+                    <input type="text" id="ssn-${flightId}-${passengerCount}" name="ssn-${passengerCount}" pattern="\d{9}" required 
+                           title="Enter a 9-digit SSN.">
+                </div>
+                <div class="form-field">
+                    <label for="category-${flightId}-${passengerCount}">Category</label>
+                    <select id="category-${flightId}-${passengerCount}" name="category-${passengerCount}" required>
+                        <option value="adults">Adults</option>
+                        <option value="children">Children</option>
+                        <option value="infants">Infants</option>
+                    </select>
                 </div>
             `;
 
